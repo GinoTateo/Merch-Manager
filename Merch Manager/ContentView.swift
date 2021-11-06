@@ -23,7 +23,7 @@ struct ContentView: View {
                     NavigationLink {
                         Text("Item at \(item.timestamp!, formatter: itemFormatter)")
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text(item.store!)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -57,6 +57,23 @@ struct ContentView: View {
             }
         }
     }
+    
+    private func addStore() {
+        withAnimation {
+            let newItem = Item(context: viewContext)
+            newItem.store = "Safeway"
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
@@ -74,6 +91,7 @@ struct ContentView: View {
     }
 }
 
+
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
@@ -83,6 +101,8 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        Group {
+            ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        }
     }
 }
