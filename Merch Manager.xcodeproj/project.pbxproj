@@ -7,15 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF0DE0A02748877D00081637 /* OrderSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0DE09F2748877D00081637 /* OrderSheet.swift */; };
+		EF0DE0A22748D8A000081637 /* BeginOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0DE0A12748D8A000081637 /* BeginOfDay.swift */; };
+		EF0DE0A42748FDCC00081637 /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0DE0A32748FDCC00081637 /* ServiceView.swift */; };
+		EF3FFDCA27483D5300DBB298 /* storesCSV.csv in Resources */ = {isa = PBXBuildFile; fileRef = EF3FFDC927483D5300DBB298 /* storesCSV.csv */; };
 		EF4AEE762735F17300E44DC3 /* Merch_ManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4AEE752735F17300E44DC3 /* Merch_ManagerApp.swift */; };
 		EF4AEE782735F17300E44DC3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4AEE772735F17300E44DC3 /* ContentView.swift */; };
 		EF4AEE7A2735F17400E44DC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4AEE792735F17400E44DC3 /* Assets.xcassets */; };
 		EF4AEE7D2735F17400E44DC3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4AEE7C2735F17400E44DC3 /* Preview Assets.xcassets */; };
 		EF4AEE7F2735F17400E44DC3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4AEE7E2735F17400E44DC3 /* Persistence.swift */; };
 		EF4AEE822735F17400E44DC3 /* Merch_Manager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF4AEE802735F17400E44DC3 /* Merch_Manager.xcdatamodeld */; };
+		EFCEA8B9273CE0140097D0C8 /* ContentView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCEA8B8273CE0140097D0C8 /* ContentView2.swift */; };
+		EFCEA900273F75C60097D0C8 /* DataFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCEA8FF273F75C60097D0C8 /* DataFactory.swift */; };
+		EFCEA902273F75E10097D0C8 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCEA901273F75E10097D0C8 /* StoreView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF0DE09F2748877D00081637 /* OrderSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSheet.swift; sourceTree = "<group>"; };
+		EF0DE0A12748D8A000081637 /* BeginOfDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginOfDay.swift; sourceTree = "<group>"; };
+		EF0DE0A32748FDCC00081637 /* ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
+		EF3FFDC927483D5300DBB298 /* storesCSV.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = storesCSV.csv; sourceTree = "<group>"; };
 		EF4AEE722735F17300E44DC3 /* Merch Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Merch Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4AEE752735F17300E44DC3 /* Merch_ManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merch_ManagerApp.swift; sourceTree = "<group>"; };
 		EF4AEE772735F17300E44DC3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -23,6 +34,9 @@
 		EF4AEE7C2735F17400E44DC3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EF4AEE7E2735F17400E44DC3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		EF4AEE812735F17400E44DC3 /* Merch_Manager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Merch_Manager.xcdatamodel; sourceTree = "<group>"; };
+		EFCEA8B8273CE0140097D0C8 /* ContentView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView2.swift; sourceTree = "<group>"; };
+		EFCEA8FF273F75C60097D0C8 /* DataFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFactory.swift; sourceTree = "<group>"; };
+		EFCEA901273F75E10097D0C8 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +70,15 @@
 			isa = PBXGroup;
 			children = (
 				EF4AEE752735F17300E44DC3 /* Merch_ManagerApp.swift */,
+				EFCEA901273F75E10097D0C8 /* StoreView.swift */,
+				EF0DE0A32748FDCC00081637 /* ServiceView.swift */,
 				EF4AEE772735F17300E44DC3 /* ContentView.swift */,
+				EF0DE0A12748D8A000081637 /* BeginOfDay.swift */,
+				EF0DE09F2748877D00081637 /* OrderSheet.swift */,
+				EFCEA8B8273CE0140097D0C8 /* ContentView2.swift */,
 				EF4AEE792735F17400E44DC3 /* Assets.xcassets */,
+				EFCEA8FF273F75C60097D0C8 /* DataFactory.swift */,
+				EF3FFDC927483D5300DBB298 /* storesCSV.csv */,
 				EF4AEE7E2735F17400E44DC3 /* Persistence.swift */,
 				EF4AEE802735F17400E44DC3 /* Merch_Manager.xcdatamodeld */,
 				EF4AEE7B2735F17400E44DC3 /* Preview Content */,
@@ -133,6 +154,7 @@
 			files = (
 				EF4AEE7D2735F17400E44DC3 /* Preview Assets.xcassets in Resources */,
 				EF4AEE7A2735F17400E44DC3 /* Assets.xcassets in Resources */,
+				EF3FFDCA27483D5300DBB298 /* storesCSV.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,9 +165,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF0DE0A42748FDCC00081637 /* ServiceView.swift in Sources */,
+				EF0DE0A02748877D00081637 /* OrderSheet.swift in Sources */,
 				EF4AEE7F2735F17400E44DC3 /* Persistence.swift in Sources */,
 				EF4AEE782735F17300E44DC3 /* ContentView.swift in Sources */,
+				EF0DE0A22748D8A000081637 /* BeginOfDay.swift in Sources */,
+				EFCEA900273F75C60097D0C8 /* DataFactory.swift in Sources */,
 				EF4AEE762735F17300E44DC3 /* Merch_ManagerApp.swift in Sources */,
+				EFCEA8B9273CE0140097D0C8 /* ContentView2.swift in Sources */,
+				EFCEA902273F75E10097D0C8 /* StoreView.swift in Sources */,
 				EF4AEE822735F17400E44DC3 /* Merch_Manager.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +305,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Merch Manager/Preview Content\"";
+				DEVELOPMENT_TEAM = BY2YTN5682;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -305,6 +334,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Merch Manager/Preview Content\"";
+				DEVELOPMENT_TEAM = BY2YTN5682;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
