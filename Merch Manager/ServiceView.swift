@@ -12,7 +12,7 @@ struct Service: View {
         @Environment(\.managedObjectContext) private var Service
 
         @FetchRequest(
-            sortDescriptors: [NSSortDescriptor(keyPath: \Store.name, ascending: true)],
+            sortDescriptors: [SortDescriptor(\.dow)],
             animation: .default)
     
     
@@ -21,24 +21,18 @@ struct Service: View {
     
     var body: some View {
         Text(dow).bold()
-        NavigationView {
+        
+        
+
             List {
                 ForEach(items) { item in
                     
                     NavigationLink {
-                        NavigationView {
-                            List{
-                                    Text(item.name!).fontWeight(.bold)
-                                    Text(String(item.number))
-                                    Text(item.city!)
-                                    Text(String(item.cases))
-                                
-                                }
-                            }.toolbar {
-                                ToolbarItem(placement: .navigationBarTrailing) {
-                                EditButton()
-                            }
-                        }
+                        Text(item.name!).fontWeight(.bold)
+                        Text(String(item.number))
+                        Text(item.city!)
+                        Text(String(item.dow))
+
                         
                     } label: {
                         Text(item.name!)
@@ -46,17 +40,6 @@ struct Service: View {
                 }.onDelete(perform: deleteItems)
             }
             
-        }.toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
-            }
-            ToolbarItem {
-                Button(action: addStore) {
-                    Label("Add Item", systemImage: "plus")
-                    
-                }
-            }
-        }
     }
     
         private func deleteItems(offsets: IndexSet) {
@@ -82,7 +65,7 @@ struct Service: View {
                 let newStore = Store(context: Service)
                     newStore.number = 1119
                     newStore.city = "Oakland"
-                    newStore.cases = 10
+                    newStore.dow = 10
                     newStore.name = "Safeway"
                 
                 

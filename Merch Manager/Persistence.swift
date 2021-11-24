@@ -17,7 +17,7 @@ struct PersistenceController {
         
         for _ in 0..<10 {
             let newStore = Store(context: viewContext)
-                newStore.cases = 0
+                newStore.dow = 0
                 newStore.city = ""
                 newStore.number = 0000
                 newStore.name = "New store"
