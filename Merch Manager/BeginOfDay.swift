@@ -11,16 +11,16 @@ import SwiftUI
 
 struct BeginOfDay: View {
     
-    let pizzaTypes = ["Gino Tateo",
+    let user = ["Gino Tateo",
                       "Amanda Tateo",
                       "Nicole Tateo",
                       "Angela Tateo"]
     
     
     
-    @State var selectedPizzaIndex = 1
+    @State var selectedUserIndex = 0
     @State var numberOfSlices = 1
-    @State var tableNumber = ""
+    @State var routeNumber = ""
     @State private var password: String = ""
     
     @Environment (\.presentationMode) var presentationMode
@@ -30,9 +30,9 @@ struct BeginOfDay: View {
         NavigationView {
             Form {
                 Section(header: Text("User Details")) {
-                    Picker(selection: $selectedPizzaIndex, label: Text("User")) {
-                        ForEach(0 ..< pizzaTypes.count) {
-                                Text(self.pizzaTypes[$0]).tag($0)
+                    Picker(selection: $selectedUserIndex, label: Text("User")) {
+                        ForEach(0 ..< user.count) {
+                                Text(self.user[$0]).tag($0)
                         }
                     }
                     
@@ -40,13 +40,13 @@ struct BeginOfDay: View {
                 }
                 
                 Section(header: Text("Route")) {
-                    TextField("Route Number", text: $tableNumber)
+                    TextField("Route Number", text: $routeNumber)
                         .keyboardType(.numberPad)
                     
                 }
                 
                 Button(action: {
-                    guard self.tableNumber != "" else {return}
+                    guard self.routeNumber != "" else {return}
                     do {
                         print("Begin day saved.")
                         presentationMode.wrappedValue.dismiss()

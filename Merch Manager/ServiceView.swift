@@ -116,7 +116,7 @@ private let itemFormatter: DateFormatter = {
 struct Service_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            Home().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext).previewInterfaceOrientation(.portrait)
+            Service().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext).previewInterfaceOrientation(.portrait)
 
 
         }
