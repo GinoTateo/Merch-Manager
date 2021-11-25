@@ -19,7 +19,6 @@ struct BeginOfDay: View {
     
     
     @State var selectedUserIndex = 0
-    @State var numberOfSlices = 1
     @State var routeNumber = ""
     @State private var password: String = ""
     

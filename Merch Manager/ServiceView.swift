@@ -7,17 +7,20 @@
 
 import SwiftUI
 import Foundation
+import CoreData
 
 struct Service: View {
         @Environment(\.managedObjectContext) private var Service
-
-        @FetchRequest(
-            sortDescriptors: [SortDescriptor(\.dow)],
-            animation: .default)
-    
-    
-        private var items: FetchedResults<Store>
+   
         var dow = ""
+        
+   
+        @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.dow, ascending: true)],predicate: NSPredicate(format: "dow == 0"))
+
+        private var items: FetchedResults<Store>
+        
+    
+
     
     var body: some View {
         Text(dow).bold()
@@ -65,7 +68,7 @@ struct Service: View {
                 let newStore = Store(context: Service)
                     newStore.number = 1119
                     newStore.city = "Oakland"
-                    newStore.dow = 10
+                    newStore.dow = 0
                     newStore.name = "Safeway"
                 
                 
@@ -85,6 +88,9 @@ struct Service: View {
                 }
             }
         }
+    
+    
+
         
 }
 
