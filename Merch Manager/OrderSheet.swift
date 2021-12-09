@@ -14,7 +14,7 @@ struct OrderSheet: View {
     let pizzaTypes = ["Pizza Margherita", "Greek Pizza", "Pizza Supreme", "Pizza California", "New York Pizza"]
     
     
-    
+    var dow = ""
     @State var selectedPizzaIndex = 1
     @State var numberOfSlices = 1
     @State var tableNumber = ""
@@ -22,7 +22,7 @@ struct OrderSheet: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Pizza Details")) {
+                Section(header: Text("Store Details")) {
                     Picker(selection: $selectedPizzaIndex, label: Text("Pizza Type")) {
                         ForEach(0 ..< pizzaTypes.count) {
                                 Text(self.pizzaTypes[$0]).tag($0)
@@ -45,7 +45,15 @@ struct OrderSheet: View {
                     Text("Add Order")
                 }
             }
-                .navigationTitle("Add Order")
+            } .navigationBarTitleDisplayMode(.inline)
+              .toolbar { // <2>
+                ToolbarItem(placement: .principal) { // <3>
+                    VStack {
+                        Text("My \(dow)").font(.headline)
+                        Text("Order").font(.subheadline)
+                    }
+                }
+
         }
     }
 }

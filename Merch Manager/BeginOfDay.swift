@@ -12,9 +12,9 @@ import SwiftUI
 struct BeginOfDay: View {
     
     let user = ["Gino Tateo",
-                      "Amanda Tateo",
-                      "Nicole Tateo",
-                      "Angela Tateo"]
+                "Amanda Tateo",
+                "Nicole Tateo",
+                "Angela Tateo"]
     
     
     @Binding var showBeginSheet: Bool

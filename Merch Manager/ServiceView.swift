@@ -23,7 +23,6 @@ struct Service: View {
         
     
     var body: some View {
-        Text(dow).bold()
         
         
 
@@ -36,12 +35,21 @@ struct Service: View {
                         Text(item.city!)
                         Text(String(item.dow))
                         //Text(item.dos!)
+                        
 
                         
                     } label: {
                         Text(item.name!)
                     }
                 }.onDelete(perform: deleteItems)
+            }.navigationBarTitleDisplayMode(.inline)
+            .toolbar { // <2>
+                ToolbarItem(placement: .principal) { // <3>
+                    VStack {
+                        Text("My \(dow)").font(.headline)
+                        Text("Store list").font(.subheadline)
+                    }
+                }
             }
             
     }

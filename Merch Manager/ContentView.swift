@@ -11,7 +11,8 @@ import CoreData
 struct ContentView: View {
     @State var showOrderSheet = false
     @State var showBeginSheet = true
-    @State var viewStoreService = false
+    @State var viewStoreService = true
+    @State private var showAlert = false
     
     @Environment(\.managedObjectContext) private var ConentView
 
@@ -22,39 +23,50 @@ struct ContentView: View {
 
     
     var body: some View {
-        VStack{
         NavigationView{
-            VStack(){
-            List {
-                VStack(spacing: 1){
-                    Button(action: beginDay) {
-                        Text("Begin Day").bold()
-                    } .sheet(isPresented: $showBeginSheet) { BeginOfDay(showBeginSheet: self.$showBeginSheet) }
+            VStack{
+                List{
+                    Button(action: beginDay){
+                        HStack{
+                            Spacer()
+                        if(showBeginSheet==true){
+                            Text("Login")
+                        }
+                        else{
+                            Text("Logout")
+                        }
+                            Spacer()
+                        }
+                    }.sheet(isPresented: $showBeginSheet) { BeginOfDay(showBeginSheet: self.$showBeginSheet)}
+                    
                     NavigationLink(destination: Service(dow: GetWeekday())){
-                            
+                        HStack{
+                            Spacer()
+                            Text("View store list")
+                            Spacer()
                         }
                     }
-                VStack{
-                    Button(action: beginDay) {
-                        Text("Begin Day").bold()
-                    } .sheet(isPresented: $showBeginSheet) { BeginOfDay(showBeginSheet: self.$showBeginSheet) }
-                    NavigationLink(destination: Service(dow: GetWeekday())){
-                            
+                    
+                    NavigationLink(destination: OrderSheet(dow: GetWeekday())){
+                        HStack{
+                            Spacer()
+                            Text("Order")
+                            Spacer()
                         }
                     }
-  
-    
-            }    .navigationTitle("My \(GetWeekday()).")
-                .navigationBarItems(trailing: Button(action: {
-                    print("Open order sheet")
-                    showOrderSheet = true
-                }, label: {
-                    Image(systemName: "plus.circle")
-                        .imageScale(.large)
-                }))
+                    
+                }
             }
-        }
-        }
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar { // <2>
+                    ToolbarItem(placement: .principal) { // <3>
+                        VStack {
+                            Text("My \(GetWeekday())").font(.headline)
+                            Text("Home").font(.subheadline)
+                        }
+                    }
+                }
+            }
         }
     
     private func GetWeekday() -> String{
@@ -85,8 +97,21 @@ struct ContentView: View {
         //showBeginSheet = true
     }
 
-}
 
+
+    private func viewStoreList(){
+        print("View list")
+        //showBeginSheet = true
+    }
+    
+    
+    private func logout(){
+        print("User log out")
+        showBeginSheet = true
+        
+    }
+
+}
 
 
 
