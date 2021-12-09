@@ -21,6 +21,7 @@ struct PersistenceController {
                 newStore.city = ""
                 newStore.number = 0000
                 newStore.name = "New store"
+                newStore.dos = "Sunday"
         }
     
 

@@ -10,7 +10,7 @@ import CoreData
 
 struct ContentView: View {
     @State var showOrderSheet = false
-    @State var showBeginSheet = false
+    @State var showBeginSheet = true
     @State var viewStoreService = false
     
     @Environment(\.managedObjectContext) private var ConentView
@@ -19,26 +19,29 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Store.name, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Store>
-    
-    
-    
-    
+
     
     var body: some View {
-        
+        VStack{
         NavigationView{
+            VStack(){
             List {
-
-                VStack{
-                    
+                VStack(spacing: 1){
                     Button(action: beginDay) {
-                        Text("Begin Day")
-                    } .sheet(isPresented: $showBeginSheet) { BeginOfDay() }
+                        Text("Begin Day").bold()
+                    } .sheet(isPresented: $showBeginSheet) { BeginOfDay(showBeginSheet: self.$showBeginSheet) }
                     NavigationLink(destination: Service(dow: GetWeekday())){
                             
                         }
-                    
-                }
+                    }
+                VStack{
+                    Button(action: beginDay) {
+                        Text("Begin Day").bold()
+                    } .sheet(isPresented: $showBeginSheet) { BeginOfDay(showBeginSheet: self.$showBeginSheet) }
+                    NavigationLink(destination: Service(dow: GetWeekday())){
+                            
+                        }
+                    }
   
     
             }    .navigationTitle("My \(GetWeekday()).")
@@ -50,6 +53,8 @@ struct ContentView: View {
                         .imageScale(.large)
                 }))
             }
+        }
+        }
         }
     
     private func GetWeekday() -> String{
@@ -77,7 +82,7 @@ struct ContentView: View {
     
     private func beginDay(){
         print("Running Begin of Day")
-        showBeginSheet = true
+        //showBeginSheet = true
     }
 
 }

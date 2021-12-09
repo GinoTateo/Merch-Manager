@@ -17,7 +17,7 @@ struct BeginOfDay: View {
                       "Angela Tateo"]
     
     
-    
+    @Binding var showBeginSheet: Bool
     @State var selectedUserIndex = 0
     @State var routeNumber = ""
     @State private var password: String = ""
@@ -48,6 +48,7 @@ struct BeginOfDay: View {
                     guard self.routeNumber != "" else {return}
                     do {
                         print("Begin day saved.")
+                        showBeginSheet = false
                         presentationMode.wrappedValue.dismiss()
                     } catch {
                         print(error.localizedDescription)

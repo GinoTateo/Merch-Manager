@@ -13,14 +13,14 @@ struct Service: View {
         @Environment(\.managedObjectContext) private var Service
    
         var dow = ""
-        
+
    
-        @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.dow, ascending: true)],predicate: NSPredicate(format: "dow == 0"))
+   @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.dos, ascending: true)])//,predicate: NSPredicate(format: "dos == Sunday"))
 
         private var items: FetchedResults<Store>
         
     
-
+        
     
     var body: some View {
         Text(dow).bold()
@@ -35,6 +35,7 @@ struct Service: View {
                         Text(String(item.number))
                         Text(item.city!)
                         Text(String(item.dow))
+                        //Text(item.dos!)
 
                         
                     } label: {
@@ -88,6 +89,13 @@ struct Service: View {
                 }
             }
         }
+    
+    private func grabStores(){
+        let index = Foundation.Calendar.current.component(.weekday, from: Date()) // this returns an Int
+      
+
+        
+    }
     
     
 
