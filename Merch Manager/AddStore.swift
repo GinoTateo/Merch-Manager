@@ -15,7 +15,11 @@ struct AddStore: View {
     @State var City = ""
     @State var StoreNumber = ""
     @State var dos = ""
-    @State var dow = 0
+    //@State var dow = 0
+    @State var dosIndex = 0
+    var dow = ""
+    
+    let DayOfWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
     
     @Environment (\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var AddStore
@@ -37,27 +41,32 @@ struct AddStore: View {
                     }
                     VStack{
                         HStack{
-                        Text(StoreNumber).fontWeight(.light)
+                            TextField("Store City", text: $City)
+                        }
+                    }
+                    VStack{
+                        HStack{
+                            Picker(selection: $dosIndex, label: Text("Day of week")) {
+                                ForEach(0 ..< DayOfWeek.count) {
+                                        Text(self.DayOfWeek[$0]).tag($0)
+                                }
+                            }
                         }
                     }
                     
                 }
                 
-                Section(header: Text("Table")) {
-                    //TextField("Table Number", text: $tableNumber)
-                    //    .keyboardType(.numberPad)
-                    
-                }
                 
                 Button(action: {
-                    //guard self.routeNumber != "" else {return}
+                    guard self.StoreNumber != "" else {return}
+                    let newStore = Store(context: AddStore)
+                        newStore.number = Int16(self.StoreNumber)!
+                        newStore.city = City
+                        //newStore.dow = 0
+                        newStore.name = StoreName
+                        newStore.dos = self.DayOfWeek[self.dosIndex]
                     do {
-                        let newStore = Store(context: AddStore)
-                            newStore.number = 0
-                            newStore.city = ""
-                            newStore.dow = 0
-                            newStore.name = StoreName
-                            newStore.dos = "Sunday"
+                        try AddStore.save()
                         presentationMode.wrappedValue.dismiss()
                     } catch {
                         print(error.localizedDescription)
@@ -67,15 +76,15 @@ struct AddStore: View {
                 }
 
             }
-            } .navigationBarTitleDisplayMode(.inline)
+             .navigationBarTitleDisplayMode(.inline)
               .toolbar { // <2>
                 ToolbarItem(placement: .principal) { // <3>
                     VStack {
-                        //Text("My \(dow)").font(.headline)
-                        Text("Order").font(.subheadline)
+                        Text("My \(dow)").font(.headline)
+                        Text("Add Store").font(.subheadline)
                     }
                 }
-
+            }
         }
     }
 }

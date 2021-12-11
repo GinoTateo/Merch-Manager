@@ -50,7 +50,7 @@ struct Service: View {
             .navigationBarItems(trailing: Button(action: { addStore() }, label: {
                                 Image(systemName: "plus.circle")
                 .imageScale(.large) }))
-            .sheet(isPresented: $openAddStore) { AddStore()}
+            .sheet(isPresented: $openAddStore) { AddStore(dow: dow)}
 
     }
     
