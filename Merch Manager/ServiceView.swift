@@ -13,45 +13,45 @@ struct Service: View {
         @Environment(\.managedObjectContext) private var Service
    
         var dow = ""
+    @State var openAddStore = false
 
    
    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.dos, ascending: true)])//,predicate: NSPredicate(format: "dos == Sunday"))
 
-        private var items: FetchedResults<Store>
-        
-    
-        
+    private var items: FetchedResults<Store>
     
     var body: some View {
-        
-        
-
+  
             List {
                 ForEach(items) { item in
                     
-                    NavigationLink {
-                        Text(item.name!).fontWeight(.bold)
-                        Text(String(item.number))
-                        Text(item.city!)
-                        Text(String(item.dow))
-                        //Text(item.dos!)
-                        
-
-                        
-                    } label: {
-                        Text(item.name!)
+                    NavigationLink(destination: OrderSheet(dow: dow,item: item)){
+                        HStack{
+                            Spacer()
+                            Text(item.name!)
+                            Text(String(item.number))
+                            Spacer()
+                        }
                     }
+
                 }.onDelete(perform: deleteItems)
             }.navigationBarTitleDisplayMode(.inline)
-            .toolbar { // <2>
-                ToolbarItem(placement: .principal) { // <3>
+             .toolbar {
+                ToolbarItem(placement: .principal) {
                     VStack {
                         Text("My \(dow)").font(.headline)
                         Text("Store list").font(.subheadline)
                     }
                 }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                                    EditButton()
+                                }
             }
-            
+            .navigationBarItems(trailing: Button(action: { addStore() }, label: {
+                                Image(systemName: "plus.circle")
+                .imageScale(.large) }))
+            .sheet(isPresented: $openAddStore) { AddStore()}
+
     }
     
         private func deleteItems(offsets: IndexSet) {
@@ -71,22 +71,15 @@ struct Service: View {
         
         private func addStore() {
             withAnimation {
-
-
-
-                let newStore = Store(context: Service)
-                    newStore.number = 1119
-                    newStore.city = "Oakland"
-                    newStore.dow = 0
-                    newStore.name = "Safeway"
                 
+//                let newStore = Store(context: Service)
+//                    newStore.number = 3132
+//                    newStore.city = "Oakland"
+//                    newStore.dow = 0
+//                    newStore.name = "Safeway"
+//                    newStore.dos = "Sunday"
                 
-                
-                
-                
-                
-                
-                
+                openAddStore = true
                 do {
                     try Service.save()
                 } catch {
@@ -98,11 +91,13 @@ struct Service: View {
             }
         }
     
+    
+    
+    
+    
     private func grabStores(){
         let index = Foundation.Calendar.current.component(.weekday, from: Date()) // this returns an Int
       
-
-        
     }
     
     

@@ -11,10 +11,9 @@ import SwiftUI
 
 struct OrderSheet: View {
        
-    let pizzaTypes = ["Pizza Margherita", "Greek Pizza", "Pizza Supreme", "Pizza California", "New York Pizza"]
-    
-    
     var dow = ""
+    var item: Store
+    
     @State var selectedPizzaIndex = 1
     @State var numberOfSlices = 1
     @State var tableNumber = ""
@@ -23,13 +22,23 @@ struct OrderSheet: View {
         NavigationView {
             Form {
                 Section(header: Text("Store Details")) {
-                    Picker(selection: $selectedPizzaIndex, label: Text("Pizza Type")) {
-                        ForEach(0 ..< pizzaTypes.count) {
-                                Text(self.pizzaTypes[$0]).tag($0)
+                    VStack{
+                        HStack{
+                    Text(item.name!).fontWeight(.light)
+                    Text(String(item.number)).fontWeight(.light)
+                        }
+                    }
+                    VStack{
+                        HStack{
+                        Text(item.city!+", CA").fontWeight(.light)
+                        }
+                    }
+                    VStack{
+                        HStack{
+                        Text(item.dos!).fontWeight(.light)
                         }
                     }
                     
-                    Stepper("\(numberOfSlices) Slices", value: $numberOfSlices, in: 1...12)
                 }
                 
                 Section(header: Text("Table")) {

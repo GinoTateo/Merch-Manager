@@ -47,13 +47,13 @@ struct ContentView: View {
                         }
                     }
                     
-                    NavigationLink(destination: OrderSheet(dow: GetWeekday())){
-                        HStack{
-                            Spacer()
-                            Text("Order")
-                            Spacer()
-                        }
-                    }
+//                    NavigationLink(destination: OrderSheet(dow: GetWeekday(), item: items)){
+//                        HStack{
+//                            Spacer()
+//                            Text("Order")
+//                            Spacer()
+//                        }
+//                    }
                     
                 }
             }
