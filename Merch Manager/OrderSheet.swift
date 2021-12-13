@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 
 struct OrderSheet: View {
@@ -14,9 +15,12 @@ struct OrderSheet: View {
     var dow = ""
     var item: Store
     
+    @Environment (\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) private var OrderSheet
+    
     @State var selectedPizzaIndex = 1
     @State var numberOfSlices = 1
-    @State var tableNumber = ""
+    @State var CaseCount = ""
     
     var body: some View {
         NavigationView {
@@ -41,17 +45,25 @@ struct OrderSheet: View {
                     
                 }
                 
-                Section(header: Text("Table")) {
-                    TextField("Table Number", text: $tableNumber)
+                Section(header: Text("Case count")) {
+                    TextField("Number of cases", text: $CaseCount)
                         .keyboardType(.numberPad)
                     
                 }
                 
                 Button(action: {
-                    guard self.tableNumber != "" else {return}
-
+                    guard self.CaseCount != "" else {return}
+//                    let newOrder = Store(context: OrderSheet)
+//                    newOrder.number = Int16(self.StoreNumber)!
+//                    newOrder.city = City
+                    do {
+                        try OrderSheet.save()
+                        presentationMode.wrappedValue.dismiss()
+                    } catch {
+                        print(error.localizedDescription)
+                    }
                 }) {
-                    Text("Add Order")
+                    Text("Add store")
                 }
             }
             } .navigationBarTitleDisplayMode(.inline)
