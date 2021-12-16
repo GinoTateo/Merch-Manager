@@ -10,6 +10,9 @@
 		EF0DE0A02748877D00081637 /* OrderSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0DE09F2748877D00081637 /* OrderSheet.swift */; };
 		EF0DE0A22748D8A000081637 /* BeginOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0DE0A12748D8A000081637 /* BeginOfDay.swift */; };
 		EF0DE0A42748FDCC00081637 /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0DE0A32748FDCC00081637 /* ServiceView.swift */; };
+		EF46D271276AB558007798C6 /* PlanDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF46D270276AB558007798C6 /* PlanDay.swift */; };
+		EF46D273276AB596007798C6 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF46D272276AB596007798C6 /* AccountView.swift */; };
+		EF46D275276AB5C2007798C6 /* StartRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF46D274276AB5C2007798C6 /* StartRouteView.swift */; };
 		EF4AEE762735F17300E44DC3 /* Merch_ManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4AEE752735F17300E44DC3 /* Merch_ManagerApp.swift */; };
 		EF4AEE782735F17300E44DC3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4AEE772735F17300E44DC3 /* ContentView.swift */; };
 		EF4AEE7A2735F17400E44DC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4AEE792735F17400E44DC3 /* Assets.xcassets */; };
@@ -24,6 +27,9 @@
 		EF0DE09F2748877D00081637 /* OrderSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSheet.swift; sourceTree = "<group>"; };
 		EF0DE0A12748D8A000081637 /* BeginOfDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginOfDay.swift; sourceTree = "<group>"; };
 		EF0DE0A32748FDCC00081637 /* ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
+		EF46D270276AB558007798C6 /* PlanDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDay.swift; sourceTree = "<group>"; };
+		EF46D272276AB596007798C6 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		EF46D274276AB5C2007798C6 /* StartRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRouteView.swift; sourceTree = "<group>"; };
 		EF4AEE722735F17300E44DC3 /* Merch Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Merch Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4AEE752735F17300E44DC3 /* Merch_ManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merch_ManagerApp.swift; sourceTree = "<group>"; };
 		EF4AEE772735F17300E44DC3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -70,12 +76,15 @@
 				EF0DE0A32748FDCC00081637 /* ServiceView.swift */,
 				EFE371502763E68700149767 /* AddStore.swift */,
 				EF4AEE772735F17300E44DC3 /* ContentView.swift */,
+				EF46D274276AB5C2007798C6 /* StartRouteView.swift */,
+				EF46D272276AB596007798C6 /* AccountView.swift */,
 				EF0DE0A12748D8A000081637 /* BeginOfDay.swift */,
 				EF0DE09F2748877D00081637 /* OrderSheet.swift */,
 				EF4AEE792735F17400E44DC3 /* Assets.xcassets */,
 				EF4AEE7E2735F17400E44DC3 /* Persistence.swift */,
 				EF4AEE802735F17400E44DC3 /* Merch_Manager.xcdatamodeld */,
 				EF4AEE7B2735F17400E44DC3 /* Preview Content */,
+				EF46D270276AB558007798C6 /* PlanDay.swift */,
 			);
 			path = "Merch Manager";
 			sourceTree = "<group>";
@@ -162,9 +171,12 @@
 				EF0DE0A02748877D00081637 /* OrderSheet.swift in Sources */,
 				EF4AEE7F2735F17400E44DC3 /* Persistence.swift in Sources */,
 				EF4AEE782735F17300E44DC3 /* ContentView.swift in Sources */,
+				EF46D273276AB596007798C6 /* AccountView.swift in Sources */,
 				EF0DE0A22748D8A000081637 /* BeginOfDay.swift in Sources */,
 				EFE371512763E68700149767 /* AddStore.swift in Sources */,
+				EF46D275276AB5C2007798C6 /* StartRouteView.swift in Sources */,
 				EF4AEE762735F17300E44DC3 /* Merch_ManagerApp.swift in Sources */,
+				EF46D271276AB558007798C6 /* PlanDay.swift in Sources */,
 				EFCEA902273F75E10097D0C8 /* StoreView.swift in Sources */,
 				EF4AEE822735F17400E44DC3 /* Merch_Manager.xcdatamodeld in Sources */,
 			);

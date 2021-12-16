@@ -26,6 +26,39 @@ struct ContentView: View {
         NavigationView{
             VStack{
                 List{
+                    
+                    NavigationLink(destination: StartRouteView() ){
+                        HStack{
+                            Spacer()
+                            Text("Start Route")
+                            Spacer()
+                        }
+                    }
+                    
+                    NavigationLink(destination: Service(dow: GetWeekday())){
+                        HStack{
+                            Spacer()
+                            Text("View Stores")
+                            Spacer()
+                        }
+                    }
+                    
+                    NavigationLink(destination: PlanDay(dow: GetWeekday()) ){
+                        HStack{
+                            Spacer()
+                            Text("Plan Day")
+                            Spacer()
+                        }
+                    }
+                                        
+                    NavigationLink(destination: AccountView() ){
+                        HStack{
+                            Spacer()
+                            Text("Account")
+                            Spacer()
+                        }
+                    }
+                    
                     Button(action: beginDay){
                         HStack{
                             Spacer()
@@ -39,23 +72,8 @@ struct ContentView: View {
                         }
                     }.sheet(isPresented: $showBeginSheet) { BeginOfDay(showBeginSheet: self.$showBeginSheet)}
                     
-                    NavigationLink(destination: Service(dow: GetWeekday())){
-                        HStack{
-                            Spacer()
-                            Text("View store list")
-                            Spacer()
-                        }
-                    }
-                    
-//                    NavigationLink(destination: OrderSheet(dow: GetWeekday(), item: items)){
-//                        HStack{
-//                            Spacer()
-//                            Text("Order")
-//                            Spacer()
-//                        }
-//                    }
-                    
                 }
+                
             }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar { // <2>
