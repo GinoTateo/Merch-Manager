@@ -33,7 +33,6 @@ struct Service: View {
                             Spacer()
                         }
                     }
-
                 }.onDelete(perform: deleteItems)
             }.navigationBarTitleDisplayMode(.inline)
              .toolbar {

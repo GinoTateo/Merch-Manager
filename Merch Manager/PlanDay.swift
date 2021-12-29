@@ -41,7 +41,7 @@ struct PlanDay: View {
             ToolbarItem(placement: .principal) {
                 VStack {
                     Text("My \(dow)").font(.headline)
-                    Text("Store list").font(.subheadline)
+                    Text("Plan day").font(.subheadline)
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -72,6 +72,15 @@ struct PlanDay: View {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
+    }
+    
+    
+    private func CreatePlan(){
+        let plan = PlanDayData(context: PlanDay)
+        
+        plan.date = Date()
+        plan.planID = UUID()
+
     }
 }
 

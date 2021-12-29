@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="EmployeEntity" representedClassName="EmployeEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="dateJoined" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="route" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RouteEntiy" inverseName="routeRep" inverseEntity="RouteEntiy"/>
+    </entity>
+    <entity name="PlanDayData" representedClassName="PlanDayData" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="planID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="RouteEntiy" representedClassName="RouteEntiy" syncable="YES" codeGenerationType="class">
+        <attribute name="routeNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="wareHouse" optional="YES" attributeType="String"/>
+        <relationship name="routeRep" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="EmployeEntity" inverseName="route" inverseEntity="EmployeEntity"/>
+        <relationship name="routeStores" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Store" inverseName="route" inverseEntity="Store"/>
+    </entity>
     <entity name="Store" representedClassName="Store" syncable="YES" codeGenerationType="class">
         <attribute name="city" optional="YES" attributeType="String"/>
         <attribute name="dos" optional="YES" attributeType="String"/>
         <attribute name="dow" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="planned_service" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlanDayData"/>
+        <relationship name="route" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RouteEntiy" inverseName="routeStores" inverseEntity="RouteEntiy"/>
     </entity>
     <elements>
-        <element name="Store" positionX="38.5546875" positionY="-367.56640625" width="128" height="104"/>
+        <element name="Store" positionX="-94.484375" positionY="-306.5625" width="128" height="148"/>
+        <element name="PlanDayData" positionX="164.5390625" positionY="-305.9140625" width="128" height="73"/>
+        <element name="RouteEntiy" positionX="-364.8984375" positionY="-137.2890625" width="128" height="103"/>
+        <element name="EmployeEntity" positionX="-177.3203125" positionY="-35.953125" width="128" height="89"/>
     </elements>
 </model>
