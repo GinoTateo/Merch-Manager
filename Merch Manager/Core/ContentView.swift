@@ -20,6 +20,7 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Store.name, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Store>
+    
 
     
     var body: some View {
@@ -51,7 +52,7 @@ struct ContentView: View {
                         }
                     }
                                         
-                    NavigationLink(destination: AccountView() ){
+                    NavigationLink(destination: AccountView(dow: GetWeekday()) ){
                         HStack{
                             Spacer()
                             Text("Account")
@@ -128,7 +129,7 @@ struct ContentView: View {
         showBeginSheet = true
         
     }
-
+    
 }
 
 

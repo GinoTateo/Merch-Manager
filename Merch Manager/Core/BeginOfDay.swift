@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 
 struct BeginOfDay: View {
@@ -23,6 +24,11 @@ struct BeginOfDay: View {
     @State private var password: String = ""
     
     @Environment (\.presentationMode) var presentationMode
+    
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \EmployeEntity.name, ascending: true)],
+        animation: .default)
+    private var User: FetchedResults<EmployeEntity>
     
     
     var body: some View {
@@ -80,5 +86,9 @@ struct BeginOfDay: View {
             return "Hello, "
         }
     }
+    
+
+
+    
     
 }
