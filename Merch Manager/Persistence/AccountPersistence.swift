@@ -17,13 +17,15 @@ struct AccountPersistenceController {
         
         
  
-            let newAccount = NSPersistentContainer(name: "CoreDataSample")
-            newAccount.loadPersistentStores{(StoreDescription, error) in
-            if let error = error {
-                fatalError("Loading of store failed \(error)")
-            }
+        let newAccount = EmployeEntity(context: viewContext)
+            newAccount.userID = "User"
+            newAccount.title = "Merchandiser"
+            newAccount.password = "Password"
+            newAccount.name = "Name"
+            newAccount.email = "Email"
+            newAccount.dateJoined = Date()
             
-        }
+   
     
 
         

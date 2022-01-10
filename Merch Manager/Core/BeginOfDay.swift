@@ -53,7 +53,8 @@ struct BeginOfDay: View {
                 Button(action: {
                     guard self.routeNumber != "" else {return}
                     do {
-                        print("Begin day saved.")
+                        print("Begin day saved route #\(routeNumber)")
+                        print("\(password)")
                         showBeginSheet = false
                         presentationMode.wrappedValue.dismiss()
                     } catch {

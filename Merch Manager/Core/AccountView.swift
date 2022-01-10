@@ -44,12 +44,10 @@ struct AccountView: View {
     
 //    private func createUserCreds(name: String, email: String, password: String)-> EmployeEntity{
 //        let context = AccountPersistenceController.viewContext
-//
 //        let userdetails =
 //        NSEntityDescription.insertNewObject(forEntityName: EmployeEntity, into: context)
 //    }
-//
-//
+
     
     
 }
