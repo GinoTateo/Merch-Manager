@@ -20,6 +20,7 @@
 		EF4AEE7F2735F17400E44DC3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4AEE7E2735F17400E44DC3 /* Persistence.swift */; };
 		EF4AEE822735F17400E44DC3 /* Merch_Manager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF4AEE802735F17400E44DC3 /* Merch_Manager.xcdatamodeld */; };
 		EFB8EABB278906940088380B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB8EABA278906940088380B /* Color.swift */; };
+		EFB8EABF278CF42B0088380B /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB8EABE278CF42B0088380B /* CreateAccountView.swift */; };
 		EFCEA902273F75E10097D0C8 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCEA901273F75E10097D0C8 /* StoreView.swift */; };
 		EFE371512763E68700149767 /* AddStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE371502763E68700149767 /* AddStore.swift */; };
 		EFE4059D277D4363004CCAF3 /* AccountPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE4059C277D4363004CCAF3 /* AccountPersistence.swift */; };
@@ -40,6 +41,7 @@
 		EF4AEE7E2735F17400E44DC3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		EF4AEE812735F17400E44DC3 /* Merch_Manager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Merch_Manager.xcdatamodel; sourceTree = "<group>"; };
 		EFB8EABA278906940088380B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		EFB8EABE278CF42B0088380B /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		EFCEA901273F75E10097D0C8 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		EFE371502763E68700149767 /* AddStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStore.swift; sourceTree = "<group>"; };
 		EFE4059C277D4363004CCAF3 /* AccountPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPersistence.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				EF0DE0A12748D8A000081637 /* BeginOfDay.swift */,
+				EFB8EABE278CF42B0088380B /* CreateAccountView.swift */,
 				EF46D270276AB558007798C6 /* PlanDay.swift */,
 				EF0DE09F2748877D00081637 /* OrderSheet.swift */,
 				EFCEA901273F75E10097D0C8 /* StoreView.swift */,
@@ -206,6 +209,7 @@
 				EF0DE0A22748D8A000081637 /* BeginOfDay.swift in Sources */,
 				EFE371512763E68700149767 /* AddStore.swift in Sources */,
 				EF46D275276AB5C2007798C6 /* StartRouteView.swift in Sources */,
+				EFB8EABF278CF42B0088380B /* CreateAccountView.swift in Sources */,
 				EFB8EABB278906940088380B /* Color.swift in Sources */,
 				EF4AEE762735F17300E44DC3 /* Merch_ManagerApp.swift in Sources */,
 				EF46D271276AB558007798C6 /* PlanDay.swift in Sources */,

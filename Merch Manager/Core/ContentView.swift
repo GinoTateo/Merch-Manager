@@ -72,9 +72,7 @@ struct ContentView: View {
                             Spacer()
                         }
                     }.sheet(isPresented: $showBeginSheet) { BeginOfDay(showBeginSheet: self.$showBeginSheet)}
-                    
-                }
-                
+                }                
             }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar { // <2>

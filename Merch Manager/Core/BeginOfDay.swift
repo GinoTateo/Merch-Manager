@@ -22,14 +22,9 @@ struct BeginOfDay: View {
     @State var selectedUserIndex = 0
     @State var routeNumber = ""
     @State private var password: String = ""
+    @State var showCreateAccount: Bool = false
     
     @Environment (\.presentationMode) var presentationMode
-    
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \EmployeEntity.name, ascending: true)],
-        animation: .default)
-    private var User: FetchedResults<EmployeEntity>
-    
     
     var body: some View {
         NavigationView {
@@ -62,6 +57,18 @@ struct BeginOfDay: View {
                     }
                 }) {
                     Text("Login")
+                }
+                Section(header: Text("New user?")) {
+                    Button("Creat new account ",action: {
+                        do {
+                            print("Creating new account")
+                            showCreateAccount.toggle()
+                
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                    }).sheet(isPresented: $showCreateAccount) { CreateAccountView()}
+
                 }
             }
                 .navigationTitle(greeting())
