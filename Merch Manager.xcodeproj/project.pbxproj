@@ -21,6 +21,8 @@
 		EF4AEE822735F17400E44DC3 /* Merch_Manager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF4AEE802735F17400E44DC3 /* Merch_Manager.xcdatamodeld */; };
 		EFB8EABB278906940088380B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB8EABA278906940088380B /* Color.swift */; };
 		EFB8EABF278CF42B0088380B /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB8EABE278CF42B0088380B /* CreateAccountView.swift */; };
+		EFB8EAC2278E70940088380B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EFB8EAC1278E70940088380B /* FirebaseAuth */; };
+		EFB8EAC4278E71190088380B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFB8EAC3278E71190088380B /* GoogleService-Info.plist */; };
 		EFCEA902273F75E10097D0C8 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCEA901273F75E10097D0C8 /* StoreView.swift */; };
 		EFE371512763E68700149767 /* AddStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE371502763E68700149767 /* AddStore.swift */; };
 		EFE4059D277D4363004CCAF3 /* AccountPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE4059C277D4363004CCAF3 /* AccountPersistence.swift */; };
@@ -42,6 +44,7 @@
 		EF4AEE812735F17400E44DC3 /* Merch_Manager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Merch_Manager.xcdatamodel; sourceTree = "<group>"; };
 		EFB8EABA278906940088380B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		EFB8EABE278CF42B0088380B /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
+		EFB8EAC3278E71190088380B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EFCEA901273F75E10097D0C8 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		EFE371502763E68700149767 /* AddStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStore.swift; sourceTree = "<group>"; };
 		EFE4059C277D4363004CCAF3 /* AccountPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPersistence.swift; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFB8EAC2278E70940088380B /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +81,7 @@
 		EF4AEE742735F17300E44DC3 /* Merch Manager */ = {
 			isa = PBXGroup;
 			children = (
+				EFB8EAC3278E71190088380B /* GoogleService-Info.plist */,
 				EF4AEE752735F17300E44DC3 /* Merch_ManagerApp.swift */,
 				EFB8EAB92789067B0088380B /* Extensions */,
 				EFB8EABC278909B30088380B /* Core */,
@@ -146,6 +151,9 @@
 			dependencies = (
 			);
 			name = "Merch Manager";
+			packageProductDependencies = (
+				EFB8EAC1278E70940088380B /* FirebaseAuth */,
+			);
 			productName = "Merch Manager";
 			productReference = EF4AEE722735F17300E44DC3 /* Merch Manager.app */;
 			productType = "com.apple.product-type.application";
@@ -174,6 +182,9 @@
 				Base,
 			);
 			mainGroup = EF4AEE692735F17300E44DC3;
+			packageReferences = (
+				EFB8EAC0278E70940088380B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = EF4AEE732735F17300E44DC3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -190,6 +201,7 @@
 			files = (
 				EF4AEE7D2735F17400E44DC3 /* Preview Assets.xcassets in Resources */,
 				EF4AEE7A2735F17400E44DC3 /* Assets.xcassets in Resources */,
+				EFB8EAC4278E71190088380B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +429,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EFB8EAC0278E70940088380B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EFB8EAC1278E70940088380B /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EFB8EAC0278E70940088380B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		EF4AEE802735F17400E44DC3 /* Merch_Manager.xcdatamodeld */ = {

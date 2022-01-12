@@ -8,21 +8,17 @@
 import Foundation
 import SwiftUI
 import CoreData
+import Firebase
 
 
 struct BeginOfDay: View {
-    
-    let user = ["Gino Tateo",
-                "Amanda Tateo",
-                "Nicole Tateo",
-                "Angela Tateo"]
-    
     
     @Binding var showBeginSheet: Bool
     @State var selectedUserIndex = 0
     @State var routeNumber = ""
     @State private var password: String = ""
     @State var showCreateAccount: Bool = false
+    @State private var email: String = ""
     
     @Environment (\.presentationMode) var presentationMode
     
@@ -35,12 +31,7 @@ struct BeginOfDay: View {
         NavigationView {
             Form {
                 Section(header: Text("User Details")) {
-                    Picker(selection: $selectedUserIndex, label: Text("User")) {
-                        ForEach(0 ..< user.count) {
-                                Text(self.user[$0]).tag($0)
-                        }
-                    }
-                    
+                    TextField("Email", text: $email)
                     SecureField("Password", text: $password)
                 }
                 
@@ -51,12 +42,14 @@ struct BeginOfDay: View {
                 }
                 
                 Button(action: {
+                    guard self.email != "" else {return}
+                    guard self.password != "" else {return}
                     guard self.routeNumber != "" else {return}
                     do {
                         print("Begin day saved route #\(routeNumber)")
-                        print("\(password)")
-                        showBeginSheet = false
-                        presentationMode.wrappedValue.dismiss()
+                        login()
+                        
+                        
                     } catch {
                         print(error.localizedDescription)
                     }
@@ -80,7 +73,17 @@ struct BeginOfDay: View {
         }
     }
     
-    
+    func login() {
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            if error != nil {
+                print(error?.localizedDescription ?? "")
+            } else {
+                print("success")
+                showBeginSheet = false
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
+    }
     
     
     private func greeting() -> String{
