@@ -14,11 +14,12 @@ struct CreateAccountView: View{
     
     
     //Data to be saved
-    @State private var userID: String = "UserID"
-    @State private var firstName: String = "First"
-    @State private var lastName: String = "Last"
-    @State private var Email: String = "Email"
-    @State private var position: String = "Position"
+    @State private var userID: String = ""
+    @State private var firstName: String = ""
+    @State private var lastName: String = ""
+    @State private var Email: String = ""
+    @State var position: String = ""
+    @State private var password: String = ""
     @State var positionIndex: Int = 0
     
     let positionList = ["Merchandiser","Route Sales Representative", "Regional Manager", "Division Manager"]
@@ -29,10 +30,15 @@ struct CreateAccountView: View{
 
     var body: some View {
             Form {
-                Section(header: Text("User details")) {
+                Section(header: Text("Login details")) {
                     VStack{
                         HStack{
                             TextField("User ID", text: $userID)
+                        }
+                    }
+                    VStack{
+                        HStack{
+                            SecureField("Password", text: $password)
                         }
                     }
                 }
@@ -56,16 +62,18 @@ struct CreateAccountView: View{
                             TextField("Email", text: $Email)
                         }
                     }
+                }
+                
+                Section(header: Text("Position")) {
                     VStack{
-                        HStack{
                             Picker(selection: $positionIndex, label: Text("Position")) {
                                 ForEach(0 ..< positionList.count) {
                                         Text(self.positionList[$0]).tag($0)
-                                }
                             }
                         }
                     }
                 }
+            
                     
                 
                 
@@ -73,8 +81,11 @@ struct CreateAccountView: View{
                 Button(action: {
                     guard self.userID != "" else {return}
                     let newAccount = EmployeEntity(context: CreateAccountView)
-                        newAccount.name = firstName
-                        
+                        newAccount.fname = firstName
+                        newAccount.lname = lastName
+                        newAccount.userID = userID
+                        newAccount.email = Email
+                        newAccount.password = password
                         newAccount.title = self.positionList[self.positionIndex]
                     do {
                         try CreateAccountView.save()
@@ -84,6 +95,7 @@ struct CreateAccountView: View{
                     }
                 }) {
                     Text("Create Account")
+                        .frame(maxWidth: .infinity, alignment: .center)
                 }
 
             }

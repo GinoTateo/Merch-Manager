@@ -14,7 +14,7 @@ struct AccountView: View {
     
     var dow = ""
     @Environment(\.managedObjectContext) private var PlanDay
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \EmployeEntity.name, ascending: true)],
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \EmployeEntity.lname, ascending: true)],
         animation: .default)
     private var user: FetchedResults<EmployeEntity>
 

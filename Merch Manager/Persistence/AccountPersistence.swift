@@ -21,7 +21,8 @@ struct AccountPersistenceController {
             newAccount.userID = "User"
             newAccount.title = "Merchandiser"
             newAccount.password = "Password"
-            newAccount.name = "Name"
+            newAccount.fname = "First Name"
+            newAccount.lname = "Last Name"
             newAccount.email = "Email"
             newAccount.dateJoined = Date()
             

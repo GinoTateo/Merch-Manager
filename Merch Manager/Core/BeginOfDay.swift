@@ -26,6 +26,11 @@ struct BeginOfDay: View {
     
     @Environment (\.presentationMode) var presentationMode
     
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \EmployeEntity.userID, ascending: true)],
+        animation: .default)
+    private var Users: FetchedResults<EmployeEntity>
+    
     var body: some View {
         NavigationView {
             Form {

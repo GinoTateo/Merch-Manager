@@ -3,7 +3,8 @@
     <entity name="EmployeEntity" representedClassName="EmployeEntity" syncable="YES" codeGenerationType="class">
         <attribute name="dateJoined" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="email" optional="YES" attributeType="String"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="fname" optional="YES" attributeType="String"/>
+        <attribute name="lname" optional="YES" attributeType="String"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="userID" optional="YES" attributeType="String"/>
@@ -29,7 +30,7 @@
         <relationship name="route" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RouteEntiy" inverseName="routeStores" inverseEntity="RouteEntiy"/>
     </entity>
     <elements>
-        <element name="EmployeEntity" positionX="-177.3203125" positionY="-35.953125" width="128" height="134"/>
+        <element name="EmployeEntity" positionX="-177.3203125" positionY="-35.953125" width="128" height="149"/>
         <element name="PlanDayData" positionX="164.5390625" positionY="-305.9140625" width="128" height="73"/>
         <element name="RouteEntiy" positionX="-364.8984375" positionY="-137.2890625" width="128" height="103"/>
         <element name="Store" positionX="-94.484375" positionY="-306.5625" width="128" height="148"/>
