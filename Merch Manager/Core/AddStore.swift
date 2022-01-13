@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import CoreData
+import Firebase
 
 struct AddStore: View {
     
@@ -23,6 +24,7 @@ struct AddStore: View {
     
     @Environment (\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var AddStore
+    
     
     var body: some View {
         NavigationView {
@@ -65,6 +67,32 @@ struct AddStore: View {
                         //newStore.dow = 0
                         newStore.name = StoreName
                         newStore.dos = self.DayOfWeek[self.dosIndex]
+                    
+                    
+//
+//                    db.collection("cities").document("LA").setData([
+//                        "name": "Los Angeles",
+//                        "state": "CA",
+//                        "country": "USA"
+//                    ]) { err in
+//                        if let err = err {
+//                            print("Error writing document: \(err)")
+//                        } else {
+//                            print("Document successfully written!")
+//                        }
+//                    }
+//
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     do {
                         try AddStore.save()
                         presentationMode.wrappedValue.dismiss()

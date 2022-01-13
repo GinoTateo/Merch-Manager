@@ -19,6 +19,7 @@ struct BeginOfDay: View {
     @State private var password: String = ""
     @State var showCreateAccount: Bool = false
     @State private var email: String = ""
+    @State var ErrorMessage: Bool = false
     
     @Environment (\.presentationMode) var presentationMode
     
@@ -41,39 +42,56 @@ struct BeginOfDay: View {
                     
                 }
                 
-                Button(action: {
-                    guard self.email != "" else {return}
-                    guard self.password != "" else {return}
-                    guard self.routeNumber != "" else {return}
+                Button("Login", action: {
+                    guard self.email != "" else {
+                        Alert(
+                            title: Text("email"),
+                            message: Text("Invalid Password"),
+                            dismissButton: .default(Text("Okay"), action: {
+                                })
+                        )
+                      ErrorMessage = true
+                      ErrorHandler(errorType: email)
+                        return
+                    }
+                    guard self.password != "" else {
+                        ErrorHandler(errorType: password)
+                        return}
+                    guard self.routeNumber != "" else {
+                        ErrorHandler(errorType: routeNumber)
+                        return}
                     do {
                         print("Begin day saved route #\(routeNumber)")
                         login()
-                        
-                        
-                    } catch {
+                    }
+                    catch {
                         print(error.localizedDescription)
                     }
-                }) {
-                    Text("Login")
-                }
+                })
+                .alert("Login Error", isPresented: $ErrorMessage) {
+                        Button("OK", role: .cancel) { }
+                    }
+
+       
                 Section(header: Text("New user?")) {
                     Button("Creat new account ",action: {
                         do {
                             print("Creating new account")
                             showCreateAccount.toggle()
-                
-                        } catch {
+                            }
+                        catch {
                             print(error.localizedDescription)
-                        }
-                    }).sheet(isPresented: $showCreateAccount) { CreateAccountView()}
+                            }
+                        })
+                        .sheet(isPresented: $showCreateAccount) { CreateAccountView()}
 
                 }
             }
-                .navigationTitle(greeting())
+         .navigationTitle(greeting())
         }
     }
     
-    func login() {
+    private func login() {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if error != nil {
                 print(error?.localizedDescription ?? "")
@@ -85,6 +103,18 @@ struct BeginOfDay: View {
         }
     }
     
+    func ErrorHandler(errorType: String){
+        if errorType == email {
+            ErrorMessage = true
+            print("Email Error")
+        }
+        if errorType == password{
+            print("Password Error")
+        }
+        if errorType == routeNumber{
+            print("Route Error")
+        }
+    }
     
     private func greeting() -> String{
         let hour = Calendar.current.component(.hour, from: Date())

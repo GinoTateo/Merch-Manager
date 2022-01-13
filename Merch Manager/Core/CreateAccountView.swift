@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import CoreData
+import Firebase
 
 
 struct CreateAccountView: View{
@@ -78,25 +79,25 @@ struct CreateAccountView: View{
                 
                 
                 
-                Button(action: {
+                Button("Create Account",action: {
                     guard self.userID != "" else {return}
-                    let newAccount = EmployeEntity(context: CreateAccountView)
-                        newAccount.fname = firstName
-                        newAccount.lname = lastName
-                        newAccount.userID = userID
-                        newAccount.email = Email
-                        newAccount.password = password
-                        newAccount.title = self.positionList[self.positionIndex]
+//                    let newAccount = EmployeEntity(context: CreateAccountView)
+//                        newAccount.fname = firstName
+//                        newAccount.lname = lastName
+//                        newAccount.userID = userID
+//                        newAccount.email = Email
+//                        newAccount.password = password
+//                        newAccount.title = self.positionList[self.positionIndex]
+                    Auth.auth().createUser(withEmail: Email, password: password) { authResult, error in
+                      // ...
+                    }
                     do {
                         try CreateAccountView.save()
                         presentationMode.wrappedValue.dismiss()
                     } catch {
                         print(error.localizedDescription)
                     }
-                }) {
-                    Text("Create Account")
-                        .frame(maxWidth: .infinity, alignment: .center)
-                }
+                })
 
             }
     }
