@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import CoreData
 import Firebase
+import FirebaseFirestore
 
 
 struct CreateAccountView: View{
@@ -24,6 +25,8 @@ struct CreateAccountView: View{
     @State var positionIndex: Int = 0
     
     let positionList = ["Merchandiser","Route Sales Representative", "Regional Manager", "Division Manager"]
+    let db = Firestore.firestore()
+
     
     @Environment (\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var CreateAccountView
@@ -74,31 +77,39 @@ struct CreateAccountView: View{
                         }
                     }
                 }
-            
-                    
-                
-                
                 
                 Button("Create Account",action: {
                     guard self.userID != "" else {return}
-//                    let newAccount = EmployeEntity(context: CreateAccountView)
-//                        newAccount.fname = firstName
-//                        newAccount.lname = lastName
-//                        newAccount.userID = userID
-//                        newAccount.email = Email
-//                        newAccount.password = password
-//                        newAccount.title = self.positionList[self.positionIndex]
+
+                    var ref: DocumentReference? = nil
+                    ref = db.collection("User/").addDocument(data: [
+                        "userID": userID,
+                        "Email": Email,
+                        "FirstName": firstName,
+                        "LastName": lastName,
+                        "Position": self.positionList[self.positionIndex]
+                    ]) { err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                        } else {
+                            print("Document added with ID: \(ref!.documentID)")
+                        }
+                    }
+                    
                     Auth.auth().createUser(withEmail: Email, password: password) { authResult, error in
                       // ...
                     }
                     do {
-                        try CreateAccountView.save()
                         presentationMode.wrappedValue.dismiss()
                     } catch {
                         print(error.localizedDescription)
                     }
                 })
+                
+                
+                
+                
 
-            }
+        }
     }
 }

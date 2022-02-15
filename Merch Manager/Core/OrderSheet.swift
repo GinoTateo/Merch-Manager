@@ -23,7 +23,6 @@ struct OrderSheet: View {
     @State var CaseCount = ""
     
     var body: some View {
-        NavigationView {
             Form {
                 Section(header: Text("Store Details")) {
                     VStack{
@@ -45,28 +44,28 @@ struct OrderSheet: View {
                     
                 }
                 
-                Section(header: Text("Case count")) {
-                    TextField("Number of cases", text: $CaseCount)
-                        .keyboardType(.numberPad)
-                    
-                }
-                
-                Button(action: {
-                    guard self.CaseCount != "" else {return}
+//                Section(header: Text("Case count")) {
+//                    TextField("Number of cases", text: $CaseCount)
+//                        .keyboardType(.numberPad)
+//
+//                }
+//
+//                Button(action: {
+//                    guard self.CaseCount != "" else {return}
 //                    let newOrder = Store(context: OrderSheet)
 //                    newOrder.number = Int16(self.StoreNumber)!
 //                    newOrder.city = City
-                    do {
-                        try OrderSheet.save()
-                        presentationMode.wrappedValue.dismiss()
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                }) {
-                    Text("Add store")
-                }
+//                    do {
+//                        try OrderSheet.save()
+//                        presentationMode.wrappedValue.dismiss()
+//                    } catch {
+//                        print(error.localizedDescription)
+//                    }
+//                }) {
+//                    Text("Add store")
+//                }
             }
-            } .navigationBarTitleDisplayMode(.inline)
+             .navigationBarTitleDisplayMode(.inline)
               .toolbar { // <2>
                 ToolbarItem(placement: .principal) { // <3>
                     VStack {

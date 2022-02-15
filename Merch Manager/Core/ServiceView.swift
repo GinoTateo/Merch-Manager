@@ -8,17 +8,20 @@
 import SwiftUI
 import Foundation
 import CoreData
+import Firebase
+import FirebaseFirestore
 
 struct Service: View {
         @Environment(\.managedObjectContext) private var Service
-   
         var dow = ""
-    @State var openAddStore = false
-
    
-   @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.dos, ascending: true)])//,predicate: NSPredicate(format: "dos == Sunday"))
+    @State var openAddStore = false
+   
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.dos, ascending: true)])//,predicate: NSPredicate(format: "dos == Sunday"))
 
-    private var items: FetchedResults<Store>
+   private var items: FetchedResults<Store>
+    
+    let db = Firestore.firestore()
     
     var body: some View {
   
@@ -39,18 +42,14 @@ struct Service: View {
                 ToolbarItem(placement: .principal) {
                     VStack {
                         Text("My \(dow)").font(.headline)
-                        Text("Store list").font(.subheadline)
+                            Text("Store list").font(.subheadline)
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                                    EditButton()
-                                }
+                ToolbarItem(placement: .navigationBarTrailing) { EditButton() }
             }
-            .navigationBarItems(trailing: Button(action: { addStore() }, label: {
-                                Image(systemName: "plus.circle")
+            .navigationBarItems(trailing: Button(action: { addStore() }, label: { Image(systemName: "plus.circle")
                 .imageScale(.large) }))
-            .sheet(isPresented: $openAddStore) { AddStore(dow: dow)}
-
+                .sheet(isPresented: $openAddStore) { AddStore(dow: dow)}
     }
     
         private func deleteItems(offsets: IndexSet) {
@@ -70,54 +69,25 @@ struct Service: View {
         
         private func addStore() {
             withAnimation {
-                
-//                let newStore = Store(context: Service)
-//                    newStore.number = 3132
-//                    newStore.city = "Oakland"
-//                    newStore.dow = 0
-//                    newStore.name = "Safeway"
-//                    newStore.dos = "Sunday"
-                
                 openAddStore = true
-                do {
-                    try Service.save()
-                } catch {
-                    // Replace this implementation with code to handle the error appropriately.
-                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    let nsError = error as NSError
-                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                }
+                
             }
         }
     
-    
-    
-    
-    
-    private func grabStores(){
-        let index = Foundation.Calendar.current.component(.weekday, from: Date()) // this returns an Int
-      
-    }
-    
-    
+        private func grabStores() {
+            let docRef = db.document("Store")
 
-        
-}
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
-
-struct Service_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            Service().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext).previewInterfaceOrientation(.portrait)
-
-
+            // Force the SDK to fetch the document from the cache. Could also specify
+            // FirestoreSource.server or FirestoreSource.default.
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                    print("Document data: \(dataDescription)")
+                } else {
+                    print("Document does not exist")
+                }
+            }
+            print(docRef)
         }
-    }
+         
 }

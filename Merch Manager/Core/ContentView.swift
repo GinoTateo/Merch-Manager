@@ -26,53 +26,95 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             VStack{
-                List{
-                    
+                
+                Spacer()
+                
                     NavigationLink(destination: StartRouteView() ){
                         HStack{
                             Spacer()
-                            Text("Start Route")
+                            Text("Start Route").multilineTextAlignment(TextAlignment.center)
+                                .padding()
+                                
+                                .overlay(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(Color.teal, lineWidth: 5)
+                                        )
                             Spacer()
                         }
                     }
                     
+                Spacer()
+                
                     NavigationLink(destination: Service(dow: GetWeekday())){
                         HStack{
                             Spacer()
-                            Text("View Stores")
+                            Text("View Stores").multilineTextAlignment(TextAlignment.center)
+                                .padding()
+                                
+                                .overlay(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(Color.teal, lineWidth: 5)
+                                        )
                             Spacer()
                         }
                     }
+                
+                Spacer()
                     
                     NavigationLink(destination: PlanDay(dow: GetWeekday()) ){
                         HStack{
                             Spacer()
-                            Text("Plan Day")
+                            Text("Plan Day").multilineTextAlignment(TextAlignment.center)
+                                .padding()
+                                
+                                .overlay(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(Color.teal, lineWidth: 5)
+                                        )
                             Spacer()
                         }
                     }
+                
+                Spacer()
                                         
                     NavigationLink(destination: AccountView(dow: GetWeekday()) ){
                         HStack{
                             Spacer()
-                            Text("Account")
+                            Text("Account").multilineTextAlignment(TextAlignment.center)
+                                            .padding()
+                                        
+                                            .overlay(
+                                                        RoundedRectangle(cornerRadius: 20)
+                                                            .stroke(Color.teal, lineWidth: 5)
+                                                    )
                             Spacer()
                         }
                     }
+                
+                Spacer()
                     
-                    Button(action: beginDay){
+                    Button(action: Login){
                         HStack{
                             Spacer()
                         if(showBeginSheet==true){
-                            Text("Login")
+                            Text("Login").multilineTextAlignment(TextAlignment.center)
+                                .padding()
+                                .overlay(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(Color.teal, lineWidth: 5)
+                                        )
                         }
                         else{
-                            Text("Logout")
+                            Text("Logout").multilineTextAlignment(TextAlignment.center)
+                                .padding()
+                                .overlay(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(Color.teal, lineWidth: 5)
+                                        )
                         }
                             Spacer()
                         }
                     }.sheet(isPresented: $showBeginSheet) { BeginOfDay(showBeginSheet: self.$showBeginSheet)}
-                }                
             }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar { // <2>
@@ -109,9 +151,8 @@ struct ContentView: View {
     }
     
     
-    private func beginDay(){
-        print("Running Begin of Day")
-        //showBeginSheet = true
+    private func Login(){
+        showBeginSheet.toggle()
     }
 
 

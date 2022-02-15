@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import CoreData
 import Firebase
+import FirebaseFirestore
 
 struct AddStore: View {
     
@@ -16,11 +17,14 @@ struct AddStore: View {
     @State var City = ""
     @State var StoreNumber = ""
     @State var dos = ""
-    //@State var dow = 0
+    @State var RepRoute = ""
+    @State var MerchRoute = ""
     @State var dosIndex = 0
     var dow = ""
     
     let DayOfWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+    
+    let db = Firestore.firestore()
     
     @Environment (\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var AddStore
@@ -48,6 +52,18 @@ struct AddStore: View {
                     }
                     VStack{
                         HStack{
+                            TextField("Route Number", text: $RepRoute)
+                                .keyboardType(.numberPad)
+                        }
+                    }
+                    VStack{
+                        HStack{
+                            TextField("Merch Number", text: $MerchRoute)
+                                .keyboardType(.numberPad)
+                        }
+                    }
+                    VStack{
+                        HStack{
                             Picker(selection: $dosIndex, label: Text("Day of week")) {
                                 ForEach(0 ..< DayOfWeek.count) {
                                         Text(self.DayOfWeek[$0]).tag($0)
@@ -55,7 +71,6 @@ struct AddStore: View {
                             }
                         }
                     }
-                    
                 }
                 
                 
@@ -69,29 +84,22 @@ struct AddStore: View {
                         newStore.dos = self.DayOfWeek[self.dosIndex]
                     
                     
-//
-//                    db.collection("cities").document("LA").setData([
-//                        "name": "Los Angeles",
-//                        "state": "CA",
-//                        "country": "USA"
-//                    ]) { err in
-//                        if let err = err {
-//                            print("Error writing document: \(err)")
-//                        } else {
-//                            print("Document successfully written!")
-//                        }
-//                    }
-//
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+
+                    var ref: DocumentReference? = nil
+                    ref = db.collection("Store").addDocument(data: [
+                        "Name": StoreName,
+                        "Number": StoreNumber,
+                        "MerchRoute": MerchRoute,
+                        "City": City,
+                        "StoreCity": self.DayOfWeek[self.dosIndex]
+                    ]) { err in
+                        if let err = err {
+                            print("Error adding document: \(err)")
+                        } else {
+                            print("Document added with ID: \(ref!.documentID)")
+                        }
+                    }
+
                     
                     do {
                         try AddStore.save()

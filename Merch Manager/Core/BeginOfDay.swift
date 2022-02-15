@@ -13,6 +13,8 @@ import Firebase
 
 struct BeginOfDay: View {
     
+// ------- Data ------- //
+    
     @Binding var showBeginSheet: Bool
     @State var selectedUserIndex = 0
     @State var routeNumber = ""
@@ -27,6 +29,8 @@ struct BeginOfDay: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \EmployeEntity.userID, ascending: true)],
         animation: .default)
     private var Users: FetchedResults<EmployeEntity>
+    
+// ------- Body ------- //
     
     var body: some View {
         NavigationView {
@@ -43,6 +47,7 @@ struct BeginOfDay: View {
                 }
                 
                 Button("Login", action: {
+                    withAnimation {
                     guard self.email != "" else {
                         Alert(
                             title: Text("email"),
@@ -67,7 +72,8 @@ struct BeginOfDay: View {
                     catch {
                         print(error.localizedDescription)
                     }
-                })
+                    }
+                    })
                 .alert("Login Error", isPresented: $ErrorMessage) {
                         Button("OK", role: .cancel) { }
                     }
@@ -75,6 +81,7 @@ struct BeginOfDay: View {
        
                 Section(header: Text("New user?")) {
                     Button("Creat new account ",action: {
+                        withAnimation {
                         do {
                             print("Creating new account")
                             showCreateAccount.toggle()
@@ -82,6 +89,7 @@ struct BeginOfDay: View {
                         catch {
                             print(error.localizedDescription)
                             }
+                        }
                         })
                         .sheet(isPresented: $showCreateAccount) { CreateAccountView()}
 
@@ -90,6 +98,9 @@ struct BeginOfDay: View {
          .navigationTitle(greeting())
         }
     }
+    
+    
+// ------- Functions ------- //
     
     private func login() {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
@@ -132,9 +143,4 @@ struct BeginOfDay: View {
             return "Hello, "
         }
     }
-    
-
-
-    
-    
 }
