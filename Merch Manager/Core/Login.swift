@@ -11,29 +11,25 @@ import CoreData
 import Firebase
 
 
-struct BeginOfDay: View {
+struct Login: View {
     
 // ------- Data ------- //
+    //User
+    @EnvironmentObject var userStore: UserStore
     
-    @Binding var showBeginSheet: Bool
+    var ref = Database.database().reference()
+
     @State var selectedUserIndex = 0
     @State var routeNumber = ""
     @State private var password: String = ""
     @State var showCreateAccount: Bool = false
     @State private var email: String = ""
     @State var ErrorMessage: Bool = false
-    
-    @Environment (\.presentationMode) var presentationMode
-    
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \EmployeEntity.userID, ascending: true)],
-        animation: .default)
-    private var Users: FetchedResults<EmployeEntity>
+    @State private var Authenticated: Bool = false
     
 // ------- Body ------- //
     
     var body: some View {
-        NavigationView {
             Form {
                 Section(header: Text("User Details")) {
                     TextField("Email", text: $email)
@@ -45,40 +41,33 @@ struct BeginOfDay: View {
                         .keyboardType(.numberPad)
                     
                 }
-                
                 Button("Login", action: {
                     withAnimation {
                     guard self.email != "" else {
-                        Alert(
-                            title: Text("email"),
-                            message: Text("Invalid Password"),
-                            dismissButton: .default(Text("Okay"), action: {
-                                })
-                        )
-                      ErrorMessage = true
-                      ErrorHandler(errorType: email)
-                        return
-                    }
+                                    ErrorMessage = true
+                                    ErrorHandler(errorType: email)
+                                    return
+                        }
                     guard self.password != "" else {
-                        ErrorHandler(errorType: password)
-                        return}
+                                    ErrorHandler(errorType: password)
+                                    return
+                        }
                     guard self.routeNumber != "" else {
-                        ErrorHandler(errorType: routeNumber)
-                        return}
-                    do {
+                                    ErrorHandler(errorType: routeNumber)
+                                    return
+                    }
+                    do{
                         print("Begin day saved route #\(routeNumber)")
                         login()
-                    }
-                    catch {
+                    }catch{
                         print(error.localizedDescription)
                     }
+                }
+            })
+            .alert("Login Error", isPresented: $ErrorMessage) {
+                Button("OK", role: .cancel) { }
                     }
-                    })
-                .alert("Login Error", isPresented: $ErrorMessage) {
-                        Button("OK", role: .cancel) { }
-                    }
-
-       
+                
                 Section(header: Text("New user?")) {
                     Button("Creat new account ",action: {
                         withAnimation {
@@ -92,11 +81,9 @@ struct BeginOfDay: View {
                         }
                         })
                         .sheet(isPresented: $showCreateAccount) { CreateAccountView()}
-
                 }
             }
          .navigationTitle(greeting())
-        }
     }
     
     
@@ -108,8 +95,25 @@ struct BeginOfDay: View {
                 print(error?.localizedDescription ?? "")
             } else {
                 print("success")
-                showBeginSheet = false
-                presentationMode.wrappedValue.dismiss()
+                let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: routeNumber, authenticated: true)
+                userStore.currentUserInfo = loggedUser
+                Authenticated = true
+                grabUserData()
+            }
+        }
+    }
+    
+    private func grabUserData(){
+        let db = Firestore.firestore()
+        let UserId = (Auth.auth().currentUser?.uid)!
+        let docRef = db.collection("User").document(UserId)
+
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                print("Document data: \(dataDescription)")
+            } else {
+                print("Document does not exist")
             }
         }
     }

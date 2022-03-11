@@ -16,7 +16,7 @@ struct CreateAccountView: View{
     
     
     //Data to be saved
-    @State private var userID: String = ""
+    @State private var routeNumber: String = ""
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var Email: String = ""
@@ -37,7 +37,7 @@ struct CreateAccountView: View{
                 Section(header: Text("Login details")) {
                     VStack{
                         HStack{
-                            TextField("User ID", text: $userID)
+                            TextField("Email", text: $Email)
                         }
                     }
                     VStack{
@@ -60,10 +60,10 @@ struct CreateAccountView: View{
                     }
                 }
                 
-                Section(header: Text("Email")) {
+                Section(header: Text("Route")) {
                     VStack{
                         HStack{
-                            TextField("Email", text: $Email)
+                            TextField("Route number", text: $routeNumber)
                         }
                     }
                 }
@@ -79,27 +79,16 @@ struct CreateAccountView: View{
                 }
                 
                 Button("Create Account",action: {
-                    guard self.userID != "" else {return}
-
-                    var ref: DocumentReference? = nil
-                    ref = db.collection("User/").addDocument(data: [
-                        "userID": userID,
-                        "Email": Email,
-                        "FirstName": firstName,
-                        "LastName": lastName,
-                        "Position": self.positionList[self.positionIndex]
-                    ]) { err in
-                        if let err = err {
-                            print("Error adding document: \(err)")
-                        } else {
-                            print("Document added with ID: \(ref!.documentID)")
-                        }
-                    }
                     
                     Auth.auth().createUser(withEmail: Email, password: password) { authResult, error in
-                      // ...
+
+                    CreatUserData()
+                        
                     }
                     do {
+                        
+ 
+                        
                         presentationMode.wrappedValue.dismiss()
                     } catch {
                         print(error.localizedDescription)
@@ -110,6 +99,31 @@ struct CreateAccountView: View{
                 
                 
 
+        }
+    }
+    
+    
+    
+    private func CreatUserData(){
+        let UserId = (Auth.auth().currentUser?.uid)!
+        db.collection("User/").document(UserId).setData(
+            
+                                [
+                                "userID": UserId,
+                                "Email": Email,
+                                "FirstName": firstName,
+                                "LastName": lastName,
+                                "RouteNumber": routeNumber,
+                                "Position": self.positionList[self.positionIndex]
+                                ]
+                                
+        
+        ) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }            
         }
     }
 }

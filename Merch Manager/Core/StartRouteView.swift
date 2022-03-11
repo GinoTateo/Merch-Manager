@@ -9,8 +9,27 @@ import SwiftUI
 
 struct StartRouteView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ZStack{
+            LinearGradient(
+                colors: [.mint, .teal, .cyan, .indigo],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+            .navigationTitle("Hello World")
+            .safeAreaInset(edge: .bottom, alignment: .center, spacing: 0) {
+                Color.clear
+                    .frame(height: 20)
+                    .background(Material.bar)
+            }
+            
+                Text("Hello")
+            }
+        }
     }
+
+
     
     
     private func start(){
