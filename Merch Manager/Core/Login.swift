@@ -95,7 +95,7 @@ struct Login: View {
                 print(error?.localizedDescription ?? "")
             } else {
                 print("success")
-                let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: routeNumber, authenticated: true)
+                let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: routeNumber, authenticated: true,dow: GetWeekday())
                 userStore.currentUserInfo = loggedUser
                 Authenticated = true
                 grabUserData()
@@ -147,4 +147,21 @@ struct Login: View {
             return "Hello, "
         }
     }
+    
+    private func GetWeekday() -> String{
+        let index = Foundation.Calendar.current.component(.weekday, from: Date()) // this returns an Int
+
+        let weekdays = [ // Week days 0-6
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+        ]
+        
+        return weekdays[index-1] // Returns week day in String
+        }
+    
 }

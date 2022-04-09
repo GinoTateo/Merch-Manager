@@ -10,3 +10,7 @@ import Combine
 class UserStore: ObservableObject {
   @Published var currentUserInfo: UserInfo?
 }
+
+class Dow: ObservableObject {
+  @Published var currentdow: dow?
+}

@@ -30,18 +30,18 @@ class AuthenticationViewModel: ObservableObject {
     }
 
     
-    func login(email: String,password: String, routeNumber: String) {
-        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            if error != nil {
-                print(error?.localizedDescription ?? "")
-            } else {
-                print("successful login")
-                self.state = .signedIn
-                let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: routeNumber, authenticated: true)
-                self.userStore.currentUserInfo = loggedUser
-            }
-        }
-    }
+//    func login(email: String,password: String, routeNumber: String) {
+//        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+//            if error != nil {
+//                print(error?.localizedDescription ?? "")
+//            } else {
+//                print("successful login")
+//                self.state = .signedIn
+//                let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: routeNumber, authenticated: true,)
+//                self.userStore.currentUserInfo = loggedUser
+//            }
+//        }
+//    }
 }
 
 //func fetchUserData(documentId: String) {

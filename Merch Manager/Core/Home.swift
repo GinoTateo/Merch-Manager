@@ -12,12 +12,13 @@ struct Home: View {
     
     //User
     @EnvironmentObject var userStore: UserStore
-
+    //@EnvironmentObject var Dow: dow
 
     
     @State var showOrderSheet = false
     @State var viewStoreService = true
     @State private var showAlert = false
+    //@State var dow = ""
     
     @Environment(\.managedObjectContext) private var ConentView
 
@@ -42,11 +43,12 @@ struct Home: View {
             VStack{
                 
                 Spacer()
-                
-                    NavigationLink(destination: StartRouteView() ){
+                if(userStore.currentUserInfo?.authenticated==true){
+                    
+                    NavigationLink(destination: Dashboard() ){
                         HStack{
                             Spacer()
-                            Text("Start Route").multilineTextAlignment(TextAlignment.center)
+                            Text("Dashboard").multilineTextAlignment(TextAlignment.center)
                                 .font(.system(size: 30, weight: .semibold , design: .rounded))
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(TextAlignment.center)
@@ -92,7 +94,10 @@ struct Home: View {
                             Spacer()
                         }
                     }
-                
+                }else{
+                    Image("z0uy2c")
+                    Image("gkonp9")
+                }
                
                     Spacer()
                 
@@ -144,8 +149,8 @@ struct Home: View {
             "Saturday"
         ]
         
+        let Today = weekdays[index-1]
         return weekdays[index-1] // Returns week day in String
         }
-
     }
 

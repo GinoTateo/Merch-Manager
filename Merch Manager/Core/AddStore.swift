@@ -116,7 +116,7 @@ struct AddStore: View {
               .toolbar { // <2>
                 ToolbarItem(placement: .principal) { // <3>
                     VStack {
-                        Text("My \(dow)").font(.headline)
+                        Text("My \(dow)").font(.headline) .fixedSize(horizontal: true, vertical: false)
                         Text("Add Store").font(.subheadline)
                     }
                 }

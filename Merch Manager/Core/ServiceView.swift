@@ -41,12 +41,15 @@ struct Service: View {
              .toolbar {
                 ToolbarItem(placement: .principal) {
                     VStack {
-                        Text("My \(dow)").font(.headline)
+                        Text("My \(dow)").font(.headline) .fixedSize(horizontal: true, vertical: false)
                             Text("Store list").font(.subheadline)
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) { EditButton() }
             }
+             .refreshable {
+                             RouteHandler()
+                         }
             .navigationBarItems(trailing: Button(action: { addStore() }, label: { Image(systemName: "plus.circle")
                 .imageScale(.large) }))
                 .sheet(isPresented: $openAddStore) { AddStore(dow: dow)}
@@ -89,5 +92,10 @@ struct Service: View {
             }
             print(docRef)
         }
+    
+    private func RouteHandler(){
+        
+        
+    }
          
 }

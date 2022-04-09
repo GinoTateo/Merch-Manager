@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import Firebase
 import Foundation
 
 
@@ -24,6 +25,12 @@ struct PlanDay: View {
     
     var body: some View {
         
+        Button("Grab", action: {
+            withAnimation {
+                grabstoreData()
+            }
+        })
+        
         List {
             ForEach(items) { item in
                 
@@ -40,7 +47,7 @@ struct PlanDay: View {
          .toolbar {
             ToolbarItem(placement: .principal) {
                 VStack {
-                    Text("My \(dow)").font(.headline)
+                    Text("My \(dow)").font(.headline) .fixedSize(horizontal: true, vertical: false)
                     Text("Plan day").font(.subheadline)
                 }
             }
@@ -82,6 +89,31 @@ struct PlanDay: View {
         plan.planID = UUID()
 
     }
+    
+
+        private func grabstoreData(){
+            let db = Firestore.firestore()
+            let UserId = (Auth.auth().currentUser?.uid)!
+            let docRef = db.collection("Store").document(UserId)
+
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                    print("Document data: \(dataDescription)")
+                } else {
+                    let UserId = (Auth.auth().currentUser?.uid)!
+                    db.collection("Store/").document(UserId).setData(
+                        
+                                            [
+                                                "Store": "hi"
+                                            ]
+                                            
+                    
+                    )
+                }
+            }
+        }
+
 }
 
 struct PlanDay_Previews: PreviewProvider {

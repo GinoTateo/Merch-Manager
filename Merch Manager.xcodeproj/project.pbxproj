@@ -12,7 +12,7 @@
 		EF0DE0A42748FDCC00081637 /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0DE0A32748FDCC00081637 /* ServiceView.swift */; };
 		EF46D271276AB558007798C6 /* PlanDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF46D270276AB558007798C6 /* PlanDay.swift */; };
 		EF46D273276AB596007798C6 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF46D272276AB596007798C6 /* AccountView.swift */; };
-		EF46D275276AB5C2007798C6 /* StartRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF46D274276AB5C2007798C6 /* StartRouteView.swift */; };
+		EF46D275276AB5C2007798C6 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF46D274276AB5C2007798C6 /* Dashboard.swift */; };
 		EF4AEE762735F17300E44DC3 /* Merch_ManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4AEE752735F17300E44DC3 /* Merch_ManagerApp.swift */; };
 		EF4AEE782735F17300E44DC3 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4AEE772735F17300E44DC3 /* Home.swift */; };
 		EF4AEE7A2735F17400E44DC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4AEE792735F17400E44DC3 /* Assets.xcassets */; };
@@ -47,7 +47,7 @@
 		EF0DE0A32748FDCC00081637 /* ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
 		EF46D270276AB558007798C6 /* PlanDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDay.swift; sourceTree = "<group>"; };
 		EF46D272276AB596007798C6 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
-		EF46D274276AB5C2007798C6 /* StartRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRouteView.swift; sourceTree = "<group>"; };
+		EF46D274276AB5C2007798C6 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		EF4AEE722735F17300E44DC3 /* Merch Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Merch Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4AEE752735F17300E44DC3 /* Merch_ManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merch_ManagerApp.swift; sourceTree = "<group>"; };
 		EF4AEE772735F17300E44DC3 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 				EF0DE0A32748FDCC00081637 /* ServiceView.swift */,
 				EFE371502763E68700149767 /* AddStore.swift */,
 				EF4AEE772735F17300E44DC3 /* Home.swift */,
-				EF46D274276AB5C2007798C6 /* StartRouteView.swift */,
+				EF46D274276AB5C2007798C6 /* Dashboard.swift */,
 				EF46D272276AB596007798C6 /* AccountView.swift */,
 			);
 			path = Core;
@@ -268,7 +268,7 @@
 				EF46D273276AB596007798C6 /* AccountView.swift in Sources */,
 				EF0DE0A22748D8A000081637 /* Login.swift in Sources */,
 				EFE371512763E68700149767 /* AddStore.swift in Sources */,
-				EF46D275276AB5C2007798C6 /* StartRouteView.swift in Sources */,
+				EF46D275276AB5C2007798C6 /* Dashboard.swift in Sources */,
 				EFB8EABF278CF42B0088380B /* CreateAccountView.swift in Sources */,
 				EFC9408227BCAD7200C397FF /* userStore.swift in Sources */,
 				EFB8EABB278906940088380B /* Color.swift in Sources */,

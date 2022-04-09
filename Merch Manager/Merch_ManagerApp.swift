@@ -19,7 +19,7 @@ struct Merch_ManagerApp: App {
     
     init (){
         let contentView = UserStore()
-        let loggedUser = UserInfo.init(userName: "email", email: "email", routeNumber: "routeNumber", authenticated: false)
+        let loggedUser = UserInfo.init(userName: "email", email: "email", routeNumber: "routeNumber", authenticated: false,dow: "Day of the week")
         contentView.currentUserInfo = loggedUser
     }
 
@@ -32,8 +32,6 @@ struct Merch_ManagerApp: App {
 
         }
     }
-    
-
 }
 
 
@@ -46,3 +44,5 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
 }
+
+
