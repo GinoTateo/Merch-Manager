@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import Firebase
 
 struct Home: View {
     
@@ -28,7 +29,7 @@ struct Home: View {
             
             ZStack{
             LinearGradient(
-                colors: [.mint, .teal, .cyan, .indigo],
+                colors: [.gray],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -41,7 +42,7 @@ struct Home: View {
             
             
             VStack{
-                
+
                 Spacer()
                 if(userStore.currentUserInfo?.authenticated==true){
                     
@@ -51,25 +52,34 @@ struct Home: View {
                             Text("Dashboard").multilineTextAlignment(TextAlignment.center)
                                 .font(.system(size: 30, weight: .semibold , design: .rounded))
                                 .foregroundColor(.black)
-                                .multilineTextAlignment(TextAlignment.center)
                             Spacer()
                         }
                     }
                     
-                Spacer()
-                
+                    GroupBox(
+                        label: Label("Next Stop", systemImage: "arrow.turn.down.right")
+                                    .foregroundColor(.red)
+                                    ){
+                                        Text("Your next stop is **Safeway 3132** on **5100 Broadway** in **Oakland**.").padding()
+                                        
+                                    }.padding()
+                    
                     NavigationLink(destination: Service(dow: GetWeekday())){
                         HStack{
                             Spacer()
-                            Text("View Stores").multilineTextAlignment(TextAlignment.center)
+                            Text("Sales").multilineTextAlignment(TextAlignment.center)
                                 .font(.system(size: 30, weight: .semibold , design: .rounded))
                                 .foregroundColor(.black)
-                                .multilineTextAlignment(TextAlignment.center)
                             Spacer()
                         }
                     }
-                
-                
+                    
+                    GroupBox(
+                        label: Label("Sales Recap", systemImage: "dollarsign.square")
+                                    .foregroundColor(.green)
+                                    ) {
+                                        Text("You have **$2180** in sales and **$100** in returns for a profit of **$2080**").padding()
+                                    }.padding()
                     
                     NavigationLink(destination: PlanDay(dow: GetWeekday()) ){
                         HStack{
@@ -105,24 +115,27 @@ struct Home: View {
                         Spacer()
                         
                         if(userStore.currentUserInfo?.authenticated==true){
-                            NavigationLink(destination: AccountView()){
-                                Text("Logout")
+                            Button("Logout", action: {
+                                withAnimation {
+                                    logout()
+                                }
+                            })
                                     .font(.system(size: 30, weight: .semibold , design: .rounded))
-                                    .foregroundColor(.mint)
+                                    .foregroundColor(.black)
                                     .multilineTextAlignment(TextAlignment.center)
                             }
-                        }
+                        
                         else{
                             NavigationLink(destination: Login()){
                                 Text("Login").multilineTextAlignment(TextAlignment.center)
                                     .font(.system(size: 30, weight: .semibold , design: .rounded))
-                                    .foregroundColor(.mint)
+                                    .foregroundColor(.black)
                                     .multilineTextAlignment(TextAlignment.center)
                             }
                         }
                         Spacer()
                     }
-                }
+                }.multilineTextAlignment(TextAlignment.center)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar { // <2>
                     ToolbarItem(placement: .principal) { // <3>
@@ -134,6 +147,23 @@ struct Home: View {
                 }
             }
         }
+    }
+    
+    
+    
+    func logout(){
+        
+        let loggedUser = UserInfo.init(userName: "", email: "", routeNumber: "", authenticated: false,dow: GetWeekday(),firstName: "",lastName: "")
+        userStore.currentUserInfo = loggedUser
+        
+        
+        let firebaseAuth = Auth.auth()
+    do {
+      try firebaseAuth.signOut()
+    } catch let signOutError as NSError {
+      print("Error signing out: %@", signOutError)
+    }
+        
     }
     
     private func GetWeekday() -> String{
@@ -154,3 +184,8 @@ struct Home: View {
         }
     }
 
+struct Home_Previews: PreviewProvider {
+    static var previews: some View {
+        Home()
+    }
+}

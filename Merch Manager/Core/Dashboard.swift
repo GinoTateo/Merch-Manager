@@ -18,31 +18,34 @@ struct Dashboard: View {
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.dos, ascending: true)])
     private var items: FetchedResults<Store>
     
-    @State private var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37, longitude: -122), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+    @State private var locations = [Location]()
+    
+    @State private var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.83500, longitude: -122.24871), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+    
+    
   
     @EnvironmentObject var userStore: UserStore
     var body: some View {
         
-        Spacer()
         
-        ZStack{
-        Map(coordinateRegion: $mapRegion)
-        }
-        
-            ZStack{
-   
-            LinearGradient(
-                colors: [.mint, .teal, .cyan, .indigo],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-            .navigationTitle(userStore.currentUserInfo!.dow)
-            .safeAreaInset(edge: .bottom, alignment: .center, spacing: 0) {
-                Color.clear
-                    .frame(height: 20)
-                    .background(Material.bar)
-            }
+            VStack{
+
+                    Map(coordinateRegion: $mapRegion)
+                
+                
+                
+//            LinearGradient(
+//                colors: [.mint, .teal, .cyan, .indigo],
+//                startPoint: .topLeading,
+//                endPoint: .bottomTrailing
+//            )
+//            .ignoresSafeArea()
+//            .navigationTitle(userStore.currentUserInfo!.dow)
+//            .safeAreaInset(edge: .bottom, alignment: .center, spacing: 0) {
+//                Color.clear
+//                    .frame(height: 20)
+//                    .background(Material.bar)
+//            }
                 
                     
                 
@@ -74,6 +77,10 @@ struct Dashboard: View {
                     
                     }
                 }
+                
+                
+                
+                
             }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -87,26 +94,38 @@ struct Dashboard: View {
         
        
 
-        
-        
-        ZStack{
-            Spacer()
-            HStack{
-                Text("$247")
-                    .padding()
-                    .frame(height: 45)
-                    .background(Color.green)
-                    .cornerRadius(15)
-                }
 
-                HStack{
-                Text("200 miles")
+        VStack{
+            
+            HStack{
+                
+                Button("Sales", action: {
+                    withAnimation {
+                        
+                    }
+                })
                     .padding()
                     .frame(height: 45)
                     .background(Color.green)
                     .cornerRadius(15)
                 }
+        
+           
+
             Spacer()
+            
+                HStack{
+                    Button("Miles", action: {
+                        withAnimation {
+                            
+                        }
+                    })
+
+                    .padding()
+                    .frame(height: 45)
+                    .background(Color.green)
+                    .cornerRadius(15)
+                }
         }
     }
 

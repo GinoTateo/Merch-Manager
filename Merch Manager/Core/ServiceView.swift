@@ -94,8 +94,7 @@ struct Service: View {
         }
     
     private func RouteHandler(){
-        
-        
+
     }
          
 }

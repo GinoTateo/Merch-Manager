@@ -16,17 +16,17 @@ struct AccountPersistenceController {
         let viewContext = result.container.viewContext
         
         
- 
-        let newAccount = EmployeEntity(context: viewContext)
-            newAccount.userID = "User"
-            newAccount.title = "Merchandiser"
-            newAccount.password = "Password"
-            newAccount.fname = "First Name"
-            newAccount.lname = "Last Name"
-            newAccount.email = "Email"
-            newAccount.dateJoined = Date()
-            
-   
+//
+//        let newAccount = EmployeEntity(context: viewContext)
+//            newAccount.userID = "User"
+//            newAccount.title = "Merchandiser"
+//            newAccount.password = "Password"
+//            newAccount.fname = "First Name"
+//            newAccount.lname = "Last Name"
+//            newAccount.email = "Email"
+//            newAccount.dateJoined = Date()
+//
+//
     
 
         

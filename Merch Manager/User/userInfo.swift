@@ -7,14 +7,15 @@
 
 import Foundation
 import SwiftUI
-import GameController
 
 struct UserInfo {
   let userName: String
   let email: String
   let routeNumber: String
   let authenticated: Bool
-    let dow: String
+  let dow: String
+    let firstName: String
+    let lastName: String
 }
 
 struct dow {
