@@ -16,6 +16,7 @@ struct UserInfo {
   let dow: String
     let firstName: String
     let lastName: String
+    let postion: String
 }
 
 struct dow {

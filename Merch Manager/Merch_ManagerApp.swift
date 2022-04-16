@@ -19,7 +19,7 @@ struct Merch_ManagerApp: App {
     
     init (){
         let contentView = UserStore()
-        let loggedUser = UserInfo.init(userName: "email", email: "email", routeNumber: "routeNumber", authenticated: false,dow: "Day of the week",firstName: "",lastName: "")
+        let loggedUser = UserInfo.init(userName: "email", email: "email", routeNumber: "routeNumber", authenticated: false,dow: "Day of the week",firstName: "",lastName: "",postion: "")
         contentView.currentUserInfo = loggedUser
     }
 

@@ -7,6 +7,17 @@
 
 import Foundation
 import SwiftUI
+import FirebaseFirestoreSwift
+
+
+struct StoreData: Identifiable {
+    let id: String = UUID().uuidString
+    let StoreName: String
+    let StoreNumber: String
+    let Region: String
+    let location: Location
+}
+
 
 struct Location: Identifiable, Codable, Equatable {
     let id: UUID
@@ -14,3 +25,5 @@ struct Location: Identifiable, Codable, Equatable {
     let latitude: Double
     let longitude: Double
 }
+
+

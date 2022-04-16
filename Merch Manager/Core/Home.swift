@@ -153,7 +153,7 @@ struct Home: View {
     
     func logout(){
         
-        let loggedUser = UserInfo.init(userName: "", email: "", routeNumber: "", authenticated: false,dow: GetWeekday(),firstName: "",lastName: "")
+        let loggedUser = UserInfo.init(userName: "", email: "", routeNumber: "", authenticated: false,dow: GetWeekday(),firstName: "",lastName: "",postion: "")
         userStore.currentUserInfo = loggedUser
         
         

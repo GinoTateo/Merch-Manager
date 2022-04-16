@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import CoreData
 import Firebase
+import FirebaseFirestore
 
 
 struct Login: View {
@@ -16,6 +17,9 @@ struct Login: View {
 // ------- Data ------- //
     //User
     @EnvironmentObject var userStore: UserStore
+    @EnvironmentObject var routeData: RouteData
+    
+    @Environment(\.managedObjectContext) private var AddStore
     
     var ref = Database.database().reference()
 
@@ -70,6 +74,7 @@ struct Login: View {
                     do{
                         print("Begin day saved route #\(routeNumber)")
                         login()
+                        loadStoresIn()
                     }catch{
                         ErrorHandler(errorType: email)
                         ErrorMessage = true
@@ -81,7 +86,7 @@ struct Login: View {
                 Button("OK", role: .cancel) {
                     Text(errorText)
                 }
-                    }
+            }
                 
                 Section(header: Text("New user?")) {
                     Button("Creat new account ",action: {
@@ -92,9 +97,10 @@ struct Login: View {
                             }
                         catch {
                             print(error.localizedDescription)
+                                }
                             }
                         }
-                        })
+                    )
                         .sheet(isPresented: $showCreateAccount) { CreateAccountView()}
                 }
             }
@@ -134,7 +140,7 @@ struct Login: View {
                 let email = document.get("Email") as? String ?? ""
                 let position = document.get("Position")as? String ?? ""
                 let route = document.get("RouteNumber") as? String ?? ""
-                let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: route, authenticated: true,dow: GetWeekday(), firstName: first, lastName: last)
+                let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: route, authenticated: true,dow: GetWeekday(), firstName: first, lastName: last, postion: position)
                 userStore.currentUserInfo = loggedUser
 
             } else {
@@ -188,11 +194,37 @@ struct Login: View {
     
     func loadStoresIn(){                // Load Stores into data
         
+        let db = Firestore.firestore()
+
+        let routeRef = db               // Get referance
+            .collection("Route").document("Merchandiser")
+            .collection(routeNumber).getDocuments { (snapshot, error) in
         
-        
-        
+                guard let snapshot = snapshot, error == nil else {
+                  //handle error
+                  return
+                }
+
+              
+                print("Number of documents: \(snapshot.documents.count ?? -1)")
+                snapshot.documents.forEach({ (documentSnapshot) in
+                  let documentData = documentSnapshot.data()
+                  let Name = documentData["Name"] as? String
+                  let Number = documentData["Number"] as? Int16
+                    let City = documentData["City"] as? String
+                    //let Number = documentData["Number"] as? String
+                  //print("Quote: \(quote ?? "(unknown)")")
+                  //print("Url: \(url ?? "(unknown)")")
+                    
+                    
+                    let newStore = Store(context: AddStore)
+                    newStore.number = Number ?? 0
+                        newStore.city = City
+                        newStore.name = Name
+                        //newStore.dos = self.DayOfWeek[self.dosIndex]
+                })
+            }
     }
-    
     
     func ErrorHandler(errorType: String){
         if errorType == email {
