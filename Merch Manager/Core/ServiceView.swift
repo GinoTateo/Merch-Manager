@@ -10,11 +10,12 @@ import Foundation
 import CoreData
 import Firebase
 import FirebaseFirestore
+import MapKit
 
 struct Service: View {
         @Environment(\.managedObjectContext) private var Service
-        var dow = ""
    
+    
     @State var openAddStore = false
    
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.dos, ascending: true)])//,predicate: NSPredicate(format: "dos == Sunday"))
@@ -28,7 +29,7 @@ struct Service: View {
             List {
                 ForEach(items) { item in
                     
-                    NavigationLink(destination: OrderSheet(dow: dow,item: item)){
+                    NavigationLink(destination: StoreView(item: item)){
                         HStack{
                             Spacer()
                             Text(item.name!)
@@ -41,7 +42,7 @@ struct Service: View {
              .toolbar {
                 ToolbarItem(placement: .principal) {
                     VStack {
-                        Text("My \(dow)").font(.headline) .fixedSize(horizontal: true, vertical: false)
+                        Text("My ").font(.headline) .fixedSize(horizontal: true, vertical: false)
                             Text("Store list").font(.subheadline)
                     }
                 }
@@ -52,13 +53,15 @@ struct Service: View {
                          }
             .navigationBarItems(trailing: Button(action: { addStore() }, label: { Image(systemName: "plus.circle")
                 .imageScale(.large) }))
-                .sheet(isPresented: $openAddStore) { AddStore(dow: dow)}
+                .sheet(isPresented: $openAddStore) { AddStore()}
     }
     
         private func deleteItems(offsets: IndexSet) {
             withAnimation {
                 offsets.map { items[$0] }.forEach(Service.delete)
-
+                
+                    
+                
                 do {
                     try Service.save()
                 } catch {

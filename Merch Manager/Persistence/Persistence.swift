@@ -15,14 +15,14 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
         
         
-        for _ in 0..<10 {
+       
             let newStore = Store(context: viewContext)
-                newStore.dow = 0
+                newStore.plan = 0
                 newStore.city = ""
                 newStore.number = 0000
                 newStore.name = "New store"
                 newStore.dos = "Sunday"
-        }
+        
     
 
         

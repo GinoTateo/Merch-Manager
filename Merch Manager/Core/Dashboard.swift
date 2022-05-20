@@ -18,7 +18,10 @@ struct Dashboard: View {
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.dos, ascending: true)])
     private var items: FetchedResults<Store>
     
-    @State private var locations = [Location]()
+    var sales = 1200
+    var miles = 56
+    
+
     
     @State private var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.83500, longitude: -122.24871), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
     
@@ -31,9 +34,7 @@ struct Dashboard: View {
             VStack{
 
                     Map(coordinateRegion: $mapRegion)
-                
-                
-                
+
 //            LinearGradient(
 //                colors: [.mint, .teal, .cyan, .indigo],
 //                startPoint: .topLeading,
@@ -97,24 +98,21 @@ struct Dashboard: View {
 
         VStack{
             
-            HStack{
-                
-                Button("Sales", action: {
-                    withAnimation {
-                        
-                    }
-                })
-                    .padding()
-                    .frame(height: 45)
-                    .background(Color.green)
-                    .cornerRadius(15)
-                }
-        
            
 
             Spacer()
             
                 HStack{
+                    Button("Sales", action: {
+                        withAnimation {
+    
+                        }
+                    })
+                        .padding()
+                        .frame(height: 45)
+                        .background(Color.green)
+                        .cornerRadius(15)
+                    
                     Button("Miles", action: {
                         withAnimation {
                             

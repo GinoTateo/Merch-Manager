@@ -13,6 +13,7 @@ struct Home: View {
     
     //User
     @EnvironmentObject var userStore: UserStore
+    @EnvironmentObject var Locationstore: LocationStore
     //@EnvironmentObject var Dow: dow
 
     
@@ -64,7 +65,7 @@ struct Home: View {
                                         
                                     }.padding()
                     
-                    NavigationLink(destination: Service(dow: GetWeekday())){
+                    NavigationLink(destination: Service()){
                         HStack{
                             Spacer()
                             Text("Sales").multilineTextAlignment(TextAlignment.center)
@@ -81,7 +82,7 @@ struct Home: View {
                                         Text("You have **$2180** in sales and **$100** in returns for a profit of **$2080**").padding()
                                     }.padding()
                     
-                    NavigationLink(destination: PlanDay(dow: GetWeekday()) ){
+                    NavigationLink(destination: PlanDay() ){
                         HStack{
                             Spacer()
                             Text("Plan Day").multilineTextAlignment(TextAlignment.center)
@@ -94,7 +95,7 @@ struct Home: View {
                 
                 
                                         
-                    NavigationLink(destination: AccountView(dow: GetWeekday()) ){
+                    NavigationLink(destination: AccountView() ){
                         HStack{
                             Spacer()
                             Text("Account").multilineTextAlignment(TextAlignment.center)
@@ -153,7 +154,7 @@ struct Home: View {
     
     func logout(){
         
-        let loggedUser = UserInfo.init(userName: "", email: "", routeNumber: "", authenticated: false,dow: GetWeekday(),firstName: "",lastName: "",postion: "")
+        let loggedUser = UserInfo.init(userName: "", email: "", routeNumber: "", authenticated: false,dow: GetWeekday(),firstName: "",lastName: "",postion: "",numStores: 0, currPlanPos: 0)
         userStore.currentUserInfo = loggedUser
         
         

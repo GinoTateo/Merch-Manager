@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21D62" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="PlanDayData" representedClassName="PlanDayData" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="planID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-    </entity>
     <entity name="Store" representedClassName="Store" syncable="YES" codeGenerationType="class">
         <attribute name="city" optional="YES" attributeType="String"/>
         <attribute name="dos" optional="YES" attributeType="String"/>
-        <attribute name="dow" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="plan" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="storeID" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="PlanDayData" positionX="164.5390625" positionY="-305.9140625" width="128" height="59"/>
-        <element name="Store" positionX="-94.484375" positionY="-306.5625" width="128" height="134"/>
+        <element name="Store" positionX="-94.484375" positionY="-306.5625" width="128" height="149"/>
     </elements>
 </model>

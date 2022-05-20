@@ -12,14 +12,16 @@ import Firebase
 import FirebaseFirestore
 
 
+
 struct Login: View {
     
 // ------- Data ------- //
     //User
     @EnvironmentObject var userStore: UserStore
-    @EnvironmentObject var routeData: RouteData
+    @EnvironmentObject var planDayData: PlanDayData
     
     @Environment(\.managedObjectContext) private var AddStore
+    @Environment(\.managedObjectContext) private var PlanDay
     
     var ref = Database.database().reference()
 
@@ -36,6 +38,9 @@ struct Login: View {
 // ------- Body ------- //
     
     var body: some View {
+        
+        Image("icons8-open-box-64")
+        
             Form {
                 Section(header: Text("User Details")) {
                     TextField("Email", text: $email)
@@ -104,7 +109,7 @@ struct Login: View {
                         .sheet(isPresented: $showCreateAccount) { CreateAccountView()}
                 }
             }
-         .navigationTitle(greeting())
+         //.navigationTitle(greeting())
     }
     
     
@@ -117,8 +122,6 @@ struct Login: View {
                 ErrorMessage = true;
             } else {
                 print("success")
-                //let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: routeNumber, authenticated: true,dow: GetWeekday())
-                //userStore.currentUserInfo = loggedUser
                 Authenticated = true
                 grabUserData()
             }
@@ -140,7 +143,9 @@ struct Login: View {
                 let email = document.get("Email") as? String ?? ""
                 let position = document.get("Position")as? String ?? ""
                 let route = document.get("RouteNumber") as? String ?? ""
-                let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: route, authenticated: true,dow: GetWeekday(), firstName: first, lastName: last, postion: position)
+                let numstores = document.get("numStores") as? Int ?? 0
+                
+                let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: route, authenticated: true,dow: GetWeekday(), firstName: first, lastName: last, postion: position,numStores: numstores, currPlanPos: 0)
                 userStore.currentUserInfo = loggedUser
 
             } else {
@@ -170,29 +175,8 @@ struct Login: View {
         }
     }
     
-//    private func grabUserData(){
-//
-//        let userID = Auth.auth().currentUser?.uid
-//        ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { snapshot in
-//          // Get user value
-//          let value = snapshot.value as? NSDictionary
-//          let first = value?["FirstName"] as? String ?? ""
-//            let last = value?["LastName"] as? String ?? ""
-//            let email = value?["Email"] as? String ?? ""
-//            let position = value?["Postion"] as? String ?? ""
-//            let route = value?["RouteNumber"] as? String ?? ""
-//
-//            let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: route, authenticated: true,dow: GetWeekday(), firstName: first, lastName: last)
-//
-//            userStore.currentUserInfo = loggedUser
-//
-//        }) { error in
-//          print(error.localizedDescription)
-//        }
-//    }
     
-    
-    func loadStoresIn(){                // Load Stores into data
+    func loadStoresIn(){                
         
         let db = Firestore.firestore()
 
@@ -204,26 +188,33 @@ struct Login: View {
                   //handle error
                   return
                 }
+                
+                let count = snapshot.documents.count - 1
 
-              
-                print("Number of documents: \(snapshot.documents.count ?? -1)")
-                snapshot.documents.forEach({ (documentSnapshot) in
-                  let documentData = documentSnapshot.data()
-                  let Name = documentData["Name"] as? String
-                  let Number = documentData["Number"] as? Int16
-                    let City = documentData["City"] as? String
-                    //let Number = documentData["Number"] as? String
-                  //print("Quote: \(quote ?? "(unknown)")")
-                  //print("Url: \(url ?? "(unknown)")")
-                    
-                    
-                    let newStore = Store(context: AddStore)
-                    newStore.number = Number ?? 0
-                        newStore.city = City
-                        newStore.name = Name
-                        //newStore.dos = self.DayOfWeek[self.dosIndex]
-                })
-            }
+                if((userStore.currentUserInfo?.numStores ?? 0)!==count){
+                    print("Number of documents: \(snapshot.documents.count ?? -1)")
+                    snapshot.documents.forEach({ (documentSnapshot) in
+                      let documentData = documentSnapshot.data()
+                      let Name = documentData["Name"] as? String
+                      let Number = documentData["Number"] as? Int16
+                      let City = documentData["City"] as? String
+                      let Plan = documentData["Plan"] as? Int16
+                        let Long = documentData["Longitude"] as? Double
+                        let Lat = documentData["Latitude"] as? Double
+
+                        
+                        let newStore = Store(context: AddStore)
+                        newStore.number = Number ?? 0
+                            newStore.city = City
+                            newStore.name = Name
+                        newStore.plan = Plan ?? 0
+                        newStore.longitude = Long ?? 0
+                        newStore.latitude = Lat ?? 0
+                        
+                        }
+                    )
+                }
+        }
     }
     
     func ErrorHandler(errorType: String){

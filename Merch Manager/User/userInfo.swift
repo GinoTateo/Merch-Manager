@@ -17,6 +17,14 @@ struct UserInfo {
     let firstName: String
     let lastName: String
     let postion: String
+    let numStores: Int
+    let currPlanPos: Int
+}
+
+struct LocationInfo {
+    let number: String
+    let latitude: Double
+    let longitude: Double
 }
 
 struct dow {

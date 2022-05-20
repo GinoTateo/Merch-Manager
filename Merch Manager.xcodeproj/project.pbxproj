@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EF03EF882804ECD9005A85D1 /* routeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF03EF872804ECD9005A85D1 /* routeInfo.swift */; };
+		EF059020280BA0FB00C4B76B /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF05901F280BA0FB00C4B76B /* StoreView.swift */; };
 		EF0DE0A02748877D00081637 /* OrderSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0DE09F2748877D00081637 /* OrderSheet.swift */; };
 		EF0DE0A22748D8A000081637 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0DE0A12748D8A000081637 /* Login.swift */; };
 		EF0DE0A42748FDCC00081637 /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0DE0A32748FDCC00081637 /* ServiceView.swift */; };
@@ -20,6 +21,7 @@
 		EF4AEE7D2735F17400E44DC3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4AEE7C2735F17400E44DC3 /* Preview Assets.xcassets */; };
 		EF4AEE7F2735F17400E44DC3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4AEE7E2735F17400E44DC3 /* Persistence.swift */; };
 		EF4AEE822735F17400E44DC3 /* Merch_Manager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF4AEE802735F17400E44DC3 /* Merch_Manager.xcdatamodeld */; };
+		EF5607E42818E24E00833A86 /* CreatePlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5607E32818E24E00833A86 /* CreatePlanView.swift */; };
 		EFB8EABB278906940088380B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB8EABA278906940088380B /* Color.swift */; };
 		EFB8EABF278CF42B0088380B /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB8EABE278CF42B0088380B /* CreateAccountView.swift */; };
 		EFB8EAC4278E71190088380B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFB8EAC3278E71190088380B /* GoogleService-Info.plist */; };
@@ -36,15 +38,13 @@
 		EFB8EADB2790105F0088380B /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = EFB8EADA2790105F0088380B /* FirebaseStorageSwift-Beta */; };
 		EFC9407F27BCACC600C397FF /* userInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9407E27BCACC600C397FF /* userInfo.swift */; };
 		EFC9408227BCAD7200C397FF /* userStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9408127BCAD7200C397FF /* userStore.swift */; };
-		EFC9408427BDEDD700C397FF /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9408327BDEDD700C397FF /* Authentication.swift */; };
-		EFCEA902273F75E10097D0C8 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCEA901273F75E10097D0C8 /* StoreView.swift */; };
 		EFE371512763E68700149767 /* AddStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE371502763E68700149767 /* AddStore.swift */; };
-		EFE4059D277D4363004CCAF3 /* AccountPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE4059C277D4363004CCAF3 /* AccountPersistence.swift */; };
-		EFED4A29280768DB00E9C63F /* PlanDayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFED4A28280768DB00E9C63F /* PlanDayData.swift */; };
+		EFED4A29280768DB00E9C63F /* PlanInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFED4A28280768DB00E9C63F /* PlanInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EF03EF872804ECD9005A85D1 /* routeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = routeInfo.swift; sourceTree = "<group>"; };
+		EF05901F280BA0FB00C4B76B /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		EF0DE09F2748877D00081637 /* OrderSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSheet.swift; sourceTree = "<group>"; };
 		EF0DE0A12748D8A000081637 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		EF0DE0A32748FDCC00081637 /* ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
@@ -58,16 +58,14 @@
 		EF4AEE7C2735F17400E44DC3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EF4AEE7E2735F17400E44DC3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		EF4AEE812735F17400E44DC3 /* Merch_Manager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Merch_Manager.xcdatamodel; sourceTree = "<group>"; };
+		EF5607E32818E24E00833A86 /* CreatePlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlanView.swift; sourceTree = "<group>"; };
 		EFB8EABA278906940088380B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		EFB8EABE278CF42B0088380B /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		EFB8EAC3278E71190088380B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EFC9407E27BCACC600C397FF /* userInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userInfo.swift; sourceTree = "<group>"; };
 		EFC9408127BCAD7200C397FF /* userStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userStore.swift; sourceTree = "<group>"; };
-		EFC9408327BDEDD700C397FF /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
-		EFCEA901273F75E10097D0C8 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		EFE371502763E68700149767 /* AddStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStore.swift; sourceTree = "<group>"; };
-		EFE4059C277D4363004CCAF3 /* AccountPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPersistence.swift; sourceTree = "<group>"; };
-		EFED4A28280768DB00E9C63F /* PlanDayData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDayData.swift; sourceTree = "<group>"; };
+		EFED4A28280768DB00E9C63F /* PlanInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,9 +144,10 @@
 				EF0DE0A12748D8A000081637 /* Login.swift */,
 				EFB8EABE278CF42B0088380B /* CreateAccountView.swift */,
 				EF46D270276AB558007798C6 /* PlanDay.swift */,
+				EF5607E32818E24E00833A86 /* CreatePlanView.swift */,
 				EF0DE09F2748877D00081637 /* OrderSheet.swift */,
-				EFCEA901273F75E10097D0C8 /* StoreView.swift */,
 				EF0DE0A32748FDCC00081637 /* ServiceView.swift */,
+				EF05901F280BA0FB00C4B76B /* StoreView.swift */,
 				EFE371502763E68700149767 /* AddStore.swift */,
 				EF4AEE772735F17300E44DC3 /* Home.swift */,
 				EF46D274276AB5C2007798C6 /* Dashboard.swift */,
@@ -160,7 +159,6 @@
 		EFB8EABD27890A080088380B /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				EFE4059C277D4363004CCAF3 /* AccountPersistence.swift */,
 				EF4AEE7E2735F17400E44DC3 /* Persistence.swift */,
 			);
 			path = Persistence;
@@ -172,8 +170,7 @@
 				EFC9407E27BCACC600C397FF /* userInfo.swift */,
 				EF03EF872804ECD9005A85D1 /* routeInfo.swift */,
 				EFC9408127BCAD7200C397FF /* userStore.swift */,
-				EFC9408327BDEDD700C397FF /* Authentication.swift */,
-				EFED4A28280768DB00E9C63F /* PlanDayData.swift */,
+				EFED4A28280768DB00E9C63F /* PlanInfo.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -268,8 +265,8 @@
 				EF03EF882804ECD9005A85D1 /* routeInfo.swift in Sources */,
 				EF0DE0A42748FDCC00081637 /* ServiceView.swift in Sources */,
 				EF0DE0A02748877D00081637 /* OrderSheet.swift in Sources */,
-				EFE4059D277D4363004CCAF3 /* AccountPersistence.swift in Sources */,
 				EF4AEE7F2735F17400E44DC3 /* Persistence.swift in Sources */,
+				EF5607E42818E24E00833A86 /* CreatePlanView.swift in Sources */,
 				EFC9407F27BCACC600C397FF /* userInfo.swift in Sources */,
 				EF4AEE782735F17300E44DC3 /* Home.swift in Sources */,
 				EF46D273276AB596007798C6 /* AccountView.swift in Sources */,
@@ -279,11 +276,10 @@
 				EFB8EABF278CF42B0088380B /* CreateAccountView.swift in Sources */,
 				EFC9408227BCAD7200C397FF /* userStore.swift in Sources */,
 				EFB8EABB278906940088380B /* Color.swift in Sources */,
-				EFC9408427BDEDD700C397FF /* Authentication.swift in Sources */,
-				EFED4A29280768DB00E9C63F /* PlanDayData.swift in Sources */,
+				EFED4A29280768DB00E9C63F /* PlanInfo.swift in Sources */,
 				EF4AEE762735F17300E44DC3 /* Merch_ManagerApp.swift in Sources */,
 				EF46D271276AB558007798C6 /* PlanDay.swift in Sources */,
-				EFCEA902273F75E10097D0C8 /* StoreView.swift in Sources */,
+				EF059020280BA0FB00C4B76B /* StoreView.swift in Sources */,
 				EF4AEE822735F17400E44DC3 /* Merch_Manager.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

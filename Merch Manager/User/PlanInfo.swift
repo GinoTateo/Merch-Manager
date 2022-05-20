@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct  PDD {
+struct  PlanInfo {
     let PDDID: UUID
     let PDDdate: Date
-    let PDDarr = [String]()
+    let numData: Int
     
 }
 

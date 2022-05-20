@@ -7,6 +7,7 @@
 
 import Combine
 import FirebaseFirestore
+import Foundation
 
 class UserStore: ObservableObject {
   @Published var currentUserInfo: UserInfo?
@@ -16,7 +17,15 @@ class Dow: ObservableObject {
   @Published var currentdow: dow?
 }
 
+class LocationStore: ObservableObject {
+  @Published var currentLocationInfo: LocationInfo?
+}
+
 class RouteData: ObservableObject {
   @Published var currentRouteInfor: StoreData?
+}
+
+class PlanDayData: ObservableObject {
+    @Published var PlanDayInfo: PlanInfo?
 }
 

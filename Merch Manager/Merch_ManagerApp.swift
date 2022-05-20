@@ -19,9 +19,17 @@ struct Merch_ManagerApp: App {
     
     init (){
         let contentView = UserStore()
-        let loggedUser = UserInfo.init(userName: "email", email: "email", routeNumber: "routeNumber", authenticated: false,dow: "Day of the week",firstName: "",lastName: "",postion: "")
+        let loggedUser = UserInfo.init(userName: "email", email: "email", routeNumber: "routeNumber", authenticated: false,dow: "Day of the week",firstName: "",lastName: "",postion: "",numStores: 0,currPlanPos: 0)
         contentView.currentUserInfo = loggedUser
+        
+//        let contentView2 = LocationStore()
+//        let Loc = LocationInfo.init(number: "0", latitude: 0, longitude: 0)
+//        contentView2.currentLocationInfo = Loc
+        
+        
+        
     }
+
 
     var body: some Scene {
         WindowGroup {

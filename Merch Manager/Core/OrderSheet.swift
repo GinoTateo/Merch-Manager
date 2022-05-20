@@ -38,7 +38,7 @@ struct OrderSheet: View {
                     }
                     VStack{
                         HStack{
-                        Text(item.dos!).fontWeight(.light)
+                        //Text(item.dos!).fontWeight(.light)
                         }
                     }
                     

@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 import CoreData
 import Firebase
+import CoreLocation
+import CoreLocationUI
 import FirebaseFirestore
 
 struct AddStore: View {
@@ -20,7 +22,6 @@ struct AddStore: View {
     @State var RepRoute = ""
     @State var MerchRoute = ""
     @State var dosIndex = 0
-    var dow = ""
     
     let DayOfWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
     
@@ -28,6 +29,7 @@ struct AddStore: View {
     
     @Environment (\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var AddStore
+    @EnvironmentObject var userStore: UserStore
     
     
     var body: some View {
@@ -79,30 +81,31 @@ struct AddStore: View {
                     let newStore = Store(context: AddStore)
                         newStore.number = Int16(self.StoreNumber)!
                         newStore.city = City
-                        //newStore.dow = 0
                         newStore.name = StoreName
                         newStore.dos = self.DayOfWeek[self.dosIndex]
-                    
-                    
+                        newStore.plan = Int16((userStore.currentUserInfo?.numStores ?? 0)+1)
+                        newStore.longitude = CLLocationManager().location?.coordinate.longitude ?? 0
+                        newStore.latitude = CLLocationManager().location?.coordinate.latitude ?? 0
+   
 
-                    var ref: DocumentReference? = nil
-                    ref = db.collection("Store").addDocument(data: [
+                    let routeRef = db              
+                        .collection("Route").document("Merchandiser")
+                        .collection(userStore.currentUserInfo!.routeNumber).addDocument(data: [
                         "Name": StoreName,
                         "Number": StoreNumber,
                         "MerchRoute": MerchRoute,
                         "City": City,
-                        "StoreCity": self.DayOfWeek[self.dosIndex]
-                    ]) { err in
-                        if let err = err {
-                            print("Error adding document: \(err)")
-                        } else {
-                            print("Document added with ID: \(ref!.documentID)")
-                        }
-                    }
+                        "StoreCity": self.DayOfWeek[self.dosIndex],
+                        "Plan": (userStore.currentUserInfo?.numStores ?? 0)+1,
+                        "Longtitude": CLLocationManager().location?.coordinate.longitude ?? 0,
+                        "Latitude": CLLocationManager().location?.coordinate.latitude ?? 0
+                    ])
 
+                    newStore.storeID = routeRef.documentID
                     
                     do {
                         try AddStore.save()
+                        updateNumStores()
                         presentationMode.wrappedValue.dismiss()
                     } catch {
                         print(error.localizedDescription)
@@ -116,11 +119,38 @@ struct AddStore: View {
               .toolbar { // <2>
                 ToolbarItem(placement: .principal) { // <3>
                     VStack {
-                        Text("My \(dow)").font(.headline) .fixedSize(horizontal: true, vertical: false)
+                        Text("My \(userStore.currentUserInfo!.dow)").font(.headline) .fixedSize(horizontal: true, vertical: false)
                         Text("Add Store").font(.subheadline)
                     }
                 }
             }
         }
+    }
+    
+    
+    
+    func updateNumStores(){
+        
+        var newcount = userStore.currentUserInfo?.numStores
+        newcount!+=1
+        //userStore.currentUserInfo?.numStores = newcount!
+        
+        let UserId = (Auth.auth().currentUser?.uid)!
+        db.collection("User/").document(UserId).setData(
+
+                                [
+                                    "numStores": newcount
+                                ]
+
+
+        ) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+
+        
     }
 }
