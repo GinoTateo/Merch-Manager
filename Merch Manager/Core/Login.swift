@@ -145,7 +145,7 @@ struct Login: View {
                 let route = document.get("RouteNumber") as? String ?? ""
                 let numstores = document.get("numStores") as? Int ?? 0
                 
-                let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: route, authenticated: true,dow: GetWeekday(), firstName: first, lastName: last, postion: position,numStores: numstores, currPlanPos: 0)
+                let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: route, authenticated: true,dow: GetWeekday(), firstName: first, lastName: last, postion: position,numStores: 0, currPlanPos: 0)
                 userStore.currentUserInfo = loggedUser
 
             } else {
@@ -191,22 +191,24 @@ struct Login: View {
                 
                 let count = snapshot.documents.count - 1
 
-                if((userStore.currentUserInfo?.numStores ?? 0)!==count){
-                    print("Number of documents: \(snapshot.documents.count ?? -1)")
+                if((userStore.currentUserInfo?.numStores)!==count){
+                    print(userStore.currentUserInfo!.numStores )
+                    print("Number of documents: \(snapshot.documents.count-1)")
+                } else {
                     snapshot.documents.forEach({ (documentSnapshot) in
                       let documentData = documentSnapshot.data()
                       let Name = documentData["Name"] as? String
                       let Number = documentData["Number"] as? Int16
                       let City = documentData["City"] as? String
                       let Plan = documentData["Plan"] as? Int16
-                        let Long = documentData["Longitude"] as? Double
-                        let Lat = documentData["Latitude"] as? Double
+                      let Long = documentData["Longtitude"] as? Double //Spelling error
+                      let Lat = documentData["Latitude"] as? Double
 
                         
                         let newStore = Store(context: AddStore)
                         newStore.number = Number ?? 0
-                            newStore.city = City
-                            newStore.name = Name
+                        newStore.city = City
+                        newStore.name = Name
                         newStore.plan = Plan ?? 0
                         newStore.longitude = Long ?? 0
                         newStore.latitude = Lat ?? 0

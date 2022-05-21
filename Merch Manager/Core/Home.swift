@@ -138,8 +138,8 @@ struct Home: View {
                     }
                 }.multilineTextAlignment(TextAlignment.center)
                 .navigationBarTitleDisplayMode(.inline)
-                .toolbar { // <2>
-                    ToolbarItem(placement: .principal) { // <3>
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
                         VStack {
                             Text("My \(GetWeekday())").font(.headline)
                             Text("Home").font(.subheadline)

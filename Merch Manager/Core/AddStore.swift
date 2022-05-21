@@ -97,7 +97,7 @@ struct AddStore: View {
                         "City": City,
                         "StoreCity": self.DayOfWeek[self.dosIndex],
                         "Plan": (userStore.currentUserInfo?.numStores ?? 0)+1,
-                        "Longtitude": CLLocationManager().location?.coordinate.longitude ?? 0,
+                        "Longitude": CLLocationManager().location?.coordinate.longitude ?? 0,
                         "Latitude": CLLocationManager().location?.coordinate.latitude ?? 0
                     ])
 
@@ -133,13 +133,13 @@ struct AddStore: View {
         
         var newcount = userStore.currentUserInfo?.numStores
         newcount!+=1
-        //userStore.currentUserInfo?.numStores = newcount!
+        userStore.currentUserInfo?.numStores = newcount!
         
         let UserId = (Auth.auth().currentUser?.uid)!
         db.collection("User/").document(UserId).setData(
 
                                 [
-                                    "numStores": newcount
+                                    "numStores": newcount!
                                 ]
 
 

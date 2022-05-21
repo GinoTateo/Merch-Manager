@@ -17,7 +17,7 @@ struct UserInfo {
     let firstName: String
     let lastName: String
     let postion: String
-    let numStores: Int
+    var numStores: Int
     let currPlanPos: Int
 }
 

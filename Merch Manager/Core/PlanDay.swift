@@ -46,7 +46,6 @@ struct PlanDay: View {
                 }
             }
         }.navigationBarTitleDisplayMode(.inline)
-         .sheet(isPresented: $refactor) { CreatePlanView()}
          .toolbar {
             ToolbarItem(placement: .principal) {
                 VStack {
@@ -54,13 +53,11 @@ struct PlanDay: View {
                     Text("Plan day").font(.subheadline)
                 }
             }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                                EditButton()
-                            }
         }
         .navigationBarItems(trailing: Button(action: { }, label: {
                             Image(systemName: "car")
             .imageScale(.large) }))
+        .sheet(isPresented: $refactor) { CreatePlanView()}
 
 
     }
