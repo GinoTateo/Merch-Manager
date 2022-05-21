@@ -18,8 +18,7 @@ struct Service: View {
     
     @State var openAddStore = false
    
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.dos, ascending: true)])//,predicate: NSPredicate(format: "dos == Sunday"))
-
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.plan, ascending: true)])
    private var items: FetchedResults<Store>
     
     let db = Firestore.firestore()

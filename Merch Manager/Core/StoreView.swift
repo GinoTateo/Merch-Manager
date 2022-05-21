@@ -17,15 +17,15 @@ struct StoreView: View {
     var item: Store
     
 
-    @State private var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: CLLocationManager().location?.coordinate.longitude ?? 0 , longitude: CLLocationManager().location?.coordinate.longitude  ?? 0), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
-    
+//    @State private var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: CLLocationManager().location?.coordinate.longitude ?? 0 , longitude: CLLocationManager().location?.coordinate.longitude  ?? 0), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+//
     
     
     var body: some View {
 
         VStack{
             
-            Map(coordinateRegion: $mapRegion)
+            //Map(coordinateRegion: $mapRegion)
             
                 Form{
                     Section(header: Text("Store")){
@@ -37,8 +37,7 @@ struct StoreView: View {
                             Text(item.city!)
                             Text(String(item.longitude))
                             Text(String(item.latitude))
-                            
-                            //Text(item.storeID!)
+
                         }
                     }
                 }

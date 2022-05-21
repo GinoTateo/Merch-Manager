@@ -68,7 +68,7 @@ struct Home: View {
                     NavigationLink(destination: Service()){
                         HStack{
                             Spacer()
-                            Text("Sales").multilineTextAlignment(TextAlignment.center)
+                            Text("Stores").multilineTextAlignment(TextAlignment.center)
                                 .font(.system(size: 30, weight: .semibold , design: .rounded))
                                 .foregroundColor(.black)
                             Spacer()

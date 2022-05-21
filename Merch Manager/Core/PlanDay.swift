@@ -49,12 +49,11 @@ struct PlanDay: View {
          .toolbar {
             ToolbarItem(placement: .principal) {
                 VStack {
-                    Text("My Day").font(.headline) .fixedSize(horizontal: true, vertical: false)
-                    Text("Plan day").font(.subheadline)
+                    Text("My Plan").font(.headline) .fixedSize(horizontal: true, vertical: false)
                 }
             }
         }
-        .navigationBarItems(trailing: Button(action: { }, label: {
+         .navigationBarItems(trailing: Button(action: {refactor.toggle() }, label: {
                             Image(systemName: "car")
             .imageScale(.large) }))
         .sheet(isPresented: $refactor) { CreatePlanView()}

@@ -39,7 +39,7 @@ struct Login: View {
     
     var body: some View {
         
-        Image("icons8-open-box-64")
+        //Image("icons8-open-box-64")
         
             Form {
                 Section(header: Text("User Details")) {
@@ -79,7 +79,6 @@ struct Login: View {
                     do{
                         print("Begin day saved route #\(routeNumber)")
                         login()
-                        loadStoresIn()
                     }catch{
                         ErrorHandler(errorType: email)
                         ErrorMessage = true
@@ -124,6 +123,7 @@ struct Login: View {
                 print("success")
                 Authenticated = true
                 grabUserData()
+                loadStoresIn()
             }
         }
     }
@@ -191,7 +191,7 @@ struct Login: View {
                 
                 let count = snapshot.documents.count - 1
 
-                if((userStore.currentUserInfo?.numStores)!==count){
+                if((userStore.currentUserInfo?.numStores)==count){
                     print(userStore.currentUserInfo!.numStores )
                     print("Number of documents: \(snapshot.documents.count-1)")
                 } else {
