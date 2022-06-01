@@ -10,6 +10,7 @@ import Foundation
 class DateModelController: ObservableObject {
     @Published private(set) var listOfValidDates: [DateModel] = []
     @Published private(set) var selectedDate = ""
+    @Published private(set) var selectedDateFormatted = ""
     
     init() {
         getDates()
@@ -21,6 +22,7 @@ class DateModelController: ObservableObject {
         guard let index = self.listOfValidDates.firstIndex(of: date) else { return }
         listOfValidDates[index].isSelected.toggle()
         selectedDate = listOfValidDates[index].monthAsString + " " + "\(listOfValidDates[index].day)"
+        selectedDateFormatted = listOfValidDates[index].monthAsString + " \(listOfValidDates[index].day) " + listOfValidDates[index].year
     }
     
     private func getDates() {
@@ -42,6 +44,10 @@ class DateModelController: ObservableObject {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "LLL"
             
+            let yearFormatter = DateFormatter()
+            yearFormatter.dateFormat = "yyyy"
+            let yearString = yearFormatter.string(from: newDate)
+            
             let month = dateFormatter.string(from: newDate)
             objectToAddInDate.monthAsInt = Calendar.current.component(.month, from: newDate)
             objectToAddInDate.monthAsString = month
@@ -55,6 +61,7 @@ class DateModelController: ObservableObject {
             let todayDate = Calendar.current.component(.day, from: Date())
             let todayMonth = dateFormatter.string(from: Date())
             self.selectedDate = todayMonth + " " + "\(todayDate)"
+            self.selectedDateFormatted = todayMonth + " \(todayDate) " + yearString
             self.listOfValidDates.append(objectToAddInDate)
         }
         

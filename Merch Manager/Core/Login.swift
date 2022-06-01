@@ -18,8 +18,6 @@ struct Login: View {
 // ------- Data ------- //
     //User
     @EnvironmentObject var userStore: UserStore
-    @EnvironmentObject var planDayData: PlanDayData
-    
     @Environment(\.managedObjectContext) private var AddStore
     @Environment(\.managedObjectContext) private var PlanDay
     
@@ -93,7 +91,7 @@ struct Login: View {
             }
                 
                 Section(header: Text("New user?")) {
-                    Button("Creat new account ",action: {
+                    Button("Create new account ",action: {
                         withAnimation {
                         do {
                             print("Creating new account")
@@ -157,10 +155,11 @@ struct Login: View {
                                         [
                                         "userID": UserId,
                                         "Email": email,
-                                        "FirstName": "firstName",
-                                        "LastName": "lastName",
+                                        "FirstName": "",
+                                        "LastName": "",
                                         "RouteNumber": routeNumber,
-                                        "Position": "Merchandiser"
+                                        "Position": "",
+                                        "numStores": 0
                                         ]
 
 

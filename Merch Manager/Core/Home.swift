@@ -14,13 +14,14 @@ struct Home: View {
     //User
     @EnvironmentObject var userStore: UserStore
     @EnvironmentObject var Locationstore: LocationStore
-    //@EnvironmentObject var Dow: dow
-
     
     @State var showOrderSheet = false
     @State var viewStoreService = true
     @State private var showAlert = false
-    //@State var dow = ""
+
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.plan, ascending: true)])
+    private var currItem: FetchedResults<Store>
+
     
     @Environment(\.managedObjectContext) private var ConentView
 
@@ -43,9 +44,25 @@ struct Home: View {
             
             
             VStack{
-
-                Spacer()
+                
                 if(userStore.currentUserInfo?.authenticated==true){
+                    
+                    GroupBox(
+                        label: Label("Next Stop", systemImage: "arrow.turn.down.right")
+                                    .foregroundColor(.red)
+                                    ){
+                                        Text("Your next stop is **Safeway 3132** on **5100 Broadway** in **Oakland**.").padding()
+                                        
+                                    }.padding()
+                    
+                    GroupBox(
+                        label: Label("Sales Recap", systemImage: "dollarsign.square")
+                                    .foregroundColor(.green)
+                                    ) {
+                                        Text("You have **$2180** in sales and **$100** in returns for a profit of **$2080**").padding()
+                                    }.padding()
+                    
+                    Spacer()
                     
                     NavigationLink(destination: Dashboard() ){
                         HStack{
@@ -57,14 +74,6 @@ struct Home: View {
                         }
                     }
                     
-                    GroupBox(
-                        label: Label("Next Stop", systemImage: "arrow.turn.down.right")
-                                    .foregroundColor(.red)
-                                    ){
-                                        Text("Your next stop is **Safeway 3132** on **5100 Broadway** in **Oakland**.").padding()
-                                        
-                                    }.padding()
-                    
                     NavigationLink(destination: Service()){
                         HStack{
                             Spacer()
@@ -74,13 +83,6 @@ struct Home: View {
                             Spacer()
                         }
                     }
-                    
-                    GroupBox(
-                        label: Label("Sales Recap", systemImage: "dollarsign.square")
-                                    .foregroundColor(.green)
-                                    ) {
-                                        Text("You have **$2180** in sales and **$100** in returns for a profit of **$2080**").padding()
-                                    }.padding()
                     
                     NavigationLink(destination: PlanDay() ){
                         HStack{
@@ -106,6 +108,7 @@ struct Home: View {
                         }
                     }
                 }else{
+                    Spacer()
                     Image("z0uy2c")
                     Image("gkonp9")
                 }

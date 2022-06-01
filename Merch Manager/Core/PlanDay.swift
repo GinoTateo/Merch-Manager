@@ -16,8 +16,6 @@ import FirebaseFirestore
 struct PlanDay: View {
     
     @Environment(\.managedObjectContext) private var PlanDay
-    
-    @EnvironmentObject var PlanDayData: PlanDayData
     @EnvironmentObject var userStore: UserStore
 
     //@EnvironmentObject var routeData: RouteData
@@ -41,21 +39,19 @@ struct PlanDay: View {
                             Spacer()
                         }
                     
-                    
-
                 }
             }
         }.navigationBarTitleDisplayMode(.inline)
          .toolbar {
             ToolbarItem(placement: .principal) {
                 VStack {
-                    Text("My Plan").font(.headline) .fixedSize(horizontal: true, vertical: false)
+                    Text("My Plan").font(.headline)
                 }
             }
         }
          .navigationBarItems(trailing: Button(action: {refactor.toggle() }, label: {
                             Image(systemName: "car")
-            .imageScale(.large) }))
+        .imageScale(.large) }))
         .sheet(isPresented: $refactor) { CreatePlanView()}
 
 

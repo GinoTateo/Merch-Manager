@@ -24,8 +24,3 @@ class LocationStore: ObservableObject {
 class RouteData: ObservableObject {
   @Published var currentRouteInfor: StoreData?
 }
-
-class PlanDayData: ObservableObject {
-    @Published var PlanDayInfo: PlanInfo?
-}
-

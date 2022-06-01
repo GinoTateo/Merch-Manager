@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21D62" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="PlanList" representedClassName="PlanList" syncable="YES" codeGenerationType="class">
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="plan" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="storeID" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Store" representedClassName="Store" syncable="YES" codeGenerationType="class">
         <attribute name="city" optional="YES" attributeType="String"/>
         <attribute name="dos" optional="YES" attributeType="String"/>
@@ -11,6 +20,7 @@
         <attribute name="storeID" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Store" positionX="-94.484375" positionY="-306.5625" width="128" height="149"/>
+        <element name="Store" positionX="-94.484375" positionY="-306.5625" width="128" height="163"/>
+        <element name="PlanList" positionX="-90" positionY="-243" width="128" height="134"/>
     </elements>
 </model>
