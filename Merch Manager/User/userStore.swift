@@ -13,6 +13,14 @@ class UserStore: ObservableObject {
   @Published var currentUserInfo: UserInfo?
 }
 
+class UserDay: ObservableObject {
+  @Published var currentDay: DayData?
+}
+
+class ScanStore: ObservableObject {
+  @Published var currentScan: ScanList?
+}
+
 class Dow: ObservableObject {
   @Published var currentdow: dow?
 }

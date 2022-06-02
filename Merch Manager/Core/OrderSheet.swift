@@ -8,21 +8,76 @@
 import Foundation
 import SwiftUI
 import CoreData
+import Firebase
+import FirebaseFirestore
+import AVFoundation
 
 
 struct OrderSheet: View {
        
-    var dow = ""
+    @EnvironmentObject var userStore: UserStore
+    @EnvironmentObject var userDay: UserDay
+    @ObservedObject var dateModelController = DateModelController()
+    let db = Firestore.firestore()
+    @EnvironmentObject var userScan: ScanStore
+    
     var item: Store
     
     @Environment (\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var OrderSheet
     
-    @State var selectedPizzaIndex = 1
-    @State var numberOfSlices = 1
-    @State var CaseCount = ""
+    @State private var isPresentingScanner = false
+    @State private var scannedCode: String?
+
+    @State var Complete = false
     
     var body: some View {
+       
+        VStack{
+           
+            if(Complete == false){
+                HStack{
+                    Button("Begin Merch", action: {
+                        withAnimation {
+                            updateLog()
+                        }
+                    })
+                        .padding()
+                        .frame(height: 45)
+                        .font(.headline)
+                        .background(Color.accentColor)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(15)
+  
+                }
+            }else{
+                HStack{
+                Button("Complete Merch", action: {
+                    withAnimation {
+                        completeLog()
+                    }
+                })
+                    .padding()
+                    .frame(height: 45)
+                    .font(.headline)
+                    .background(Color.accentColor)
+                    .foregroundColor(Color.white)
+                    .cornerRadius(15)
+                    
+                    
+                    NavigationLink("Scan Merch", destination: ScanView(), isActive: $isPresentingScanner)
+                        .padding()
+                        .frame(height: 45)
+                        .font(.headline)
+                        .background(Color.accentColor)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(15)
+                    
+                }
+                }
+            
+        
+
             Form {
                 Section(header: Text("Store Details")) {
                     VStack{
@@ -36,44 +91,68 @@ struct OrderSheet: View {
                         Text(item.city!+", CA").fontWeight(.light)
                         }
                     }
-                    VStack{
-                        HStack{
-                        //Text(item.dos!).fontWeight(.light)
-                        }
-                    }
-                    
                 }
                 
-//                Section(header: Text("Case count")) {
-//                    TextField("Number of cases", text: $CaseCount)
-//                        .keyboardType(.numberPad)
-//
-//                }
-//
-//                Button(action: {
-//                    guard self.CaseCount != "" else {return}
-//                    let newOrder = Store(context: OrderSheet)
-//                    newOrder.number = Int16(self.StoreNumber)!
-//                    newOrder.city = City
-//                    do {
-//                        try OrderSheet.save()
-//                        presentationMode.wrappedValue.dismiss()
-//                    } catch {
-//                        print(error.localizedDescription)
-//                    }
-//                }) {
-//                    Text("Add store")
-//                }
             }
+    }
              .navigationBarTitleDisplayMode(.inline)
               .toolbar { // <2>
                 ToolbarItem(placement: .principal) { // <3>
                     VStack {
-                        Text("My \(dow)").font(.headline)
+                        Text("Store Merch").font(.headline)
                         Text("Order").font(.subheadline)
                     }
                 }
 
-        }
+        
     }
+    }
+    
+    func updateLog(){
+        let routeRef = db
+            .collection("User").document(Auth.auth().currentUser?.uid ?? "")
+            .collection("LogCollection").document(self.dateModelController.selectedDateFormatted)
+            .collection("StoreList").document(item.name!+String(item.number)).setData(
+
+                                    [
+                                        "Arrival Time": Date(),
+                                    ]
+                                        
+
+                ) { err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print(self.dateModelController.selectedDateFormatted)
+                        Complete.toggle()
+                    }
+                }
+            }
+    
+    func completeLog(){
+        let routeRef = db
+            .collection("User").document(Auth.auth().currentUser?.uid ?? "")
+            .collection("LogCollection").document(self.dateModelController.selectedDateFormatted)
+            .collection("StoreList").document(item.name!+String(item.number)).setData(
+
+                                    [
+                                        "Complete Time": Date(),
+                                        "Complete": true
+                                    ]
+
+
+                ) { err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print(self.dateModelController.selectedDateFormatted)
+                        presentationMode.wrappedValue.dismiss()
+                        Complete.toggle()
+                    }
+                }
+            }
+    
+    
 }
+
+    

@@ -20,6 +20,7 @@ struct Login: View {
     @EnvironmentObject var userStore: UserStore
     @Environment(\.managedObjectContext) private var AddStore
     @Environment(\.managedObjectContext) private var PlanDay
+    @EnvironmentObject var userDay: UserDay
     
     var ref = Database.database().reference()
 
@@ -120,6 +121,8 @@ struct Login: View {
             } else {
                 print("success")
                 Authenticated = true
+                let loggedDay = DayData.init(beginDay: false, startTime: Date(), currStore: 0)
+                userDay.currentDay = loggedDay
                 grabUserData()
                 loadStoresIn()
             }

@@ -23,6 +23,8 @@
 		EF4AEE822735F17400E44DC3 /* Merch_Manager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF4AEE802735F17400E44DC3 /* Merch_Manager.xcdatamodeld */; };
 		EF5607E42818E24E00833A86 /* CreatePlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5607E32818E24E00833A86 /* CreatePlanView.swift */; };
 		EF7D1D482847D7330057B475 /* Persistence2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7D1D472847D7330057B475 /* Persistence2.swift */; };
+		EF7D1D4A284929F80057B475 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7D1D49284929F80057B475 /* ScanView.swift */; };
+		EF7D1D4D28492D210057B475 /* CarBode in Frameworks */ = {isa = PBXBuildFile; productRef = EF7D1D4C28492D210057B475 /* CarBode */; };
 		EFB8EABB278906940088380B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB8EABA278906940088380B /* Color.swift */; };
 		EFB8EABF278CF42B0088380B /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB8EABE278CF42B0088380B /* CreateAccountView.swift */; };
 		EFB8EAC4278E71190088380B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFB8EAC3278E71190088380B /* GoogleService-Info.plist */; };
@@ -63,6 +65,7 @@
 		EF4AEE812735F17400E44DC3 /* Merch_Manager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Merch_Manager.xcdatamodel; sourceTree = "<group>"; };
 		EF5607E32818E24E00833A86 /* CreatePlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlanView.swift; sourceTree = "<group>"; };
 		EF7D1D472847D7330057B475 /* Persistence2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence2.swift; sourceTree = "<group>"; };
+		EF7D1D49284929F80057B475 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		EFB8EABA278906940088380B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		EFB8EABE278CF42B0088380B /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		EFB8EAC3278E71190088380B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -82,6 +85,7 @@
 				EFB8EAD52790105F0088380B /* FirebaseMessaging in Frameworks */,
 				EFB8EACB2790105F0088380B /* FirebaseDatabase in Frameworks */,
 				EFB8EAD92790105F0088380B /* FirebaseStorageCombine-Community in Frameworks */,
+				EF7D1D4D28492D210057B475 /* CarBode in Frameworks */,
 				EFB8EAD72790105F0088380B /* FirebaseStorage in Frameworks */,
 				EFB8EAD32790105F0088380B /* FirebaseFunctions in Frameworks */,
 				EFB8EACD2790105F0088380B /* FirebaseFirestore in Frameworks */,
@@ -155,6 +159,7 @@
 				EF5607E32818E24E00833A86 /* CreatePlanView.swift */,
 				EFC2837F28397EF300517593 /* GridView.swift */,
 				EF0DE09F2748877D00081637 /* OrderSheet.swift */,
+				EF7D1D49284929F80057B475 /* ScanView.swift */,
 				EF0DE0A32748FDCC00081637 /* ServiceView.swift */,
 				EF05901F280BA0FB00C4B76B /* StoreView.swift */,
 				EFE371502763E68700149767 /* AddStore.swift */,
@@ -228,6 +233,7 @@
 				EFB8EAD62790105F0088380B /* FirebaseStorage */,
 				EFB8EAD82790105F0088380B /* FirebaseStorageCombine-Community */,
 				EFB8EADA2790105F0088380B /* FirebaseStorageSwift-Beta */,
+				EF7D1D4C28492D210057B475 /* CarBode */,
 			);
 			productName = "Merch Manager";
 			productReference = EF4AEE722735F17300E44DC3 /* Merch Manager.app */;
@@ -259,6 +265,7 @@
 			mainGroup = EF4AEE692735F17300E44DC3;
 			packageReferences = (
 				EFB8EAC52790105F0088380B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				EF7D1D4B28492D200057B475 /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */,
 			);
 			productRefGroup = EF4AEE732735F17300E44DC3 /* Products */;
 			projectDirPath = "";
@@ -292,6 +299,7 @@
 				EF0DE0A02748877D00081637 /* OrderSheet.swift in Sources */,
 				EF4AEE7F2735F17400E44DC3 /* Persistence.swift in Sources */,
 				EF5607E42818E24E00833A86 /* CreatePlanView.swift in Sources */,
+				EF7D1D4A284929F80057B475 /* ScanView.swift in Sources */,
 				EFC9407F27BCACC600C397FF /* userInfo.swift in Sources */,
 				EF4AEE782735F17300E44DC3 /* Home.swift in Sources */,
 				EF46D273276AB596007798C6 /* AccountView.swift in Sources */,
@@ -442,6 +450,7 @@
 				DEVELOPMENT_TEAM = BY2YTN5682;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs access to the camera, to be able to read barcodes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -471,6 +480,7 @@
 				DEVELOPMENT_TEAM = BY2YTN5682;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs access to the camera, to be able to read barcodes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -513,6 +523,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		EF7D1D4B28492D200057B475 /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/heart/CarBode-Barcode-Scanner-For-SwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		EFB8EAC52790105F0088380B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -524,6 +542,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EF7D1D4C28492D210057B475 /* CarBode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF7D1D4B28492D200057B475 /* XCRemoteSwiftPackageReference "CarBode-Barcode-Scanner-For-SwiftUI" */;
+			productName = CarBode;
+		};
 		EFB8EAC62790105F0088380B /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EFB8EAC52790105F0088380B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

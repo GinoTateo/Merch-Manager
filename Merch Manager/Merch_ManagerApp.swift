@@ -13,6 +13,8 @@ import FirebaseFirestore
 struct Merch_ManagerApp: App {
     let persistenceController = PersistenceController.shared
     let contentView = UserStore()
+    let contentView2 = UserDay()
+    let contentView3 = ScanStore()
 
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
@@ -22,12 +24,13 @@ struct Merch_ManagerApp: App {
         let loggedUser = UserInfo.init(userName: "email", email: "email", routeNumber: "routeNumber", authenticated: false,dow: "Day of the week",firstName: "",lastName: "",postion: "",numStores: 0,currPlanPos: 0)
         contentView.currentUserInfo = loggedUser
         
-//        let contentView2 = LocationStore()
-//        let Loc = LocationInfo.init(number: "0", latitude: 0, longitude: 0)
-//        contentView2.currentLocationInfo = Loc
+        let contentView2 = UserDay()
+        let loggedDay = DayData.init(beginDay: true, startTime: Date(), currStore: 0)
+        contentView2.currentDay = loggedDay
         
-        
-        
+        let contentView3 = ScanStore()
+        let loggedScan = ScanList.init(numItem: 0, arrayItem: ["None"])
+        contentView3.currentScan = loggedScan
     }
 
 
@@ -36,6 +39,8 @@ struct Merch_ManagerApp: App {
 
             Home()
                 .environmentObject(contentView)
+                .environmentObject(contentView2)
+                .environmentObject(contentView3)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
 
         }

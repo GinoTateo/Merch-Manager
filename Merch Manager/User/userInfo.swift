@@ -21,6 +21,17 @@ struct UserInfo {
     let currPlanPos: Int
 }
 
+struct DayData {
+    let beginDay: Bool
+    let startTime: Date
+    let currStore: Int16
+}
+
+struct ScanList{
+    let numItem: Int16
+    let arrayItem: [String]
+}
+
 struct LocationInfo {
     let number: String
     let latitude: Double

@@ -13,8 +13,9 @@ import FirebaseFirestore
 struct CreatePlanView: View {
     
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.plan, ascending: true)])
-
     private var items: FetchedResults<Store>
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \PlanList.plan, ascending: true)])
+    private var list: FetchedResults<PlanList>
 
     @ObservedObject var dateModelController = DateModelController()
     
@@ -57,7 +58,9 @@ struct CreatePlanView: View {
                             Text(String(item.number))
                             Spacer()
                         }
-                    
+                       .onTapGesture {
+                           
+                       }
                     
                 }
             }
@@ -128,9 +131,50 @@ struct CreatePlanView: View {
             }
         }
     }
-}
-struct CreatePlanView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreatePlanView()
+    
+    
+    func loadStoresIn(){
+        
+        let db = Firestore.firestore()
+
+        let routeRef = db               // Get referance
+            .collection("Route").document("Merchandiser")
+            .collection(userStore.currentUserInfo?.routeNumber ?? "").getDocuments { (snapshot, error) in
+        
+                guard let snapshot = snapshot, error == nil else {
+                  //handle error
+                  return
+                }
+                
+                let count = snapshot.documents.count - 1
+
+                if((userStore.currentUserInfo?.numStores)==count){
+                    print(userStore.currentUserInfo!.numStores )
+                    print("Number of documents: \(snapshot.documents.count-1)")
+                } else {
+                    snapshot.documents.forEach({ (documentSnapshot) in
+                      let documentData = documentSnapshot.data()
+                      let Name = documentData["Name"] as? String
+                      let Number = documentData["Number"] as? Int16
+                      let City = documentData["City"] as? String
+                      let Plan = documentData["Plan"] as? Int16
+                      let Long = documentData["Longtitude"] as? Double //Spelling error
+                      let Lat = documentData["Latitude"] as? Double
+
+                        
+//                        let newStore = Store(context: AddStore)
+//                        newStore.number = Number ?? 0
+//                        newStore.city = City
+//                        newStore.name = Name
+//                        newStore.plan = Plan ?? 0
+//                        newStore.longitude = Long ?? 0
+//                        newStore.latitude = Lat ?? 0
+                        
+                        }
+                    )
+                }
+            }
     }
+    
+    
 }

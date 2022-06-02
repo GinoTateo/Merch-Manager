@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import Firebase
+import FirebaseFirestore
 import MapKit
 
 
@@ -17,43 +18,24 @@ struct Dashboard: View {
     @Environment(\.managedObjectContext) private var Dashboard
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.dos, ascending: true)])
     private var items: FetchedResults<Store>
-    
-    var sales = 1200
-    var miles = 56
-    
-
-    
     @State private var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.83500, longitude: -122.24871), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
-    
-    
-  
+
     @EnvironmentObject var userStore: UserStore
+    @EnvironmentObject var userDay: UserDay
+    @ObservedObject var dateModelController = DateModelController()
+    let db = Firestore.firestore()
+    
     var body: some View {
         
         
             VStack{
 
                     Map(coordinateRegion: $mapRegion)
-
-//            LinearGradient(
-//                colors: [.mint, .teal, .cyan, .indigo],
-//                startPoint: .topLeading,
-//                endPoint: .bottomTrailing
-//            )
-//            .ignoresSafeArea()
-//            .navigationTitle(userStore.currentUserInfo!.dow)
-//            .safeAreaInset(edge: .bottom, alignment: .center, spacing: 0) {
-//                Color.clear
-//                    .frame(height: 20)
-//                    .background(Material.bar)
-//            }
-                
-                    
                 
                 
                 List {
                     ForEach(items.prefix(5)) { item in
-                        NavigationLink(destination: OrderSheet(dow: userStore.currentUserInfo!.dow,item: item)){
+                        NavigationLink(destination: OrderSheet(item: item)){
                             HStack{
                                 Spacer()
                                 Text(item.name!)
@@ -80,55 +62,94 @@ struct Dashboard: View {
                 }
                 
                 
-                
-                
-            }
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                VStack {
-                    Text("My \(userStore.currentUserInfo!.dow)").font(.headline) .fixedSize(horizontal: true, vertical: false)
-                    Text("Dashboard").font(.subheadline)
-                }
-            }
-        }
+
         
        
+        Spacer()
 
-
-        VStack{
             
            
-
-            Spacer()
-            
+            if((userDay.currentDay?.beginDay) == false){
                 HStack{
-                    Button("Sales", action: {
+                    Button("Begin Route", action: {
                         withAnimation {
-    
+                            BeginDay()
                         }
                     })
                         .padding()
                         .frame(height: 45)
-                        .background(Color.green)
+                        .font(.headline)
+                        .background(Color.accentColor)
+                        .foregroundColor(Color.white)
                         .cornerRadius(15)
                     
-                    Button("Miles", action: {
-                        withAnimation {
-                            
-                        }
-                    })
-
+                }
+            }else{
+                Button("Complete Route", action: {
+                    withAnimation {
+                        BeginDay()
+                    }
+                })
                     .padding()
                     .frame(height: 45)
-                    .background(Color.green)
+                    .font(.headline)
+                    .background(Color.accentColor)
+                    .foregroundColor(Color.white)
                     .cornerRadius(15)
-                }
+            }
         }
+        
+        
+        
+.navigationBarTitleDisplayMode(.inline)
+.toolbar {
+    ToolbarItem(placement: .principal) {
+        VStack {
+            Text("My \(userStore.currentUserInfo!.dow)").font(.headline) .fixedSize(horizontal: true, vertical: false)
+            Text("Dashboard").font(.subheadline)
+        }
+    }
+}
+        
     }
 
 
+
+    func BeginDay(){
+        print("Begin Day")
+        let loggedDay = DayData.init(beginDay: true, startTime: Date(), currStore: 0)
+        userDay.currentDay = loggedDay
+        
+        
+    let routeRef = db
+        .collection("User").document(Auth.auth().currentUser?.uid ?? "")
+        .collection("LogCollection").document(self.dateModelController.selectedDateFormatted).setData(
+            
+            
+            
+            // Need a way of adding data from list to list
+
+                                [
+                                    "Begin Day": userDay.currentDay?.beginDay,
+                                    "Start Time": userDay.currentDay?.startTime,
+                                ]
+
+
+            ) { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print(self.dateModelController.selectedDateFormatted)
+                }
+            }
+        
+    }
     
+    func CompleteDay(){
+        print("Complete Day")
+        
+        
+    }
     
     private func deleteItems(offsets: IndexSet) {
         withAnimation {

@@ -161,6 +161,8 @@ struct Home: View {
         userStore.currentUserInfo = loggedUser
         
         
+        
+        
         let firebaseAuth = Auth.auth()
     do {
       try firebaseAuth.signOut()
