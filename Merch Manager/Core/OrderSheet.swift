@@ -10,6 +10,7 @@ import SwiftUI
 import CoreData
 import Firebase
 import FirebaseFirestore
+import CarBode
 import AVFoundation
 
 
@@ -25,14 +26,47 @@ struct OrderSheet: View {
     
     @Environment (\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) private var OrderSheet
-    
-    @State private var isPresentingScanner = false
-    @State private var scannedCode: String?
 
     @State var Complete = false
+    @State var ScanIt = false
+    @State var ViewScanned = false
+    @State var Barcode = ""
     
     var body: some View {
        
+            Form {
+                Section(header: Text("Store Details")) {
+                    VStack{
+                        HStack{
+                    Text(item.name!).fontWeight(.light)
+                    Text(String(item.number)).fontWeight(.light)
+                        }
+                    }
+                    VStack{
+                        HStack{
+                        Text(item.city!+", CA").fontWeight(.light)
+                        }
+                    }
+                }
+            }
+            Form {
+                Section(header: Text("Scanned Items")) {
+                    Button("View Scanned Items", action: {
+                        withAnimation {
+                            ViewScanned.toggle()
+                            getScannedItems()
+                        }
+                    })
+                    if(ViewScanned == true){
+                        VStack{
+                            List{
+
+                            }
+                        }
+                    }
+                }
+            }
+        
         VStack{
            
             if(Complete == false){
@@ -65,7 +99,7 @@ struct OrderSheet: View {
                     .cornerRadius(15)
                     
                     
-                    NavigationLink("Scan Merch", destination: ScanView(), isActive: $isPresentingScanner)
+                    NavigationLink("Scan Merch", destination: ScanView(item: item))
                         .padding()
                         .frame(height: 45)
                         .font(.headline)
@@ -74,41 +108,25 @@ struct OrderSheet: View {
                         .cornerRadius(15)
                     
                 }
-                }
-            
-        
-
-            Form {
-                Section(header: Text("Store Details")) {
-                    VStack{
-                        HStack{
-                    Text(item.name!).fontWeight(.light)
-                    Text(String(item.number)).fontWeight(.light)
-                        }
-                    }
-                    VStack{
-                        HStack{
-                        Text(item.city!+", CA").fontWeight(.light)
-                        }
-                    }
-                }
                 
-            }
-    }
-             .navigationBarTitleDisplayMode(.inline)
-              .toolbar { // <2>
-                ToolbarItem(placement: .principal) { // <3>
-                    VStack {
-                        Text("Store Merch").font(.headline)
-                        Text("Order").font(.subheadline)
-                    }
-                }
-
-        
-    }
-    }
+            
+        }
+    }       .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+              ToolbarItem(placement: .principal) {
+                  VStack {
+                      Text("Store Merch").font(.headline)
+                      Text("Order").font(.subheadline)
+                  }
+              }
+          }
+      }
     
     func updateLog(){
+        
+        let logScan = ScanList.init(numItem: 0, arrayItem: [])
+        userScan.currentScan = logScan
+        
         let routeRef = db
             .collection("User").document(Auth.auth().currentUser?.uid ?? "")
             .collection("LogCollection").document(self.dateModelController.selectedDateFormatted)
@@ -128,6 +146,42 @@ struct OrderSheet: View {
                     }
                 }
             }
+    
+    func AddItemsToLog() {
+                let routeRef = db
+            .collection("User").document(Auth.auth().currentUser?.uid ?? "")
+            .collection("LogCollection").document(self.dateModelController.selectedDateFormatted)
+            .collection("StoreList").document(item.name!+String(item.number))
+            .collection("ProductUp").document(Barcode)
+            .setData([
+                    "Barcode": Barcode
+                ])
+            
+
+            do {
+                presentationMode.wrappedValue.dismiss()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+
+    func AddItemsToOOS() {
+                let routeRef = db
+            .collection("User").document(Auth.auth().currentUser?.uid ?? "")
+            .collection("LogCollection").document(self.dateModelController.selectedDateFormatted)
+            .collection("StoreList").document(item.name!+String(item.number))
+            .collection("oos").document(Barcode)
+            .setData([
+                    "Barcode": Barcode
+                ])
+            
+
+            do {
+                presentationMode.wrappedValue.dismiss()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     
     func completeLog(){
         let routeRef = db
@@ -152,6 +206,24 @@ struct OrderSheet: View {
                 }
             }
     
+    func getScannedItems(){
+        let routeRef = db
+            .collection("User").document(Auth.auth().currentUser?.uid ?? "")
+            .collection("LogCollection").document(self.dateModelController.selectedDateFormatted)
+            .collection("StoreList").document(item.name!+String(item.number))
+            .collection("ProductUp").getDocuments { (snapshot, error) in
+                
+                guard let snapshot = snapshot, error == nil else {
+                  //handle error
+                  return
+                }
+                snapshot.documents.forEach({ (documentSnapshot) in
+                    let documentData = documentSnapshot.data()
+                    let BarcodeData = documentData["Barcode"] as? String
+                })
+        
+            }
+    }
     
 }
 

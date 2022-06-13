@@ -60,15 +60,9 @@ struct Dashboard: View {
                     
                     }
                 }
-                
-                
 
-        
-       
         Spacer()
-
-            
-           
+        
             if((userDay.currentDay?.beginDay) == false){
                 HStack{
                     Button("Begin Route", action: {

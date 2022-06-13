@@ -94,6 +94,17 @@ struct Home: View {
                             Spacer()
                         }
                     }
+                    
+                    NavigationLink(destination: ItemView() ){
+                        HStack{
+                            Spacer()
+                            Text("Items").multilineTextAlignment(TextAlignment.center)
+                                .font(.system(size: 30, weight: .semibold , design: .rounded))
+                                .foregroundColor(.black)
+                                .multilineTextAlignment(TextAlignment.center)
+                            Spacer()
+                        }
+                    }
                 
                 
                                         

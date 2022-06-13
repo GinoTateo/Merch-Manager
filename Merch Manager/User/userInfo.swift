@@ -29,7 +29,8 @@ struct DayData {
 
 struct ScanList{
     let numItem: Int16
-    let arrayItem: [String]
+    var arrayItem: [String]
+    
 }
 
 struct LocationInfo {

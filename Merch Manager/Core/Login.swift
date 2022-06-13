@@ -10,6 +10,8 @@ import SwiftUI
 import CoreData
 import Firebase
 import FirebaseFirestore
+import LocalAuthentication
+
 
 
 
@@ -21,6 +23,10 @@ struct Login: View {
     @Environment(\.managedObjectContext) private var AddStore
     @Environment(\.managedObjectContext) private var PlanDay
     @EnvironmentObject var userDay: UserDay
+    
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.plan, ascending: true)])
+
+    private var items: FetchedResults<Store>
     
     var ref = Database.database().reference()
 
@@ -129,6 +135,7 @@ struct Login: View {
         }
     }
     
+    
     private func grabUserData(){
         let db = Firestore.firestore()
         let UserId = (Auth.auth().currentUser?.uid)!
@@ -191,8 +198,11 @@ struct Login: View {
                   return
                 }
                 
+                //Get Num stores in data base
                 let count = snapshot.documents.count - 1
 
+                print("Num stores \(userStore.currentUserInfo?.numStores))")
+                // Compare to num of stores in User Account
                 if((userStore.currentUserInfo?.numStores)==count){
                     print(userStore.currentUserInfo!.numStores )
                     print("Number of documents: \(snapshot.documents.count-1)")
@@ -217,7 +227,8 @@ struct Login: View {
                         
                         }
                     )
-                }
+                userStore.currentUserInfo?.numStores = count
+            }
         }
     }
     

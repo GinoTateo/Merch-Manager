@@ -25,6 +25,9 @@
 		EF7D1D482847D7330057B475 /* Persistence2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7D1D472847D7330057B475 /* Persistence2.swift */; };
 		EF7D1D4A284929F80057B475 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7D1D49284929F80057B475 /* ScanView.swift */; };
 		EF7D1D4D28492D210057B475 /* CarBode in Frameworks */ = {isa = PBXBuildFile; productRef = EF7D1D4C28492D210057B475 /* CarBode */; };
+		EF7D1D4F2849521D0057B475 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7D1D4E2849521D0057B475 /* AddItemView.swift */; };
+		EF7D1D51284A7B9E0057B475 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7D1D50284A7B9E0057B475 /* ItemView.swift */; };
+		EF7D1D53284A83C40057B475 /* Persistence3.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7D1D52284A83C40057B475 /* Persistence3.swift */; };
 		EFB8EABB278906940088380B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB8EABA278906940088380B /* Color.swift */; };
 		EFB8EABF278CF42B0088380B /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB8EABE278CF42B0088380B /* CreateAccountView.swift */; };
 		EFB8EAC4278E71190088380B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFB8EAC3278E71190088380B /* GoogleService-Info.plist */; };
@@ -66,6 +69,9 @@
 		EF5607E32818E24E00833A86 /* CreatePlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlanView.swift; sourceTree = "<group>"; };
 		EF7D1D472847D7330057B475 /* Persistence2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence2.swift; sourceTree = "<group>"; };
 		EF7D1D49284929F80057B475 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
+		EF7D1D4E2849521D0057B475 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
+		EF7D1D50284A7B9E0057B475 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
+		EF7D1D52284A83C40057B475 /* Persistence3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence3.swift; sourceTree = "<group>"; };
 		EFB8EABA278906940088380B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		EFB8EABE278CF42B0088380B /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		EFB8EAC3278E71190088380B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -164,6 +170,8 @@
 				EF05901F280BA0FB00C4B76B /* StoreView.swift */,
 				EFE371502763E68700149767 /* AddStore.swift */,
 				EF4AEE772735F17300E44DC3 /* Home.swift */,
+				EF7D1D50284A7B9E0057B475 /* ItemView.swift */,
+				EF7D1D4E2849521D0057B475 /* AddItemView.swift */,
 				EF46D274276AB5C2007798C6 /* Dashboard.swift */,
 				EF46D272276AB596007798C6 /* AccountView.swift */,
 			);
@@ -175,6 +183,7 @@
 			children = (
 				EF4AEE7E2735F17400E44DC3 /* Persistence.swift */,
 				EF7D1D472847D7330057B475 /* Persistence2.swift */,
+				EF7D1D52284A83C40057B475 /* Persistence3.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -302,6 +311,8 @@
 				EF7D1D4A284929F80057B475 /* ScanView.swift in Sources */,
 				EFC9407F27BCACC600C397FF /* userInfo.swift in Sources */,
 				EF4AEE782735F17300E44DC3 /* Home.swift in Sources */,
+				EF7D1D51284A7B9E0057B475 /* ItemView.swift in Sources */,
+				EF7D1D53284A83C40057B475 /* Persistence3.swift in Sources */,
 				EF46D273276AB596007798C6 /* AccountView.swift in Sources */,
 				EFC2838328397F8500517593 /* DateModel.swift in Sources */,
 				EFC2838628397FE700517593 /* DateModelController.swift in Sources */,
@@ -313,6 +324,7 @@
 				EFB8EABB278906940088380B /* Color.swift in Sources */,
 				EF7D1D482847D7330057B475 /* Persistence2.swift in Sources */,
 				EF4AEE762735F17300E44DC3 /* Merch_ManagerApp.swift in Sources */,
+				EF7D1D4F2849521D0057B475 /* AddItemView.swift in Sources */,
 				EF46D271276AB558007798C6 /* PlanDay.swift in Sources */,
 				EF059020280BA0FB00C4B76B /* StoreView.swift in Sources */,
 				EFC2838028397EF300517593 /* GridView.swift in Sources */,
@@ -451,6 +463,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs access to the camera, to be able to read barcodes.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Authenticate user account";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -481,6 +494,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs access to the camera, to be able to read barcodes.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Authenticate user account";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

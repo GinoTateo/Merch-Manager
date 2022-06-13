@@ -19,6 +19,8 @@ struct Merch_ManagerApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
+    
+    
     init (){
         let contentView = UserStore()
         let loggedUser = UserInfo.init(userName: "email", email: "email", routeNumber: "routeNumber", authenticated: false,dow: "Day of the week",firstName: "",lastName: "",postion: "",numStores: 0,currPlanPos: 0)
