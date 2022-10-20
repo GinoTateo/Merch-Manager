@@ -35,8 +35,8 @@ struct StoreView: View {
                             Text(String(item.number))
                             }
                             Text(item.city!)
-                            Text(String(item.longitude))
-                            Text(String(item.latitude))
+//                            Text("RSR Route #"+item.rsrnum!)
+//                            Text("Merch Route #"+item.merchnum!)
 
                         }
                     }

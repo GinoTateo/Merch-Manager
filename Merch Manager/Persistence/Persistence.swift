@@ -22,6 +22,8 @@ struct PersistenceController {
                 newStore.number = 0000
                 newStore.name = "New store"
                 newStore.dos = "Sunday"
+                newStore.rsrnum = "0"
+                newStore.merchnum = "0"
         
     
 
@@ -60,5 +62,6 @@ struct PersistenceController {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
 }

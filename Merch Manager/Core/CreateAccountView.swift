@@ -33,6 +33,12 @@ struct CreateAccountView: View{
 
 
     var body: some View {
+        
+        Image("coffeepic")
+            .resizable()
+            .frame(width: 100, height: 100)
+            .animation(Animation.easeInOut(duration: 1))
+        
             Form {
                 Section(header: Text("Login details")) {
                     VStack{
@@ -70,7 +76,7 @@ struct CreateAccountView: View{
                 
                 Section(header: Text("Position")) {
                     VStack{
-                            Picker(selection: $positionIndex, label: Text("Position")) {
+                        Picker(position, selection: $positionIndex) {
                                 ForEach(0 ..< positionList.count) {
                                         Text(self.positionList[$0]).tag($0)
                             }
@@ -93,11 +99,9 @@ struct CreateAccountView: View{
                     } catch {
                         print(error.localizedDescription)
                     }
-                })
-                
-                
-                
-                
+                }).font(.system(size: 20, weight: .medium , design: .rounded))
+                    .multilineTextAlignment(TextAlignment.center)
+                    .foregroundColor(.gray)
 
         }
     }

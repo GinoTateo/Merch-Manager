@@ -28,9 +28,11 @@ struct AddItemView: View {
     @State var Brand = 0
     @State var ScanIt = false
     @State var Name = 0
- 
+    
+    @State var bigbag: Int16 = 18
+    @State var smallbag: Int16 = 10
 
-    let BagSizeList = [10.5,12,18,10,22,32,48]
+    let BagSizeList  = [10,12,18,10,22,32,48]
     let KSizeList = ["10","22","32","48"]
     let TypeList = ["Ground","Whole Bean","K-Cup","Capsule"]
     let BrandList = ["Peets","Intelligentsia","Stumptown"]
@@ -167,7 +169,7 @@ struct AddItemView: View {
             let newItem = Items(context: AddItem)
             newItem.name = NameList[Name]
             newItem.brand = BrandList[Brand]
-            newItem.size = BagSizeList[Size]
+            newItem.size = bigbag //=--------------------> 18 oz hard coded
             newItem.barcode = Barcode
             newItem.type = TypeList[ItemType]
 

@@ -1,31 +1,24 @@
 //
-//  Persistence.swift
+//  Persistence5.swift
 //  Merch Manager
 //
-//  Created by Gino Tateo on 11/5/21.
+//  Created by Gino Tateo on 8/10/22.
 //
 
+import Foundation
 import CoreData
 
-struct PersistenceController3 {
-    static let shared = PersistenceController3()
+struct PersistenceController5 {
+    static let shared = PersistenceController5()
 
-    static var preview: PersistenceController3 = {
-        let result = PersistenceController3(inMemory: true)
+    static var preview: PersistenceController5 = {
+        let result = PersistenceController5(inMemory: true)
         let viewContext = result.container.viewContext
-        
-        
-       
-            let newItem = Items(context: viewContext)
-        newItem.name = ""
-        newItem.size = 0
-        newItem.brand = ""
-        newItem.barcode = ""
-        newItem.type = ""
-        
-    
+ 
+            let newOrder = Order(context: viewContext)
+                newOrder.date = Date()
+                newOrder.id = UUID()
 
-        
         do {
             try viewContext.save()
         } catch {
@@ -62,4 +55,5 @@ struct PersistenceController3 {
         })
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
+    
 }

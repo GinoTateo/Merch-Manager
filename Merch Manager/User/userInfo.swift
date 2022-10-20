@@ -19,6 +19,7 @@ struct UserInfo {
     let postion: String
     var numStores: Int
     let currPlanPos: Int
+    var IsRSR: Bool
 }
 
 struct DayData {
@@ -27,8 +28,9 @@ struct DayData {
     let currStore: Int16
 }
 
-struct ScanList{
-    let numItem: Int16
+struct ScanList: Identifiable {
+    let id = UUID()
+    var numItem: Int16
     var arrayItem: [String]
     
 }

@@ -23,7 +23,7 @@ struct AddStore: View {
     @State var MerchRoute = ""
     @State var dosIndex = 0
     
-    let DayOfWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+    let DayOfWeek = ["Sunday","Tuesday","Wednesday","Thursday","Friday","Saturday","Monday"]
     
     let db = Firestore.firestore()
     
@@ -86,22 +86,26 @@ struct AddStore: View {
                         newStore.plan = Int16((userStore.currentUserInfo?.numStores ?? 0)+1)
                         newStore.longitude = CLLocationManager().location?.coordinate.longitude ?? 0
                         newStore.latitude = CLLocationManager().location?.coordinate.latitude ?? 0
+                        newStore.rsrnum = RepRoute
+                        newStore.merchnum = MerchRoute
    
 
-                    let routeRef = db              
-                        .collection("Route").document("Merchandiser")
-                        .collection(userStore.currentUserInfo!.routeNumber).addDocument(data: [
-                        "Name": StoreName,
-                        "Number": StoreNumber,
-                        "MerchRoute": MerchRoute,
-                        "City": City,
-                        "StoreCity": self.DayOfWeek[self.dosIndex],
-                        "Plan": (userStore.currentUserInfo?.numStores ?? 0)+1,
-                        "Longitude": CLLocationManager().location?.coordinate.longitude ?? 0,
-                        "Latitude": CLLocationManager().location?.coordinate.latitude ?? 0
-                    ])
+//                    let routeRef = db
+//                        .collection("Route").document("Merchandiser")
+//                        .collection(userStore.currentUserInfo!.routeNumber).addDocument(data: [
+//                        "Name": StoreName,
+//                        "Number": StoreNumber,
+//                        "MerchRoute": MerchRoute,
+//                        "City": City,
+//                        "StoreCity": self.DayOfWeek[self.dosIndex],
+//                        "Plan": 0,//(userStore.currentUserInfo?.numStores ?? 0)+1,
+//                        "Longitude": CLLocationManager().location?.coordinate.longitude ?? 0,
+//                        "Latitude": CLLocationManager().location?.coordinate.latitude ?? 0,
+//                        "rsrnum": RepRoute,
+//                        "merchnum": MerchRoute,
+//                    ])
 
-                    newStore.storeID = routeRef.documentID
+                    //newStore.storeID = routeRef.documentID
                     
                     do {
                         try AddStore.save()
@@ -131,26 +135,26 @@ struct AddStore: View {
     
     func updateNumStores(){
         
-        var newcount = userStore.currentUserInfo?.numStores
-        newcount!+=1
-        userStore.currentUserInfo?.numStores = newcount!
-        
-        let UserId = (Auth.auth().currentUser?.uid)!
-        db.collection("User/").document(UserId).setData(
-
-                                [
-                                    "numStores": newcount!
-                                ]
-
-
-        ) { err in
-            if let err = err {
-                print("Error writing document: \(err)")
-            } else {
-                print("Document successfully written!")
-            }
-        }
-
-        
-    }
+//        var newcount = userStore.currentUserInfo?.numStores
+//        newcount!+=1
+//        userStore.currentUserInfo?.numStores = newcount!
+//
+//        let UserId = (Auth.auth().currentUser?.uid)!
+//        db.collection("User/").document(UserId).setData(
+//
+//                                [
+//                                    "numStores": newcount!
+//                                ]
+//
+//
+//        ) { err in
+//            if let err = err {
+//                print("Error writing document: \(err)")
+//            } else {
+//                print("Document successfully written!")
+//            }
+//        }
+//
+//
+   }
 }

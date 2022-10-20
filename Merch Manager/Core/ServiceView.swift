@@ -41,7 +41,6 @@ struct Service: View {
              .toolbar {
                 ToolbarItem(placement: .principal) {
                     VStack {
-                        Text("My ").font(.headline) .fixedSize(horizontal: true, vertical: false)
                             Text("Store list").font(.subheadline)
                     }
                 }

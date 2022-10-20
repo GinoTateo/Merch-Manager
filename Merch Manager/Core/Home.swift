@@ -18,6 +18,8 @@ struct Home: View {
     @State var showOrderSheet = false
     @State var viewStoreService = true
     @State private var showAlert = false
+    
+    @State var splashScreen  = true
 
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.plan, ascending: true)])
     private var currItem: FetchedResults<Store>
@@ -44,79 +46,133 @@ struct Home: View {
             
             
             VStack{
-                
+
                 if(userStore.currentUserInfo?.authenticated==true){
-                    
-                    GroupBox(
-                        label: Label("Next Stop", systemImage: "arrow.turn.down.right")
-                                    .foregroundColor(.red)
-                                    ){
-                                        Text("Your next stop is **Safeway 3132** on **5100 Broadway** in **Oakland**.").padding()
-                                        
-                                    }.padding()
-                    
-                    GroupBox(
-                        label: Label("Sales Recap", systemImage: "dollarsign.square")
-                                    .foregroundColor(.green)
-                                    ) {
-                                        Text("You have **$2180** in sales and **$100** in returns for a profit of **$2080**").padding()
-                                    }.padding()
-                    
-                    Spacer()
-                    
-                    NavigationLink(destination: Dashboard() ){
-                        HStack{
-                            Spacer()
-                            Text("Dashboard").multilineTextAlignment(TextAlignment.center)
-                                .font(.system(size: 30, weight: .semibold , design: .rounded))
-                                .foregroundColor(.black)
-                            Spacer()
+                    if((userStore.currentUserInfo?.IsRSR) == true){
+                        
+                        Spacer()
+                        
+                        NavigationLink(destination: WarehouseOrderSheet() ){
+                            HStack{
+                                Spacer()
+                                Text("Order Sheet").multilineTextAlignment(TextAlignment.center)
+                                    .padding(10.0)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10.0)
+                                            .stroke(lineWidth: 2.0)
+                                            .shadow(color: .blue, radius: 10.0)
+                                    )
+                                Spacer()
+                            }
                         }
-                    }
+
+                        
+                        
+                        NavigationLink(destination: AccountView() ){
+                            HStack{
+                                Spacer()
+                                Text("Account").multilineTextAlignment(TextAlignment.center)
+                                    .padding(10.0)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10.0)
+                                            .stroke(lineWidth: 2.0)
+                                            .shadow(color: .blue, radius: 10.0)
+                                    )
+                                Spacer()
+                            }
+                        }
+
+                        
+                    }else{
+//                        GroupBox(
+//                            label: Label("Next Stop", systemImage: "arrow.turn.down.right")
+//                                        .foregroundColor(.red)
+//                                        ){
+//                                            Text("Your next stop is **Safeway 3132** on **5100 Broadway** in **Oakland**.").padding()
+//
+//                                        }.padding()
+//
+//                        GroupBox(
+//                            label: Label("Sales Recap", systemImage: "dollarsign.square")
+//                                        .foregroundColor(.green)
+//                                        ) {
+//                                            Text("You have **$2180** in sales and **$100** in returns for a profit of **$2080**").padding()
+//                                        }.padding()
+                        
+                        Spacer()
+                        
+                        NavigationLink(destination: Dashboard() ){
+                            HStack{
+                                Spacer()
+                                Text("Dashboard").multilineTextAlignment(TextAlignment.center)
+                                    .padding(10.0)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10.0)
+                                            .stroke(lineWidth: 2.0)
+                                            .shadow(color: .blue, radius: 10.0)
+                                    )
+                                Spacer()
+                            }
+                        }
+                        
+                        NavigationLink(destination: Service()){
+                            HStack{
+                                Spacer()
+                                Text("Stores").multilineTextAlignment(TextAlignment.center)
+                                    .padding(10.0)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10.0)
+                                            .stroke(lineWidth: 2.0)
+                                            .shadow(color: .blue, radius: 10.0)
+                                    )
+                                Spacer()
+                            }
+                        }
+                        
+                        NavigationLink(destination: PlanDay() ){
+                            HStack{
+                                Spacer()
+                                Text("Plan Day").multilineTextAlignment(TextAlignment.center)
+                                    .padding(10.0)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10.0)
+                                            .stroke(lineWidth: 2.0)
+                                            .shadow(color: .blue, radius: 10.0)
+                                    )
+                                Spacer()
+                            }
+                        }
+                        
+                        NavigationLink(destination: ItemView() ){
+                            HStack{
+                                Spacer()
+                                Text("Items").multilineTextAlignment(TextAlignment.center)
+                                    .padding(10.0)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10.0)
+                                            .stroke(lineWidth: 2.0)
+                                            .shadow(color: .blue, radius: 10.0)
+                                    )
+                                Spacer()
+                            }
+                        }
                     
-                    NavigationLink(destination: Service()){
-                        HStack{
-                            Spacer()
-                            Text("Stores").multilineTextAlignment(TextAlignment.center)
-                                .font(.system(size: 30, weight: .semibold , design: .rounded))
-                                .foregroundColor(.black)
-                            Spacer()
-                        }
-                    }
                     
-                    NavigationLink(destination: PlanDay() ){
-                        HStack{
-                            Spacer()
-                            Text("Plan Day").multilineTextAlignment(TextAlignment.center)
-                                .font(.system(size: 30, weight: .semibold , design: .rounded))
-                                .foregroundColor(.black)
-                                .multilineTextAlignment(TextAlignment.center)
-                            Spacer()
+                                            
+                        NavigationLink(destination: AccountView() ){
+                            HStack{
+                                Spacer()
+                                Text("Account").multilineTextAlignment(TextAlignment.center)
+                                    .padding(10.0)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10.0)
+                                            .stroke(lineWidth: 2.0)
+                                            .shadow(color: .blue, radius: 10.0)
+                                    )
+                                Spacer()
+                            }
                         }
-                    }
-                    
-                    NavigationLink(destination: ItemView() ){
-                        HStack{
-                            Spacer()
-                            Text("Items").multilineTextAlignment(TextAlignment.center)
-                                .font(.system(size: 30, weight: .semibold , design: .rounded))
-                                .foregroundColor(.black)
-                                .multilineTextAlignment(TextAlignment.center)
-                            Spacer()
-                        }
-                    }
-                
-                
-                                        
-                    NavigationLink(destination: AccountView() ){
-                        HStack{
-                            Spacer()
-                            Text("Account").multilineTextAlignment(TextAlignment.center)
-                                .font(.system(size: 30, weight: .semibold , design: .rounded))
-                                .foregroundColor(.black)
-                                .multilineTextAlignment(TextAlignment.center)
-                            Spacer()
-                        }
+                        
                     }
                 }else{
                     Spacer()
@@ -168,7 +224,7 @@ struct Home: View {
     
     func logout(){
         
-        let loggedUser = UserInfo.init(userName: "", email: "", routeNumber: "", authenticated: false,dow: GetWeekday(),firstName: "",lastName: "",postion: "",numStores: 0, currPlanPos: 0)
+        let loggedUser = UserInfo.init(userName: "", email: "", routeNumber: "", authenticated: false,dow: GetWeekday(),firstName: "",lastName: "",postion: "",numStores: 0, currPlanPos: 0, IsRSR: false)
         userStore.currentUserInfo = loggedUser
         
         
@@ -199,10 +255,14 @@ struct Home: View {
         let Today = weekdays[index-1]
         return weekdays[index-1] // Returns week day in String
         }
+    
     }
+
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
+
         Home()
+    
     }
 }

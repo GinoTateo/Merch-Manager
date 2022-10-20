@@ -8,6 +8,7 @@
 import SwiftUI
 import Firebase
 import FirebaseFirestore
+import CoreData
 
 
 struct CreatePlanView: View {
@@ -16,13 +17,17 @@ struct CreatePlanView: View {
     private var items: FetchedResults<Store>
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \PlanList.plan, ascending: true)])
     private var list: FetchedResults<PlanList>
+    
+//    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Plan.date, ascending: true)])
+//    private var plan: FetchedResults<Plan>
 
     @ObservedObject var dateModelController = DateModelController()
     
     @Environment (\.presentationMode) var presentationMode
-    
+    @Environment(\.managedObjectContext) private var CreatePlan
     @EnvironmentObject var userStore: UserStore
     
+    let db = Firestore.firestore()
     
     
     var body: some View {
@@ -57,12 +62,38 @@ struct CreatePlanView: View {
                             Text(item.name!)
                             Text(String(item.number))
                             Spacer()
+                        }.swipeActions(allowsFullSwipe: false) {
+                            Button {
+                                print("1")
+                                addToLog(item: item.name ?? "")
+                                
+                                
+                            } label: {
+                                Label("1", systemImage: "1.circle")
+                            }
+                            .tint(.blue)
+                            
+                            Button {
+                                print("3")
+                                addToLog(item: "\(item.name ?? " ")\(item.number)")
+                            } label: {
+                                Label("3", systemImage: "3.circle")
+                            }
+                            
+                            Button {
+                                print("5")
+                                addToLog(item: "\(item.name ?? " ")\(item.number)")
+                            } label: {
+                                Label("5", systemImage: "5.circle")
+                            }
+                            
+                            
                         }
-                       .onTapGesture {
-                           
-                       }
-                    
+                }.onTapGesture{
+                   
                 }
+                
+                
             }
             
 
@@ -75,6 +106,10 @@ struct CreatePlanView: View {
                     
             
         }.padding().padding(.top, 30)
+        
+    }
+    
+    func AddToPlan(at offsets: IndexSet){
         
     }
 
@@ -93,13 +128,6 @@ struct CreatePlanView: View {
  
 //                let first = document.get("FirstName") as? String ?? ""
 //                let last = document.get("LastName") as? String ?? ""
-//                let email = document.get("Email") as? String ?? ""
-//                let position = document.get("Position")as? String ?? ""
-//                let route = document.get("RouteNumber") as? String ?? ""
-//                let numstores = document.get("numStores") as? Int ?? 0
-//
-//                let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: route, authenticated: true,dow: GetWeekday(), firstName: first, lastName: last, postion: position,numStores: 0, currPlanPos: 0)
-//                userStore.currentUserInfo = loggedUser
 
             } else {
         let routeRef = db
@@ -132,11 +160,32 @@ struct CreatePlanView: View {
         }
     }
     
+    func addToLog(item: String){
+        
+        
+        
+        
+        
+//        let routeRef = db
+//            .collection("User").document(Auth.auth().currentUser?.uid ?? "")
+//            .collection("LogCollection").document(self.dateModelController.selectedDateFormatted)
+//            .collection("StoreList").document(item).setData(
+//
+//                                    [
+//                                        "Complete": false,
+//                                    ]
+//
+//
+//                ) { err in
+//                    if let err = err {
+//                        print("Error writing document: \(err)")
+//                    } else {
+//                        print(self.dateModelController.selectedDateFormatted)
+//                    }
+//                }
+            }
     
     func loadStoresIn(){
-        
-        let db = Firestore.firestore()
-
         let routeRef = db               // Get referance
             .collection("Route").document("Merchandiser")
             .collection(userStore.currentUserInfo?.routeNumber ?? "").getDocuments { (snapshot, error) in
@@ -160,15 +209,22 @@ struct CreatePlanView: View {
                       let Plan = documentData["Plan"] as? Int16
                       let Long = documentData["Longtitude"] as? Double //Spelling error
                       let Lat = documentData["Latitude"] as? Double
+                      let complete = documentData["Complete"] as? Bool
 
                         
-//                        let newStore = Store(context: AddStore)
+//                        let newStore = PlanList(context: CreatePlan)
 //                        newStore.number = Number ?? 0
 //                        newStore.city = City
 //                        newStore.name = Name
 //                        newStore.plan = Plan ?? 0
+//                        newStore.complete = complete ?? false
 //                        newStore.longitude = Long ?? 0
 //                        newStore.latitude = Lat ?? 0
+                        
+//                                                let newplan = plan(context: CreatePlan)
+//                                                newplan.date = Date()
+//                        newplan.stores = Store(context: CreatePlan)
+//                        newplan.stores?.Store =
                         
                         }
                     )

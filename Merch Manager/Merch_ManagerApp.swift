@@ -23,7 +23,7 @@ struct Merch_ManagerApp: App {
     
     init (){
         let contentView = UserStore()
-        let loggedUser = UserInfo.init(userName: "email", email: "email", routeNumber: "routeNumber", authenticated: false,dow: "Day of the week",firstName: "",lastName: "",postion: "",numStores: 0,currPlanPos: 0)
+        let loggedUser = UserInfo.init(userName: "email", email: "email", routeNumber: "routeNumber", authenticated: false,dow: "Day of the week",firstName: "",lastName: "",postion: "",numStores: 0,currPlanPos: 0, IsRSR: false)
         contentView.currentUserInfo = loggedUser
         
         let contentView2 = UserDay()
@@ -33,13 +33,14 @@ struct Merch_ManagerApp: App {
         let contentView3 = ScanStore()
         let loggedScan = ScanList.init(numItem: 0, arrayItem: ["None"])
         contentView3.currentScan = loggedScan
+    
     }
 
 
     var body: some Scene {
         WindowGroup {
 
-            Home()
+            NewHome()
                 .environmentObject(contentView)
                 .environmentObject(contentView2)
                 .environmentObject(contentView3)

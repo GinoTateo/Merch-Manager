@@ -1,31 +1,23 @@
 //
-//  Persistence.swift
+//  Persistence4.swift
 //  Merch Manager
 //
-//  Created by Gino Tateo on 11/5/21.
+//  Created by Gino Tateo on 6/13/22.
 //
 
 import CoreData
 
-struct PersistenceController3 {
-    static let shared = PersistenceController3()
+struct PersistenceController4 {
+    static let shared = PersistenceController4()
 
-    static var preview: PersistenceController3 = {
-        let result = PersistenceController3(inMemory: true)
+    static var preview: PersistenceController4 = {
+        let result = PersistenceController4(inMemory: true)
         let viewContext = result.container.viewContext
-        
-        
-       
-            let newItem = Items(context: viewContext)
-        newItem.name = ""
-        newItem.size = 0
-        newItem.brand = ""
-        newItem.barcode = ""
-        newItem.type = ""
-        
-    
+ 
+            let newList = ScannedList(context: viewContext)
+                newList.barcode = ""
+                newList.numItems = 0
 
-        
         do {
             try viewContext.save()
         } catch {
@@ -62,4 +54,5 @@ struct PersistenceController3 {
         })
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
+    
 }

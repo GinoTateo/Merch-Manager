@@ -25,6 +25,7 @@ struct PlanDay: View {
 
     private var items: FetchedResults<Store>
     @State var refactor: Bool = false
+    @State var counter: Int16 = 1
     
     var body: some View {
         VStack{
@@ -32,13 +33,32 @@ struct PlanDay: View {
                 ForEach(items) { item in
                     
                        HStack{
-                           Text(String(item.plan))
+                           if(item.plan > 0){
+                               Text(String(item.plan))
+                           }
                             Spacer()
                             Text(item.name!)
                             Text(String(item.number))
                             Spacer()
-                        }
-                    
+                       }.swipeActions(allowsFullSwipe: false) {
+                           Button {
+                               print(counter)
+                               
+                               item.plan = counter
+                               if counter > userStore.currentUserInfo?.numStores ?? 20{
+                                   counter = 1
+                               }
+                               else{
+                                   counter+=1
+                               }
+                               
+                               
+                               
+                           } label: {
+                               Label("+", systemImage: "plus")
+                           }
+                           .tint(.blue)
+                       }
                 }
             }
         }.navigationBarTitleDisplayMode(.inline)
@@ -49,12 +69,19 @@ struct PlanDay: View {
                 }
             }
         }
-         .navigationBarItems(trailing: Button(action: {refactor.toggle() }, label: {
-                            Image(systemName: "car")
+         .navigationBarItems(trailing: Button(action: {resetOrder() }, label: {
+                            Image(systemName: "tray.2.fill")
         .imageScale(.large) }))
         .sheet(isPresented: $refactor) { CreatePlanView()}
 
 
+    }
+    
+    func resetOrder(){
+        for item in items{
+            item.plan = 0
+        }
+        counter = 1;
     }
 }
 

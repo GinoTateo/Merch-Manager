@@ -27,6 +27,7 @@ struct Login: View {
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.plan, ascending: true)])
 
     private var items: FetchedResults<Store>
+    @Environment (\.presentationMode) var presentationMode
     
     var ref = Database.database().reference()
 
@@ -44,8 +45,12 @@ struct Login: View {
     
     var body: some View {
         
-        //Image("icons8-open-box-64")
         
+        Image("gkonp9")
+            .resizable()
+            .frame(width: 75, height: 75)
+        
+    
             Form {
                 Section(header: Text("User Details")) {
                     TextField("Email", text: $email)
@@ -90,7 +95,9 @@ struct Login: View {
                         print(error.localizedDescription)
                     }
                 }
-            })
+            }).font(.system(size: 20, weight: .light , design: .rounded))
+                    .multilineTextAlignment(TextAlignment.center)
+                    .foregroundColor(.brown)
             .alert("Login Error", isPresented: $ErrorMessage) {
                 Button("OK", role: .cancel) {
                     Text(errorText)
@@ -98,7 +105,7 @@ struct Login: View {
             }
                 
                 Section(header: Text("New user?")) {
-                    Button("Create new account ",action: {
+                    Button("Create Account ",action: {
                         withAnimation {
                         do {
                             print("Creating new account")
@@ -109,7 +116,9 @@ struct Login: View {
                                 }
                             }
                         }
-                    )
+                    ).font(.system(size: 20, weight: .light , design: .rounded))
+                        .multilineTextAlignment(TextAlignment.center)
+                        .foregroundColor(.brown)
                         .sheet(isPresented: $showCreateAccount) { CreateAccountView()}
                 }
             }
@@ -129,12 +138,35 @@ struct Login: View {
                 Authenticated = true
                 let loggedDay = DayData.init(beginDay: false, startTime: Date(), currStore: 0)
                 userDay.currentDay = loggedDay
+                
+                
                 grabUserData()
                 loadStoresIn()
             }
         }
     }
     
+    func bioauth() {
+        let context = LAContext()
+        var error: NSError?
+
+        // check whether biometric authentication is possible
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            // it's possible, so go ahead and use it
+            let reason = "We need to unlock your data."
+
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+                // authentication has now completed
+                if success {
+                    // authenticated successfully
+                } else {
+                    // there was a problem
+                }
+            }
+        } else {
+            // no biometrics
+        }
+    }
     
     private func grabUserData(){
         let db = Firestore.firestore()
@@ -152,8 +184,10 @@ struct Login: View {
                 let position = document.get("Position")as? String ?? ""
                 let route = document.get("RouteNumber") as? String ?? ""
                 let numstores = document.get("numStores") as? Int ?? 0
+                let currPlanPos = document.get("currPlanPos") as? Int ?? 0
+                let isrsr = document.get("IsRSR") as? Bool ?? false
                 
-                let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: route, authenticated: true,dow: GetWeekday(), firstName: first, lastName: last, postion: position,numStores: 0, currPlanPos: 0)
+                let loggedUser = UserInfo.init(userName: email, email: email, routeNumber: route, authenticated: true,dow: GetWeekday(), firstName: first, lastName: last, postion: position,numStores: numstores, currPlanPos: currPlanPos, IsRSR: isrsr)
                 userStore.currentUserInfo = loggedUser
 
             } else {
@@ -169,7 +203,8 @@ struct Login: View {
                                         "LastName": "",
                                         "RouteNumber": routeNumber,
                                         "Position": "",
-                                        "numStores": 0
+                                        "numStores": 0,
+                                        "currPlanPos": 0
                                         ]
 
 
@@ -186,50 +221,51 @@ struct Login: View {
     
     
     func loadStoresIn(){                
-        
-        let db = Firestore.firestore()
-
-        let routeRef = db               // Get referance
-            .collection("Route").document("Merchandiser")
-            .collection(routeNumber).getDocuments { (snapshot, error) in
-        
-                guard let snapshot = snapshot, error == nil else {
-                  //handle error
-                  return
-                }
-                
-                //Get Num stores in data base
-                let count = snapshot.documents.count - 1
-
-                print("Num stores \(userStore.currentUserInfo?.numStores))")
-                // Compare to num of stores in User Account
-                if((userStore.currentUserInfo?.numStores)==count){
-                    print(userStore.currentUserInfo!.numStores )
-                    print("Number of documents: \(snapshot.documents.count-1)")
-                } else {
-                    snapshot.documents.forEach({ (documentSnapshot) in
-                      let documentData = documentSnapshot.data()
-                      let Name = documentData["Name"] as? String
-                      let Number = documentData["Number"] as? Int16
-                      let City = documentData["City"] as? String
-                      let Plan = documentData["Plan"] as? Int16
-                      let Long = documentData["Longtitude"] as? Double //Spelling error
-                      let Lat = documentData["Latitude"] as? Double
-
-                        
-                        let newStore = Store(context: AddStore)
-                        newStore.number = Number ?? 0
-                        newStore.city = City
-                        newStore.name = Name
-                        newStore.plan = Plan ?? 0
-                        newStore.longitude = Long ?? 0
-                        newStore.latitude = Lat ?? 0
-                        
-                        }
-                    )
-                userStore.currentUserInfo?.numStores = count
-            }
-        }
+//        
+//        let db = Firestore.firestore()
+//
+//        let routeRef = db               // Get referance
+//            .collection("Route").document("Merchandiser")
+//            .collection(routeNumber).getDocuments { (snapshot, error) in
+//        
+//                guard let snapshot = snapshot, error == nil else {
+//                  //handle error
+//                  return
+//                }
+//                
+//                //Get Num stores in data base
+//                let count = snapshot.documents.count - 1
+//
+//                print("Num stores \(userStore.currentUserInfo?.numStores))")
+//                // Compare to num of stores in User Account
+//                if((userStore.currentUserInfo?.numStores ?? 0)>=count){
+//                     print(userStore.currentUserInfo!.numStores )
+//                    print("Number of documents: \(snapshot.documents.count-1)")
+//                } else {
+//                    snapshot.documents.forEach({ (documentSnapshot) in
+//                      let documentData = documentSnapshot.data()
+//                      let Name = documentData["Name"] as? String
+//                      let Number = documentData["Number"] as? Int16
+//                      let City = documentData["City"] as? String
+//                      let Plan = documentData["Plan"] as? Int16
+//                      let Long = documentData["Longtitude"] as? Double //Spelling error
+//                      let Lat = documentData["Latitude"] as? Double
+//
+//                        print("Loading stores in")
+//                        
+//                        let newStore = Store(context: AddStore)
+//                        newStore.number = Number ?? 0
+//                        newStore.city = City
+//                        newStore.name = Name
+//                        newStore.plan = Plan ?? 0
+//                        newStore.longitude = Long ?? 0
+//                        newStore.latitude = Lat ?? 0
+//                        
+//                        }
+//                    )
+//                userStore.currentUserInfo?.numStores = count
+//            }
+//        }
     }
     
     func ErrorHandler(errorType: String){

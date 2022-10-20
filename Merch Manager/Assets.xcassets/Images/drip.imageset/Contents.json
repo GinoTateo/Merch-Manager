@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "e3b3ae8e57820627d16359afe461ade3--black-noir-shooting.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
