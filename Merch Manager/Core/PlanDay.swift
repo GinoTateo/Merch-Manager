@@ -30,35 +30,72 @@ struct PlanDay: View {
     var body: some View {
         VStack{
             List {
-                ForEach(items) { item in
-                    
-                       HStack{
-                           if(item.plan > 0){
-                               Text(String(item.plan))
-                           }
-                            Spacer()
-                            Text(item.name!)
-                            Text(String(item.number))
-                            Spacer()
-                       }.swipeActions(allowsFullSwipe: false) {
-                           Button {
-                               print(counter)
-                               
-                               item.plan = counter
-                               if counter > userStore.currentUserInfo?.numStores ?? 20{
-                                   counter = 1
-                               }
-                               else{
-                                   counter+=1
-                               }
-                               
-                               
-                               
-                           } label: {
-                               Label("+", systemImage: "plus")
-                           }
-                           .tint(.blue)
-                       }
+                Section(header: Text("Unselected")) {
+                    ForEach(items) { item in
+                        if (item.plan <= 0){
+                            HStack{
+                                if(item.plan > 0){
+                                    Text(String(item.plan))
+                                }
+                                Spacer()
+                                Text(item.name!)
+                                Text(String(item.number))
+                                Spacer()
+                            }.swipeActions(allowsFullSwipe: false) {
+                                Button {
+                                    print(counter)
+                                    
+                                    item.plan = counter
+                                    if counter > userStore.currentUserInfo?.numStores ?? 20{
+                                        counter = 1
+                                    }
+                                    else{
+                                        counter+=1
+                                    }
+                                    
+                                    
+                                    
+                                } label: {
+                                    Label("+", systemImage: "plus")
+                                }
+                                .tint(.blue)
+                            }
+                        }
+                    }
+                }
+                
+                Section(header: Text("Selected")) {
+                    ForEach(items) { item in
+                        if (item.plan > 0){
+                            HStack{
+                                if(item.plan > 0){
+                                    Text(String(item.plan))
+                                }
+                                Spacer()
+                                Text(item.name!)
+                                Text(String(item.number))
+                                Spacer()
+                            }.swipeActions(allowsFullSwipe: false) {
+                                Button {
+                                    print(counter)
+                                    
+                                    item.plan = counter
+                                    if counter > userStore.currentUserInfo?.numStores ?? 20{
+                                        counter = 1
+                                    }
+                                    else{
+                                        counter+=1
+                                    }
+                                    
+                                    
+                                    
+                                } label: {
+                                    Label("+", systemImage: "plus")
+                                }
+                                .tint(.blue)
+                            }
+                        }
+                    }
                 }
             }
         }.navigationBarTitleDisplayMode(.inline)
@@ -72,14 +109,25 @@ struct PlanDay: View {
          .navigationBarItems(trailing: Button(action: {resetOrder() }, label: {
                             Image(systemName: "tray.2.fill")
         .imageScale(.large) }))
-        .sheet(isPresented: $refactor) { CreatePlanView()}
+         .navigationBarItems(trailing: Button(action: {
+             do {
+                 try PlanDay.save()
+             } catch {
+                 print(error.localizedDescription)
+             }
+             
+         }, label: {
+                            Image(systemName: "icloud.and.arrow.up")
+        .imageScale(.large)
+         }))
+    
 
-
+        
     }
     
     func resetOrder(){
         for item in items{
-            item.plan = 0
+            item.plan = -1
         }
         counter = 1;
     }

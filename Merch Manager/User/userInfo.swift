@@ -18,14 +18,39 @@ struct UserInfo {
     let lastName: String
     let postion: String
     var numStores: Int
-    let currPlanPos: Int
+    var currPlanPos: Int
     var IsRSR: Bool
 }
 
+struct Accout: Codable, Hashable{
+    
+    let name:String
+    let position:String
+    let routeNum: Int
+    let region: Int
+    
+}
+
+struct Merch: Codable, Hashable{
+    
+    let User:String
+    let Store:String
+    let OOS: Int
+    let case_count: Int
+    let date: Date
+    var upload: Image {
+       Image(Store)
+    }
+    
+}
+
 struct DayData {
-    let beginDay: Bool
+    var beginDay: Bool
     let startTime: Date
     let currStore: Int16
+    var TotalCases: Int16
+    var TotalOOS: Int16
+    var TotalStores: Int16
 }
 
 struct ScanList: Identifiable {

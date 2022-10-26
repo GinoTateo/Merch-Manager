@@ -13,6 +13,7 @@
 		EF0DE0A22748D8A000081637 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0DE0A12748D8A000081637 /* Login.swift */; };
 		EF0DE0A42748FDCC00081637 /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0DE0A32748FDCC00081637 /* ServiceView.swift */; };
 		EF2920DF28579B2100537F41 /* Persistence4.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2920DE28579B2100537F41 /* Persistence4.swift */; };
+		EF3F6A0B290993F800BB3FD3 /* ViewMerch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3F6A0A290993F800BB3FD3 /* ViewMerch.swift */; };
 		EF46D271276AB558007798C6 /* PlanDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF46D270276AB558007798C6 /* PlanDay.swift */; };
 		EF46D275276AB5C2007798C6 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF46D274276AB5C2007798C6 /* Dashboard.swift */; };
 		EF4AEE762735F17300E44DC3 /* Merch_ManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4AEE752735F17300E44DC3 /* Merch_ManagerApp.swift */; };
@@ -34,6 +35,7 @@
 		EF7D1D4F2849521D0057B475 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7D1D4E2849521D0057B475 /* AddItemView.swift */; };
 		EF7D1D51284A7B9E0057B475 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7D1D50284A7B9E0057B475 /* ItemView.swift */; };
 		EF7D1D53284A83C40057B475 /* Persistence3.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7D1D52284A83C40057B475 /* Persistence3.swift */; };
+		EF876083291B33BF00EAF3A5 /* ItemView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF876082291B33BF00EAF3A5 /* ItemView2.swift */; };
 		EFA6543D289227FB00E62E63 /* WarehouseOrderSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA6543C289227FB00E62E63 /* WarehouseOrderSheet.swift */; };
 		EFB8EABB278906940088380B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB8EABA278906940088380B /* Color.swift */; };
 		EFB8EABF278CF42B0088380B /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB8EABE278CF42B0088380B /* CreateAccountView.swift */; };
@@ -54,7 +56,6 @@
 		EFC2838628397FE700517593 /* DateModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC2838528397FE700517593 /* DateModelController.swift */; };
 		EFC9407F27BCACC600C397FF /* userInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9407E27BCACC600C397FF /* userInfo.swift */; };
 		EFC9408227BCAD7200C397FF /* userStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9408127BCAD7200C397FF /* userStore.swift */; };
-		EFD628C728F0D73D00B95B22 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD628C628F0D73D00B95B22 /* SwiftUIView.swift */; };
 		EFD628C928F0D79300B95B22 /* Reports.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD628C828F0D79300B95B22 /* Reports.swift */; };
 		EFE1A94228C273B4001C1CB1 /* NewHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE1A94128C273B4001C1CB1 /* NewHome.swift */; };
 		EFE1A94628C27589001C1CB1 /* coffeesplash.json in Resources */ = {isa = PBXBuildFile; fileRef = EFE1A94528C27589001C1CB1 /* coffeesplash.json */; };
@@ -73,6 +74,7 @@
 		EF0DE0A12748D8A000081637 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		EF0DE0A32748FDCC00081637 /* ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
 		EF2920DE28579B2100537F41 /* Persistence4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence4.swift; sourceTree = "<group>"; };
+		EF3F6A0A290993F800BB3FD3 /* ViewMerch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMerch.swift; sourceTree = "<group>"; };
 		EF46D270276AB558007798C6 /* PlanDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDay.swift; sourceTree = "<group>"; };
 		EF46D274276AB5C2007798C6 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		EF4AEE722735F17300E44DC3 /* Merch Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Merch Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +96,7 @@
 		EF7D1D4E2849521D0057B475 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		EF7D1D50284A7B9E0057B475 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		EF7D1D52284A83C40057B475 /* Persistence3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence3.swift; sourceTree = "<group>"; };
+		EF876082291B33BF00EAF3A5 /* ItemView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView2.swift; sourceTree = "<group>"; };
 		EFA6543C289227FB00E62E63 /* WarehouseOrderSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseOrderSheet.swift; sourceTree = "<group>"; };
 		EFB8EABA278906940088380B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		EFB8EABE278CF42B0088380B /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
@@ -103,7 +106,6 @@
 		EFC2838528397FE700517593 /* DateModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModelController.swift; sourceTree = "<group>"; };
 		EFC9407E27BCACC600C397FF /* userInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userInfo.swift; sourceTree = "<group>"; };
 		EFC9408127BCAD7200C397FF /* userStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userStore.swift; sourceTree = "<group>"; };
-		EFD628C628F0D73D00B95B22 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwiftUIView.swift; path = "Merch Manager/Core/SwiftUIView.swift"; sourceTree = "<group>"; };
 		EFD628C828F0D79300B95B22 /* Reports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reports.swift; sourceTree = "<group>"; };
 		EFE1A94128C273B4001C1CB1 /* NewHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHome.swift; sourceTree = "<group>"; };
 		EFE1A94528C27589001C1CB1 /* coffeesplash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coffeesplash.json; sourceTree = "<group>"; };
@@ -141,7 +143,6 @@
 		EF4AEE692735F17300E44DC3 = {
 			isa = PBXGroup;
 			children = (
-				EFD628C628F0D73D00B95B22 /* SwiftUIView.swift */,
 				EF4AEE742735F17300E44DC3 /* Merch Manager */,
 				EF4AEE732735F17300E44DC3 /* Products */,
 			);
@@ -202,6 +203,7 @@
 				EF5607E32818E24E00833A86 /* CreatePlanView.swift */,
 				EFF2130128E50F6A00313175 /* AccountView.swift */,
 				EFC2837F28397EF300517593 /* GridView.swift */,
+				EF3F6A0A290993F800BB3FD3 /* ViewMerch.swift */,
 				EF0DE09F2748877D00081637 /* OrderSheet.swift */,
 				EFE1A94E28C2E226001C1CB1 /* OrderSheetScanView.swift */,
 				EF7D1D49284929F80057B475 /* ScanView.swift */,
@@ -210,6 +212,7 @@
 				EFE371502763E68700149767 /* AddStore.swift */,
 				EF4AEE772735F17300E44DC3 /* Home.swift */,
 				EF7D1D50284A7B9E0057B475 /* ItemView.swift */,
+				EF876082291B33BF00EAF3A5 /* ItemView2.swift */,
 				EF7D1D4E2849521D0057B475 /* AddItemView.swift */,
 				EF46D274276AB5C2007798C6 /* Dashboard.swift */,
 				EFD628C828F0D79300B95B22 /* Reports.swift */,
@@ -388,7 +391,6 @@
 				EF46D275276AB5C2007798C6 /* Dashboard.swift in Sources */,
 				EF55221F28976C4C0079D8B7 /* WarehouseOrderItem.swift in Sources */,
 				EF552221289CC2870079D8B7 /* WarehouseOrderItem2.swift in Sources */,
-				EFD628C728F0D73D00B95B22 /* SwiftUIView.swift in Sources */,
 				EFB8EABF278CF42B0088380B /* CreateAccountView.swift in Sources */,
 				EFE1A94F28C2E226001C1CB1 /* OrderSheetScanView.swift in Sources */,
 				EFC9408227BCAD7200C397FF /* userStore.swift in Sources */,
@@ -398,9 +400,11 @@
 				EFF2130228E50F6A00313175 /* AccountView.swift in Sources */,
 				EF7D1D4F2849521D0057B475 /* AddItemView.swift in Sources */,
 				EF46D271276AB558007798C6 /* PlanDay.swift in Sources */,
+				EF3F6A0B290993F800BB3FD3 /* ViewMerch.swift in Sources */,
 				EF059020280BA0FB00C4B76B /* StoreView.swift in Sources */,
 				EFC2838028397EF300517593 /* GridView.swift in Sources */,
 				EF4AEE822735F17400E44DC3 /* Merch_Manager.xcdatamodeld in Sources */,
+				EF876083291B33BF00EAF3A5 /* ItemView2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

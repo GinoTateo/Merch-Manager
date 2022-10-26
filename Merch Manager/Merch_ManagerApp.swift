@@ -27,7 +27,7 @@ struct Merch_ManagerApp: App {
         contentView.currentUserInfo = loggedUser
         
         let contentView2 = UserDay()
-        let loggedDay = DayData.init(beginDay: true, startTime: Date(), currStore: 0)
+        let loggedDay = DayData.init(beginDay: true, startTime: Date(), currStore: 0,TotalCases: 0,TotalOOS: 0,TotalStores: 0)
         contentView2.currentDay = loggedDay
         
         let contentView3 = ScanStore()

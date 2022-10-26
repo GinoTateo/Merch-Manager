@@ -1,37 +1,36 @@
-//import Foundation
-//import SwiftUI
-//
-//
-//struct WeatherInfo: Identifiable {
-//        var id = UUID()
-//        var image: String
-//        var temp: Int
-//        var city: String
-//}
-//
-//let weatherData: [WeatherInfo] = [
-//WeatherInfo(image: "snow", temp: 5, city:"New York"),
-//WeatherInfo(image: "cloud", temp:5, city:"Kansas       City"),
-//WeatherInfo(image: "sun.max", temp: 80, city:"San       Francisco"),
-//WeatherInfo(image: "snow", temp: 5, city:"Chicago"),
-//WeatherInfo(image: "cloud.rain", temp: 49,      city:"Washington DC"),
-//WeatherInfo(image: "cloud.heavyrain", temp: 60,       city:"Seattle"),
-//WeatherInfo(image: "sun.min", temp: 75,       city:"Baltimore"),
-//WeatherInfo(image: "sun.dust", temp: 65,       city:"Austin"),
-//WeatherInfo(image: "sunset", temp: 78,       city:"Houston"),
-//WeatherInfo(image: "moon", temp: 80, city:"Boston"),
-//WeatherInfo(image: "moon.circle", temp: 45,      city:"denver"),
-//WeatherInfo(image: "cloud.snow", temp: 8,      city:"Philadelphia"),
-//WeatherInfo(image: "cloud.hail", temp: 5,       city:"Memphis"),
-//WeatherInfo(image: "cloud.sleet", temp:5,       city:"Nashville"),
-//WeatherInfo(image: "sun.max", temp: 80,       city:"San Francisco"),
-//WeatherInfo(image: "cloud.sun", temp: 5,       city:"Atlanta"),
-//WeatherInfo(image: "wind", temp: 88,       city:"Las Vegas"),
-//WeatherInfo(image: "cloud.rain", temp: 60,       city:"Phoenix"),
-//]
-//
-//  class BookData: ObservableObject {
-//  @Published var books: [Book] = Book.samples
-//}
-//
+import Foundation
+import SwiftUI
+import Firebase
 
+struct Dog: Identifiable{
+    var id: String
+    var breed: String
+}
+
+class DataManager: ObservableObject {
+    @Published var dogs: [Dog] = []
+    
+    func fetchDogs(){
+        dogs.removeAll()
+        let db = Firestore.firestore()
+        let ref = db.collection ("Dogs")
+        ref.getDocuments { snapshot, error in
+            guard error == nil else
+            {
+                print (error! .localizedDescription)
+                return
+            }
+            if let snapshot = snapshot
+            {
+                for document in snapshot.documents {
+                    let data = document.data()
+                    let id = data["id"] as? String ?? ""
+                    let breed = data["breed"] as? String ?? ""
+                    let dog = Dog(id: id, breed: breed)
+                    self.dogs.append (dog)
+                }
+                
+            }
+        }
+    }
+}

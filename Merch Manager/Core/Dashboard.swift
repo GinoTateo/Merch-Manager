@@ -92,6 +92,7 @@ struct Dashboard: View {
                         print(generateReports())
                         test = generateReports()
                         print(test)
+                        userDay.currentDay?.beginDay = false
                     }
                 }).font(.system(size: 20, weight: .light , design: .rounded))
                     .multilineTextAlignment(TextAlignment.center)
@@ -100,10 +101,10 @@ struct Dashboard: View {
                     .overlay { RoundedRectangle(cornerRadius: 10.0)
                             .stroke(.white, lineWidth: 2.0)
                     }
-                    .disabled(!MFMailComposeViewController.canSendMail())
-                    .sheet(isPresented: $isShowingMailView) {
-                        MailView(result: self.$result, messageBody: test)
-                    }
+//                    .disabled(!MFMailComposeViewController.canSendMail())
+//                    .sheet(isPresented: $isShowingMailView) {
+//                        MailView(result: self.$result, messageBody: test)
+//                    }
             }
         }
         
@@ -125,7 +126,7 @@ struct Dashboard: View {
 
     func BeginDay(){
         print("Begin Day")
-        let loggedDay = DayData.init(beginDay: true, startTime: Date(), currStore: 0)
+        let loggedDay = DayData.init(beginDay: true, startTime: Date(), currStore: 0,TotalCases: 0,TotalOOS: 0,TotalStores: 0)
         userDay.currentDay = loggedDay
         
         
@@ -140,6 +141,9 @@ struct Dashboard: View {
                                 [
                                     "Begin Day": userDay.currentDay?.beginDay,
                                     "Start Time": userDay.currentDay?.startTime,
+                                    "Total Cases": userDay.currentDay?.TotalCases,
+                                    "Total OOS": userDay.currentDay?.TotalOOS,
+                                    "Total Stores": userDay.currentDay?.TotalStores,
                                 ]
 
 
@@ -164,7 +168,10 @@ struct Dashboard: View {
                 // Need a way of adding data from list to list
 
                                     [
-                                        "EOD": Date()
+                                        "EOD": Date(),
+                                        "Total Cases": userDay.currentDay?.TotalCases ?? 0,
+                                        "Total OOS": userDay.currentDay?.TotalOOS ?? 0,
+                                        "Total Stores": userDay.currentDay?.TotalStores ?? 0,
                                     ]
 
 
@@ -193,6 +200,7 @@ struct Dashboard: View {
             }
         }
     }
+    
     
     func generateReports() -> (String) {
         var store = "store"

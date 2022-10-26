@@ -65,29 +65,40 @@ struct OrderSheet: View {
                 }
                 
                 if(Complete == true){
+            
+                        Section(header: Text("OOS")) {
+                            VStack{
+                                TextField("OOS count", text: $OOSCount)
+                                    .keyboardType(.numberPad)
+                            }
+                            if(OOSCount > "0"){
+                            Button("Scan", action: {
+                                withAnimation {                 
+                                        ScanOOS.toggle()
+                                    
+                                }
+                            })   .sheet(isPresented: $ScanOOS) {
+                                if #available(iOS 16.0, *) {
+                                    OrderSheetScanView(numoos: OOSCount, currStore: item.name!+String(item.number))
+                                        .presentationDetents(
+                                            [.medium, .large]
+                                        )
+                                } else {
+                                    // Fallback on earlier versions
+                                }
+                            }
+                            .multilineTextAlignment(TextAlignment.center)
+                            .foregroundColor(.brown)
+                        }
+                    }
                     
                     Section(header: Text("Merch")) {
                         VStack{
                             TextField("Case count", text: $CaseCount)
                                 .keyboardType(.numberPad)
                         }
-                        VStack{
-                            TextField("OOS count", text: $OOSCount)
-                                .keyboardType(.numberPad)
-                        }
                     }
                     
-                    if(OOSCount > "0"){
-                        Section(header: Text("OOS")) {
-                            Button("Scan", action: {
-                                withAnimation {
-
-
-                                }
-                            }).multilineTextAlignment(TextAlignment.center)
-                                .foregroundColor(.brown)
-                        }
-                    }
                     Button("Complete", action: {
                         withAnimation {
                             item.plan = 0
@@ -187,6 +198,10 @@ struct OrderSheet: View {
 //        }
     
     func completeLog(){
+        
+        userDay.currentDay?.TotalStores += 1
+        userDay.currentDay?.TotalOOS += Int16(OOSCount) ?? 0
+        userDay.currentDay?.TotalCases += Int16(CaseCount) ?? 0
         
         let routeRef = db
             .collection("Route").document(userStore.currentUserInfo?.routeNumber ?? "")

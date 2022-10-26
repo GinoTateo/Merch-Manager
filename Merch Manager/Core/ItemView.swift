@@ -32,21 +32,21 @@ struct ItemView: View {
   
         
             List {
-                ForEach(items) { item in
-                    
-                    //NavigationLink(destination: StoreView(item: item)){
-                        HStack{
-                            
-                            Text(formatter.string(for: item.size) ?? "n/a").frame(alignment: .leading).font(.callout)
-                            Spacer()
-                            Text(item.name!).frame(alignment: .leading).font(.headline)
-                            Spacer()
-                            Text(item.type!).frame(alignment: .leading)
-
-                            
-                        }
-                    //}
-                }.onDelete(perform: deleteItems)
+               // ForEach(items) { item in
+//
+//                    NavigationLink(destination: ItemView2(Item: item)){
+//                        HStack{
+//
+//                            Text(formatter.string(for: item.size) ?? "n/a").frame(alignment: .leading).font(.callout)
+//                            Spacer()
+//                            Text(item.name!).frame(alignment: .leading).font(.headline)
+//                            Spacer()
+//                            Text(item.type!).frame(alignment: .leading)
+//
+//
+//                        }
+//                    }
+//                }.onDelete(perform: deleteItems)
             }.navigationBarTitleDisplayMode(.inline)
              .toolbar {
                 ToolbarItem(placement: .principal) {

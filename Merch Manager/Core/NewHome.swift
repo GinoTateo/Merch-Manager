@@ -316,6 +316,34 @@ struct userHome: View{
                                 }
                             }
                             
+                            NavigationLink(destination: ViewMerch()){
+                                HStack{
+                                    Spacer()
+                                    Text("View Merch").font(.system(size: 20, weight: .light , design: .rounded))
+                                        .multilineTextAlignment(TextAlignment.center)
+                                        .foregroundColor(.brown)
+                                        .frame(width: 150, height: 50)
+                                        .overlay { RoundedRectangle(cornerRadius: 10.0)
+                                                .stroke(.brown, lineWidth: 2.0)
+                                        }
+                                    Spacer()
+                                }
+                            }
+
+                            NavigationLink(destination: ViewMerch()){
+                                HStack{
+                                    Spacer()
+                                    Text("Request Merch").font(.system(size: 20, weight: .light , design: .rounded))
+                                        .multilineTextAlignment(TextAlignment.center)
+                                        .foregroundColor(.brown)
+                                        .frame(width: 150, height: 50)
+                                        .overlay { RoundedRectangle(cornerRadius: 10.0)
+                                                .stroke(.brown, lineWidth: 2.0)
+                                        }
+                                    Spacer()
+                                }
+                            }
+                            
                             NavigationLink(destination: AccountView()){
                                 HStack{
                                     Spacer()

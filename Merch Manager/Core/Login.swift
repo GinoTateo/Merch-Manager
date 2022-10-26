@@ -13,8 +13,6 @@ import FirebaseFirestore
 import LocalAuthentication
 
 
-
-
 struct Login: View {
     
 // ------- Data ------- //
@@ -25,7 +23,6 @@ struct Login: View {
     @EnvironmentObject var userDay: UserDay
     
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Store.plan, ascending: true)])
-
     private var items: FetchedResults<Store>
     @Environment (\.presentationMode) var presentationMode
     
@@ -38,7 +35,6 @@ struct Login: View {
     @State private var email: String = ""
     @State var ErrorMessage: Bool = false
     @State private var Authenticated: Bool = false
-    
     @State var errorText: String  = ""
     
 // ------- Body ------- //
@@ -136,35 +132,13 @@ struct Login: View {
             } else {
                 print("success")
                 Authenticated = true
-                let loggedDay = DayData.init(beginDay: false, startTime: Date(), currStore: 0)
+                let loggedDay = DayData.init(beginDay: false, startTime: Date(), currStore: 0,TotalCases: 0,TotalOOS: 0,TotalStores: 0)
                 userDay.currentDay = loggedDay
                 
                 
                 grabUserData()
                 loadStoresIn()
             }
-        }
-    }
-    
-    func bioauth() {
-        let context = LAContext()
-        var error: NSError?
-
-        // check whether biometric authentication is possible
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            // it's possible, so go ahead and use it
-            let reason = "We need to unlock your data."
-
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
-                // authentication has now completed
-                if success {
-                    // authenticated successfully
-                } else {
-                    // there was a problem
-                }
-            }
-        } else {
-            // no biometrics
         }
     }
     

@@ -13,9 +13,7 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        
-        
-       
+
             let newStore = Store(context: viewContext)
                 newStore.plan = 0
                 newStore.city = ""
@@ -40,11 +38,14 @@ struct PersistenceController {
     }()
 
     let container: NSPersistentContainer
+    
+    
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Merch_Manager")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+            container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         }
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
