@@ -1,5 +1,7 @@
 # MerchManager
 
+https://www.youtube.com/watch?v=Bi8zXhIyeuM
+
 ## Description
 
 MerchManager is an innovative iOS app designed to assist merchandisers in planning their day and operating efficiently in the field. It offers robust features for tracking sales analytics, ensuring users can manage their tasks effectively and make informed decisions.
